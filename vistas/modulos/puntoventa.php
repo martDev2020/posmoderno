@@ -1,0 +1,1 @@
+<h1>Punto de venta</h1>

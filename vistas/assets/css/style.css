@@ -4759,7 +4759,7 @@ table img + span {
   color: #212529;
 }
 table i {
-  margin-right: 10px;
+  margin-right: 0;
   font-size: 18px;
 }
 .table thead tr th {

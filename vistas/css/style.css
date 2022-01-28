@@ -1,0 +1,68 @@
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.mrbtn {
+  min-width: 0px !important;
+}
+.btn-table-icon {
+  font-size: 12px !important;
+  padding: 0.325rem 0.1rem !important;
+  min-width: 100px !important;
+  margin-top: 0 !important;
+}
+/**=================================================================
+ * MEDIAS QUERIES
+ ===================================================================*/
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 70% !important;
+  }
+}
+/* --------------Fin medias quueries */
+/**=================================================================
+ * VALIDACIONES
+ ===================================================================*/
+.formulario_input-error {
+  font-size: 12px;
+  margin-bottom: 0;
+  display: none;
+}
+
+.formulario_input-error-activo {
+  display: block;
+}
+
+.formulario_validacion-estado {
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  z-index: 100;
+  font-size: 16px;
+  opacity: 0;
+}
+.formulario_grupo-correcto .formulario_validacion-estado {
+  color: #1ed12d;
+  opacity: 1;
+}
+
+.formulario_grupo-incorrecto .formulario_label {
+  color: #bb2929;
+}
+
+.formulario_grupo-incorrecto .formulario_validacion-estado {
+  color: #bb2929;
+  opacity: 1;
+}
+
+.formulario_grupo-incorrecto .formulario_input {
+  border: 3px solid #bb2929;
+}
+.alert-val {
+  display: none;
+}
+.alert-val-activo {
+  display: block;
+  margin-top: -1rem !important;
+}
+/* ------Fin vaidaciones */
