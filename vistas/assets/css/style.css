@@ -6834,9 +6834,9 @@ body.ms-dark-theme,
   .ms-widget .ms-chat-header .ms-chat-user-info {
     display: none;
   }
-  .btn-group {
+  /* .btn-group {
     flex-direction: column;
-  }
+  } */
   .modal-footer {
     display: block;
   }

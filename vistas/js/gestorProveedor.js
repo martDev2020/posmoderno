@@ -227,9 +227,9 @@ function contactForm() {
             body: data,
             mode: "cors"
         })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data);
+            .then(res => (res.ok ? res.json() : Promise.reject(res)))
+            .then(json => {
+                // console.log(json);
                 tablaProveedor.ajax.reload(null, false);
             })
             .catch(function (err) {

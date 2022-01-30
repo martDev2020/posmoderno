@@ -55,7 +55,7 @@ if (isset($_POST["nombreprov"])) {
     // echo json_encode($response);
 }
 /**=================================================================
- * DATOAS PARA CAMBIRA EL STATUS DE PROVEEDOR
+ * DATOS PARA CAMBIAR EL STATUS DE PROVEEDOR
  ===================================================================*/
 if (isset($_POST["activeSP"])) {
     // echo json_encode("Id :" . $_POST["activeIdP"]);

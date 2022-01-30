@@ -3,7 +3,7 @@
 
      <!-- Logo -->
      <div class="logo-sn ms-d-block-lg">
-         <a class="pl-0 ml-0 text-center" href="index.html"> <img src="vistas/img/plantilla/cart.png" alt="logo">
+         <a class="pl-0 ml-0 text-center" href="puntoventa"> <img src="vistas/img/plantilla/cart.png" alt="logo">
          </a>
      </div>
 
@@ -38,7 +38,7 @@
                  <li> <a href="empleados">Gestión de empleados</a> </li>
              </ul>
          </li>
-         <li class="menu-item">
+         <!-- <li class="menu-item">
              <a href="#" class="has-chevron" data-toggle="collapse" data-target="#form-elements" aria-expanded="false"
                  aria-controls="form-elements">
                  <span><i class="material-icons fs-16">input</i>Categroías</span>
@@ -46,10 +46,10 @@
              <ul id="form-elements" class="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
                  <li> <a href="categorias">Gestión categorías</a> </li>
              </ul>
-         </li>
+         </li> -->
          <!-- /Form Elements -->
          <!-- Charts -->
-         <li class="menu-item">
+         <!-- <li class="menu-item">
              <a href="#" class="has-chevron" data-toggle="collapse" data-target="#charts" aria-expanded="false"
                  aria-controls="charts">
                  <span><i class="material-icons fs-16">equalizer</i>Subcategorías</span>
@@ -57,7 +57,7 @@
              <ul id="charts" class="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">
                  <li> <a href="subcategorias">Gestión subcategorías</a> </li>
              </ul>
-         </li>
+         </li> -->
          <!-- /Charts -->
          <!-- Tables -->
          <li class="menu-item">
@@ -66,6 +66,8 @@
                  <span><i class="material-icons fs-16">tune</i>Productos</span>
              </a>
              <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
+                 <li> <a href="categorias">Gestión categorías</a> </li>
+                 <li> <a href="subcategorias">Gestión subcategorías</a> </li>
                  <li> <a href="productos">Gestión de productos</a> </li>
              </ul>
          </li>
