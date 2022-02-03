@@ -1,59 +1,60 @@
 <?php
-require_once "../controladores/proveedor.controlador.php";
-require_once "../modelos/proveedor.modelo.php";
+require_once "../controladores/clientes.controlador.php";
+require_once "../modelos/clientes.modelo.php";
 
-class TablaProveedor
+class TablaClientes
 {
     /**===================================
-     * MOSTRAR LA TABLA PROVEEDOR
+     * MOSTRAR LA TABLA CLIENTES
      ===================================**/
-    public function mostrarTablaProveedor()
+    public function mostrarTablaClientes()
     {
         $item = null;
         $value = null;
 
-        $proveedor = ControladorProveedor::ctrMostrarProveedor($item, $value);
-        // var_dump($proveedor);
+        $clientes = ControladorClientes::ctrMostrarClientes($item, $value);
+        // var_dump($clientes);
 
-        if (count($proveedor) != 0) {
+        if (count($clientes) != 0) {
             # code...
             // return;
             $datosJson = '{
 
             "data":[';
 
-            for ($i = 0; $i < count($proveedor); $i++) {
+            for ($i = 0; $i < count($clientes); $i++) {
                 /**===================================
                  * AGREGAR ETIQUETAS DE ESTADO
              ===================================**/
-                if ($proveedor[$i]["activo"] == 0) {
+                if ($clientes[$i]["status_cli"] == 0) {
                     $colorEstado = "btn-outline-danger";
                     $textoEstado = "Desactivado";
-                    $estadoProveedor = 1;
+                    $estadoClientes = 1;
                 } else {
                     $colorEstado = "btn-outline-success";
                     $textoEstado = "Activo";
-                    $estadoProveedor = 0;
+                    $estadoClientes = 0;
                 }
-                $estado = "<button type='button' class='btn btn-table-icon btn-pill " . $colorEstado . " btnActivarP' idProveedor='" . $proveedor[$i]["id"] . "' estadoProveedor='" . $estadoProveedor . "'>" . $textoEstado . "</button>";
+                $estado = "<button type='button' class='btn btn-table-icon btn-pill " . $colorEstado . " btnActivarC' idClientes='" . $clientes[$i]["id"] . "' estadoCliente='" . $estadoClientes . "'>" . $textoEstado . "</button>";
                 /**===================================
                  * TRAER LAS ACCIONES
              ===================================**/
-                $id = $proveedor[$i]["id"];
-                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarProveedor' onclick='idProveedor($id);' data-toggle='modal' data-target='#modal-edit'><i class='fa fa-edit'></i></button><button class='btn-danger ms-btn-icon btn-pill btnEliminarProveedor' onclick='idEliminarP($id);'><i class='fas fa-trash'></i></button></div></center>";
+                $id = $clientes[$i]["id"];
+                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarClientes' onclick='idClientes($id);' data-toggle='modal' data-target='#modal-edit'><i class='fa fa-edit'></i></button><button class='btn-danger ms-btn-icon btn-pill btnEliminarCliente' onclick='idEliminarC($id);'><i class='fas fa-trash'></i></button></div></center>";
                 /**===================================
                  * CONSTRUiR LOS DATOS JSON
              ===================================**/
 
                 $datosJson .= '[
                     "' . ($i + 1) . '",
-                    "' . $proveedor[$i]["nombre_prov"] . '",
-                    "' . $proveedor[$i]["descripcion_prov"] . '",
-                    "' . $proveedor[$i]["direccion_prov"] . '",
-                    "' . $proveedor[$i]["telefono_prov"] . '",
-                    "' . $proveedor[$i]["email_prov"] . '",
+                    "' . $clientes[$i]["nombre_cliente"] . '",
+                    "' . $clientes[$i]["telefono_cli"] . '",
+                    "' . $clientes[$i]["direccion_cli"] . '",
+                    "' . $clientes[$i]["razonSocial_cli"] . '",
                     "' . $estado . '",
-                    "' . $proveedor[$i]["fecha_altProv"] . '",
+                    "' . $clientes[$i]["rfc_cli"] . '",
+                    "' . $clientes[$i]["email"] . '",
+                    "' . $clientes[$i]["fecha_altCli"] . '",
                     "' . $acciones . '"
                 ],';
             }
@@ -75,5 +76,5 @@ class TablaProveedor
 /**===================================
  * MOSTRAR TABLA PRODUCTOS
  ===================================**/
-$acitvarProductos = new TablaProveedor();
-$acitvarProductos->mostrarTablaProveedor();
+$acitvarProductos = new TablaClientes();
+$acitvarProductos->mostrarTablaClientes();

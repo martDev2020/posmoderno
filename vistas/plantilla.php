@@ -125,6 +125,7 @@
 
     <script src="vistas/js/gestorProveedor.js"></script>
     <script src="vistas/js/plantilla.js"></script>
+    <script src="vistas/js/gestorClientes.js"></script>
 
 </body>
 
