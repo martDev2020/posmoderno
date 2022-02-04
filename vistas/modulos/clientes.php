@@ -106,7 +106,7 @@
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
-                                    No ingresara caracteres especiales.
+                                    No ingresar caracteres especiales.
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3" id="val-rfccli">
@@ -117,7 +117,7 @@
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
-                                    No ingresara caracteres especiales.
+                                    No ingresar caracteres especiales, número máximo de caracteres es 13.
                                 </div>
                             </div>
                         </div>

@@ -51,6 +51,9 @@ class ProveedorAjax
         $response = ControladorProveedor::ctrMostrarProveedorE($item, $value);
         echo json_encode($response);
     }
+    /**=================================================================
+     * EDITARA PROVEEDOR
+ ===================================================================*/
 
     public $idProv;
     public $nombreprovE;

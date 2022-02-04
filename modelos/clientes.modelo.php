@@ -41,4 +41,45 @@ class ModeloClientes
         $stmt->close();
         $stmt = null;
     }
+    /**=================================================================
+     * GUARDAR DATOS CLIENTES
+     ===================================================================*/
+    static public function mldCrearCliente($tabla, $datos)
+    {
+        // ob_end_clean();
+        // echo json_encode($datos);
+        // return;
+        $stmt = Conexion::conectar()->prepare(
+            "INSERT INTO $tabla (
+            nombre_cliente,
+            telefono_cli,
+            direccion_cli,
+            razonSocial_cli,
+            status_cli,
+            rfc_cli,
+            email)
+            VALUES
+            (:nombre_cliente,
+            :telefono_cli,
+            :direccion_cli,
+            :razonSocial_cli,
+            :status_cli,
+            :rfc_cli,
+            :email)"
+        );
+        $stmt->bindParam(":nombre_cliente", $datos["nombrecli"], PDO::PARAM_STR);
+        $stmt->bindParam(":telefono_cli", $datos["telcli"], PDO::PARAM_STR);
+        $stmt->bindParam(":direccion_cli", $datos["dircli"], PDO::PARAM_STR);
+        $stmt->bindParam(":razonSocial_cli", $datos["razoncli"], PDO::PARAM_STR);
+        $stmt->bindParam(":status_cli", $datos["activo"], PDO::PARAM_INT);
+        $stmt->bindParam(":rfc_cli", $datos["rfccli"], PDO::PARAM_STR);
+        $stmt->bindParam(":email", $datos["emailcli"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

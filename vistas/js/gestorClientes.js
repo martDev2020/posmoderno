@@ -100,7 +100,7 @@ tablaCliente = $(".tablaClientes").DataTable({
  ===================================================================*/
 
 function contactFormC() {
-    const $form = d.getElementById("formCli"),
+    const $formc = d.getElementById("formCli"),
         inputs = d.querySelectorAll("#formCli input");
 
     const $regExpre = {
@@ -109,8 +109,15 @@ function contactFormC() {
         telcli: /^\d{10}$/,
         emailcli: /^[A-Za-z0-9]+(\.[A-Za-z0-9]+|-[A-Za-z0-9]+|_[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})$/,
         razoncli: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-        rfccli: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+        rfccli: /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/
     }
+    const $regExpre2 = {
+        rfccli: /^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$/
+    }
+    /**Con homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?([A-Z\d]{2})([A\d])$
+     * sin homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$
+     * simplificada: ^([A-Z]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2}(?:[A\d]))?$
+     */
     /**------Objeto para validar si los campos estan vacíos. */
     const campos = {
         nombrecli: false,
@@ -141,7 +148,8 @@ function contactFormC() {
                 validarInput($regExpre.razoncli, e.target, 'razoncli');
                 break;
             case "rfccli":
-                validarInput(RegExp.rfccli, e.target, 'rfccli');
+                validarInput($regExpre.rfccli, e.target, 'rfccli') ||
+                    validarInput($regExpre2.rfccli, e.target, 'rfccli');
         }
     }
     const validarInput = (expresion, input, campo) => {
@@ -165,48 +173,47 @@ function contactFormC() {
     /**=================================================================
      * CAPTURAR DATOS PARA GUARDAR PROVEEDOR
      ===================================================================*/
-    //     $form.addEventListener("submit", function (e) {
-    //         // /console.log("Excelente");
-    //         e.preventDefault();
-    //         /**-----Validación de datos */
-    //         if (campos.nombreprov && campos.dirprov && campos.emailcli && campos.telprov) {
+    $formc.addEventListener("submit", function (e) {
+        // /console.log("Excelente");
+        e.preventDefault();
+        /**-----Validación de datos */
+        if (campos.nombrecli && campos.dircli && campos.emailcli && campos.telcli && campos.razoncli && campos.rfccli) {
 
-
-    //             /**------Fin validación de datos */
-    //             let data = new FormData($form);
-    //             // console.log(data);
-    //             fetch('ajax/proveedor.ajax.php', {
-    //                 method: 'POST',
-    //                 body: data,
-    //                 mode: "cors"
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     // console.log(data);
-    //                     if (data === "ok") {
-    //                         toastr.success('Se guardaron los datos de proveedor correctamente.', 'Datos guardados');
-    //                         tablaProveedor.ajax.reload(null, false);
-    //                     }
-    //                     $form.reset();
-    //                 })
-    //                 .catch(function (err) {
-    //                     // console.log('error', err);
-    //                     Swal.fire({
-    //                         position: "top-end",
-    //                         icon: "success",
-    //                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
-    //                         showConfirmButton: false,
-    //                         timer: 2000
-    //                     })
-    //                 })
-    //             // $('#modal-4').modal('hide');
-    //         } else {
-    //             d.getElementById('form-mensaje').classList.add('alert-val-activo');
-    //             setTimeout(() => {
-    //                 d.getElementById("form-mensaje").classList.remove('alert-val-activo');
-    //             }, 5000);
-    //         }
-    //     })
+            /**------Fin validación de datos */
+            let data = new FormData($formc);
+            // console.log(data);
+            fetch('ajax/cliente.ajax.php', {
+                method: 'POST',
+                body: data,
+                mode: "cors"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data === "ok") {
+                        toastr.success('Se guardaron los datos de cliente correctamente.', 'Datos guardados');
+                        tablaCliente.ajax.reload(null, false);
+                    }
+                    $formc.reset();
+                })
+                .catch(function (err) {
+                    // console.log('error', err);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                })
+            // $('#modal-4').modal('hide');
+        } else {
+            d.getElementById('form-mensaje').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.getElementById("form-mensaje").classList.remove('alert-val-activo');
+            }, 5000);
+        }
+    })
     /**=================================================================
     * ACTIVAR Y DESACTIVAR BOTÓN DE STATUS
     ===================================================================*/
@@ -233,8 +240,10 @@ function contactFormC() {
             })
             .catch(function (err) {
                 // console.log('error', err);
+                let message = err.statusText || "Ocurrió un error";
+                $status.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
             })
-        if ($estadoProveedor == 0) {
+        if ($estadoCliente == 0) {
             $(this).removeClass('btn-outline-success');
             $(this).addClass('btn-outline-danger');
             $(this).html('Desactivado');
@@ -293,7 +302,7 @@ d.addEventListener("DOMContentLoaded", contactFormC);
 // * VALIDACIÓN DE FORMULARIO EDICIÓN
 // ===================================================================*/
 // function contactFormEdit() {
-//     const $formEdit = d.getElementById("formProvEdit"),
+//     const $formcEdit = d.getElementById("formProvEdit"),
 //         inputsEdit = d.querySelectorAll("#formProvEdit input"),
 //         $textareaEdit = d.querySelectorAll("#formProvEdit textarea");
 
@@ -358,13 +367,13 @@ d.addEventListener("DOMContentLoaded", contactFormC);
 //     /**=================================================================
 //      * CAPTURAR DATOS PARA GUARDAR PROVEEDOR
 //      ===================================================================*/
-//     $formEdit.addEventListener("submit", function (e) {
+//     $formcEdit.addEventListener("submit", function (e) {
 //         // /console.log("Excelente");
 //         e.preventDefault();
 //         /**-----Validación de datos */
 //         if (nombreprovE != 0 && dirprovE != 0 && emailprovE != 0 && telprovE != 0) {
 //             /**------Fin validación de datos */
-//             let data = new FormData($formEdit);
+//             let data = new FormData($formcEdit);
 //             // console.log(data);
 //             fetch('ajax/proveedor.ajax.php', {
 //                 method: 'POST',
@@ -378,7 +387,7 @@ d.addEventListener("DOMContentLoaded", contactFormC);
 //                         toastr.success('Se acutalizaron los datos de proveedor correctamente.', 'Datos guardados');
 //                         tablaProveedor.ajax.reload(null, false);
 //                     }
-//                     // $formEdit.reset();
+//                     // $formcEdit.reset();
 //                 })
 //                 .catch(function (err) {
 //                     // console.log('error', err);
