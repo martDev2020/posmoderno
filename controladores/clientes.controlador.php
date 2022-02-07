@@ -11,6 +11,15 @@ class ControladorClientes
         return $response;
     }
     /**=================================================================
+     * TRAER DATOS PARA EDICIÓN DE CLIENTE
+     ===================================================================*/
+    static public function ctrMostrarClienteE($item, $value)
+    {
+        $tabla = "clientes";
+        $response = ModeloClientes::mdlMostrarCientesE($tabla, $item, $value);
+        return $response;
+    }
+    /**=================================================================
      * CREAR CLIENTES
      ===================================================================*/
     static public function ctrCrearCliente($datos)
@@ -50,6 +59,51 @@ class ControladorClientes
                 showConfirmButton: false,
                 timer: 1500
                 })        
+    		  	</script>';
+            }
+        }
+    }
+    /**=================================================================
+     * EDICIÓN CLIENTE
+     ===================================================================*/
+    static public function ctrClintesEdit($datos)
+    {
+        // echo json_encode($datos);
+        // return;
+        require_once "../modelos/clientes.modelo.php";
+        if (isset($_POST["idCliente"])) {
+            if (
+                preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["nombreCliE"]) &&
+                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["dirclieE"]) &&
+                preg_match('/^\d{10}$/', $datos["telclieE"]) &&
+                preg_match('/^[A-Za-z0-9]+(\.[A-Za-z0-9]+|-[A-Za-z0-9]+|_[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})$/', $datos["emailcliE"]) &&
+                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["razonclliE"])  &&
+                preg_match('/^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/', $datos["rfcclieE"]) ||
+                preg_match('/^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$/', $datos["rfcclieE"])
+            ) {
+                $datos = array(
+                    'idCliente' => $datos["idCliente"],
+                    "nombreCliE" => $datos["nombreCliE"],
+                    "dircliE" => $datos["dirclieE"],
+                    "telcliE" => $datos["telclieE"],
+                    "emailcliE" => $datos["emailcliE"],
+                    "razoncliE" => $datos["razonclliE"],
+                    "rfcclieE" => $datos["rfcclieE"],
+                );
+                // echo json_encode($datos);
+                // return;
+                $response = ModeloClientes::mdlEditarCliente("clientes", $datos);
+                return $response;
+            } else {
+                echo '<script>
+                Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
+                showConfirmButton: false,
+                timer: 2000
+                })
+                       
     		  	</script>';
             }
         }

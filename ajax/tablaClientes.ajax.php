@@ -40,7 +40,7 @@ class TablaClientes
                  * TRAER LAS ACCIONES
              ===================================**/
                 $id = $clientes[$i]["id"];
-                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarClientes' onclick='idClientes($id);' data-toggle='modal' data-target='#modal-edit'><i class='fa fa-edit'></i></button><button class='btn-danger ms-btn-icon btn-pill btnEliminarCliente' onclick='idEliminarC($id);'><i class='fas fa-trash'></i></button></div></center>";
+                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarClientes' onclick='idClientes($id);' data-toggle='modal' data-target='#modal-editC'><i class='fa fa-edit'></i></button><button class='btn-danger ms-btn-icon btn-pill btnEliminarCliente' onclick='idEliminarC($id);'><i class='fas fa-trash'></i></button></div></center>";
                 /**===================================
                  * CONSTRUiR LOS DATOS JSON
              ===================================**/

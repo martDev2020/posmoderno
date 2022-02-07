@@ -121,7 +121,7 @@
     <script src="vistas\assets\js\toast.js"> </script>
     <script src="vistas\assets\js\promise.min.js"> </script>
     <script src="vistas\assets\js\sweetalert2.min.js"> </script>
-    <script src="vistas\assets\js\sweet-alerts.js"> </script>
+    <!-- <script src="vistas\assets\js\sweet-alerts.js"> </script> -->
 
     <script src="vistas/js/gestorProveedor.js"></script>
     <script src="vistas/js/plantilla.js"></script>

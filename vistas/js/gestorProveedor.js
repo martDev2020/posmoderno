@@ -194,7 +194,7 @@ function contactForm() {
                     // console.log('error', err);
                     Swal.fire({
                         position: "top-end",
-                        icon: "success",
+                        icon: "error",
                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
                         showConfirmButton: false,
                         timer: 2000
@@ -376,7 +376,7 @@ function contactFormEdit() {
                 .then(data => {
                     // console.log(data);
                     if (data === "ok") {
-                        toastr.success('Se acutalizaron los datos de proveedor correctamente.', 'Datos guardados');
+                        toastr.success('Se actualizaron los datos de proveedor correctamente.', 'Datos guardados');
                         tablaProveedor.ajax.reload(null, false);
                     }
                     // $formEdit.reset();
@@ -385,7 +385,7 @@ function contactFormEdit() {
                     // console.log('error', err);
                     Swal.fire({
                         position: "top-end",
-                        icon: "success",
+                        icon: "error",
                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
                         showConfirmButton: false,
                         timer: 2000

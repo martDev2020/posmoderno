@@ -268,190 +268,199 @@ function contactFormC() {
 d.addEventListener("DOMContentLoaded", contactFormC);
 /**--------------------Fin para guardar datos de cliente */
 /**=================================================================
-    * EDICIÓN DE PROVEEDOR
+    * EDICIÓN DE CLIENTE
     ===================================================================*/
-// const idClientes = (id) => {
-//     let idP = id;
-//     // console.log("idP ", idP);
-//     let url = "ajax/proveedor.ajax.php";
-//     let data = new FormData();
-//     data.append('idClientes', idP);
-//     fetch(url, {
-//         method: 'POST',
-//         body: data,
-//         mode: 'cors'
-//     })
-//         .then(res => (res.ok ? res.json() : Promise.reject(res)))
-//         .then(json => {
-//             // console.log(json);
-//             idProv.value = json.id;
-//             nombreprovE.value = json.nombre_prov;
-//             dirprovE.value = json.direccion_prov;
-//             telprovE.value = json.telefono_prov;
-//             emailprovE.value = json.email_prov;
-//             descripprovE.value = json.descripcion_prov;
-//         })
-//         .catch(function (err) {
-//             // console.error('Error', err);
-//             let message = err.statusText || "Ocurrió un error";
-//             idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//         })
-// }
-// /**-------Fin edición de proveedor */
-// /**=================================================================
-// * VALIDACIÓN DE FORMULARIO EDICIÓN
-// ===================================================================*/
-// function contactFormEdit() {
-//     const $formcEdit = d.getElementById("formProvEdit"),
-//         inputsEdit = d.querySelectorAll("#formProvEdit input"),
-//         $textareaEdit = d.querySelectorAll("#formProvEdit textarea");
+const idClientes = (id) => {
+    let idC = id;
+    // console.log("idC ", idC);
+    let url = "ajax/cliente.ajax.php";
+    let data = new FormData();
+    data.append('idClientes', idC);
+    fetch(url, {
+        method: 'POST',
+        body: data,
+        mode: 'cors'
+    })
+        .then(res => (res.ok ? res.json() : Promise.reject(res)))
+        .then(json => {
+            // console.log(json);
+            idCliente.value = json.id;
+            nombrecliE.value = json.nombre_cliente;
+            telcliE.value = json.telefono_cli;
+            dircliE.value = json.direccion_cli;
+            razoncliE.value = json.razonSocial_cli;
+            rfccliE.value = json.rfc_cli;
+            emailcliE.value = json.email;
+        })
+        .catch(function (err) {
+            // console.error('Error', err);
+            let message = err.statusText || "Ocurrió un error";
+            idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+        })
+}
+/**-------Fin edición de proveedor */
+/**=================================================================
+* VALIDACIÓN DE FORMULARIO EDICIÓN
+===================================================================*/
+function contactFormEditC() {
+    const $formcEdit = d.getElementById("formCliE"),
+        inputs = d.querySelectorAll("#formCliE input");
 
-//     const $regExpreEdit = {
-//         nombreprovE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
-//         dirprovE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-//         telprovE: /^\d{10}$/,
-//         emailprovE: /^[A-Za-z0-9]+(\.[A-Za-z0-9]+|-[A-Za-z0-9]+|_[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})$/,
-//         descripprovE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/
-//     }
-//     /**------Objeto para validar si los campos estan vacíos. */
-//     const camposE = {
-//         nombreprovE: false,
-//         dirprovE: false,
-//         telprovE: false,
-//         emailprovE: false,
-//         descripprovE: false
-//     }
-//     const validarFormE = (e) => {
-//         // console.log("Se ejecutó");
-//         // console.log(e.target.name);
-//         /**El name es del input, es decir, se ejecuta todos los name */
-//         switch (e.target.name) {
-//             case "nombreprovE":
-//                 validarInputE($regExpreEdit.nombreprovE, e.target, 'nombreprovE');
-//                 break;
-//             case "dirprovE":
-//                 validarInputE($regExpreEdit.dirprovE, e.target, 'dirprovE');
-//                 break;
-//             case "telprovE":
-//                 validarInputE($regExpreEdit.telprovE, e.target, 'telprovE');
-//                 break;
-//             case "emailprovE":
-//                 validarInputE($regExpreEdit.emailprovE, e.target, 'emailprovE');
-//                 break;
-//             case "descripprovE":
-//                 validarInputE($regExpreEdit.descripprovE, e.target, 'descripprovE');
-//                 break;
-//         }
-//     }
-//     const validarInputE = (expresion, input, campo) => {
-//         if (expresion.test(input.value)) {
-//             d.querySelector(`#edit-${campo} .alert-val`).classList.remove("alert-val-activo");
-//             // Valida que los camposE no esten vacíos.
-//             camposE[campo] = true;
-//         } else {
-//             d.querySelector(`#edit-${campo} .alert-val`).classList.add('alert-val-activo');
-//             setTimeout(() => {
-//                 d.querySelector(`#edit-${campo} .alert-val`).classList.remove("alert-val-activo");
-//             }, 5000);
-//             camposE[campo] = false;
-//         }
-//     }
-//     inputsEdit.forEach((input) => {
-//         input.addEventListener("keyup", validarFormE);
-//         input.addEventListener("blur", validarFormE);
-//     })
-//     $textareaEdit.forEach(($textareaEdit) => {
-//         $textareaEdit.addEventListener("keyup", validarFormE);
-//         $textareaEdit.addEventListener("blur", validarFormE);
-//     })
-//     /**=================================================================
-//      * CAPTURAR DATOS PARA GUARDAR PROVEEDOR
-//      ===================================================================*/
-//     $formcEdit.addEventListener("submit", function (e) {
-//         // /console.log("Excelente");
-//         e.preventDefault();
-//         /**-----Validación de datos */
-//         if (nombreprovE != 0 && dirprovE != 0 && emailprovE != 0 && telprovE != 0) {
-//             /**------Fin validación de datos */
-//             let data = new FormData($formcEdit);
-//             // console.log(data);
-//             fetch('ajax/proveedor.ajax.php', {
-//                 method: 'POST',
-//                 body: data,
-//                 mode: "cors"
-//             })
-//                 .then(res => res.json())
-//                 .then(data => {
-//                     // console.log(data);
-//                     if (data === "ok") {
-//                         toastr.success('Se acutalizaron los datos de proveedor correctamente.', 'Datos guardados');
-//                         tablaProveedor.ajax.reload(null, false);
-//                     }
-//                     // $formcEdit.reset();
-//                 })
-//                 .catch(function (err) {
-//                     // console.log('error', err);
-//                     Swal.fire({
-//                         position: "top-end",
-//                         icon: "success",
-//                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
-//                         showConfirmButton: false,
-//                         timer: 2000
-//                     })
-//                 })
-//             // $('#modal-4').modal('hide');
-//         } else {
-//             d.getElementById('form-mensajeE').classList.add('alert-val-activo');
-//             setTimeout(() => {
-//                 d.getElementById("form-mensajeE").classList.remove('alert-val-activo');
-//             }, 5000);
-//         }
-//     })
-// }
-// d.addEventListener("DOMContentLoaded", contactFormEdit);
-// /**-------------Fin edición de formulario */
-// /**=================================================================
-//     * ELIMINAR PROVEEDOR
-//     ===================================================================*/
-// const idEliminarP = (id) => {
-//     let idPdelete = id;
-//     // console.log("idPdelete ", idPdelete);
-//     Swal.fire({
-//         title: "¿Estás seguro de eliminar los datos?",
-//         icon: "warning",
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         confirmButtonText: 'Si',
-//         cancelButtonText: 'No'
-//     }).then((result) => {
-//         if (result.value) {
-//             let url = "ajax/proveedor.ajax.php";
-//             let data = new FormData();
-//             data.append('ideliminarP', idPdelete);
-//             fetch(url, {
-//                 method: 'POST',
-//                 body: data,
-//                 mode: 'cors'
-//             }).then(res => (res.ok ? res.json() : Promise.reject(res)))
-//                 .then(json => {
-//                     // console.log(json);
-//                     if (json == "ok") {
-//                         Swal.fire({
-//                             icon: 'success',
-//                             title: 'Datos eliminados',
-//                             showConfirmButton: false,
-//                             timer: 1500
-//                         })
-//                     }
-//                     tablaProveedor.ajax.reload(null, false);
-//                 })
-//                 .catch(function (err) {
-//                     // console.error('Error', err);
-//                     let message = err.statusText || "Ocurrió un error";
-//                     idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//                 })
-//         }
-//     })
-// }
-// /**----------------Eliminar proveedor */
+    const $regExpre = {
+        nombrecliE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+        dircliE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+        telcliE: /^\d{10}$/,
+        emailcliE: /^[A-Za-z0-9]+(\.[A-Za-z0-9]+|-[A-Za-z0-9]+|_[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})$/,
+        razoncliE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+        rfccliE: /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/
+    }
+    const $regExpre2 = {
+        rfccliE: /^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$/
+    }
+    /**Con homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?([A-Z\d]{2})([A\d])$
+     * sin homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$
+     * simplificada: ^([A-Z]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2}(?:[A\d]))?$
+     */
+    /**------Objeto para validar si los campos estan vacíos. */
+    const camposE = {
+        nombrecliE: false,
+        dircliE: false,
+        telcliE: false,
+        emailcliE: false,
+        razoncliE: false,
+        rfccliE: false
+    }
+    const validarFormE = (e) => {
+        // console.log("Se ejecutó");
+        // console.log(e.target.name);
+        /**El name es del input, es decir, se ejecuta todos los name */
+        switch (e.target.name) {
+            case "nombrecliE":
+                validarInput($regExpre.nombrecliE, e.target, 'nombrecliE');
+                break;
+            case "dircliE":
+                validarInput($regExpre.dircliE, e.target, 'dircliE');
+                break;
+            case "telcliE":
+                validarInput($regExpre.telcliE, e.target, 'telcliE');
+                break;
+            case "emailcliE":
+                validarInput($regExpre.emailcliE, e.target, 'emailcliE');
+                break;
+            case "razoncliE":
+                validarInput($regExpre.razoncliE, e.target, 'razoncliE');
+                break;
+            case "rfccliE":
+                validarInput($regExpre.rfccliE, e.target, 'rfccliE') ||
+                    validarInput($regExpre2.rfccliE, e.target, 'rfccliE');
+        }
+    }
+    const validarInput = (expresion, input, campo) => {
+        if (expresion.test(input.value)) {
+            d.querySelector(`#val-${campo} .alert-val`).classList.remove("alert-val-activo");
+            // Valida que los camposE no esten vacíos.
+            camposE[campo] = true;
+        } else {
+            d.querySelector(`#val-${campo} .alert-val`).classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.querySelector(`#val-${campo} .alert-val`).classList.remove("alert-val-activo");
+            }, 5000);
+            camposE[campo] = false;
+        }
+    }
+
+    inputs.forEach((input) => {
+        input.addEventListener("keyup", validarFormE);
+        input.addEventListener("blur", validarFormE);
+    })
+    /**=================================================================
+     * CAPTURAR DATOS PARA GUARDAR PROVEEDOR
+     ===================================================================*/
+    $formcEdit.addEventListener("submit", function (e) {
+        // /console.log("Excelente");
+        e.preventDefault();
+        /**-----Validación de datos */
+        if (idCliente != 0 && nombrecliE != 0 && dircliE != 0 && razoncliE != 0 && telcliE != 0 && rfccliE != 0 && emailcliE != 0) {
+            /**------Fin validación de datos */
+            let data = new FormData($formcEdit);
+            // console.log(data);
+            fetch('ajax/cliente.ajax.php', {
+                method: 'POST',
+                body: data,
+                mode: "cors"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    if (data === "ok") {
+                        toastr.success('Se actualizaron los datos de cliente correctamente.', 'Datos guardados');
+                        tablaCliente.ajax.reload(null, false);
+                    }
+                    // $formcEdit.reset();
+                })
+                .catch(function (err) {
+                    // console.log('error', err);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                })
+            // $('#modal-4').modal('hide');
+        } else {
+            d.getElementById('form-mensajeE').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.getElementById("form-mensajeE").classList.remove('alert-val-activo');
+            }, 5000);
+        }
+    })
+}
+d.addEventListener("DOMContentLoaded", contactFormEditC);
+/**-------------Fin edición de formulario */
+/**=================================================================
+    * ELIMINAR PROVEEDOR
+    ===================================================================*/
+const idEliminarC = (id) => {
+    let idCdelete = id;
+    // console.log("idPdelete ", idPdelete);
+    Swal.fire({
+        title: "¿Estás seguro de eliminar los datos?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.value) {
+            let url = "ajax/cliente.ajax.php";
+            let data = new FormData();
+            data.append('ideliminarC', idCdelete);
+            fetch(url, {
+                method: 'POST',
+                body: data,
+                mode: 'cors'
+            }).then(res => (res.ok ? res.json() : Promise.reject(res)))
+                .then(json => {
+                    // console.log(json);
+                    if (json == "ok") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Datos eliminados',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                    tablaCliente.ajax.reload(null, false);
+                })
+                .catch(function (err) {
+                    // console.error('Error', err);
+                    let message = err.statusText || "Ocurrió un error";
+                    idEliminarC.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                })
+        }
+    })
+}
+/**----------------Eliminar proveedor */
