@@ -9,7 +9,7 @@ class ModeloClientes
     {
         if ($item != null) {
             $stmt = Conexion::conectar()->prepare("SELECT*FROM $tabla WHERE $item=:$item");
-            $stmt->bindParam(":", $item, $value, PDO::PARAM_STR);
+            $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetchAll();
         } else {

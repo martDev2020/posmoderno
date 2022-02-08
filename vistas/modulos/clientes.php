@@ -30,9 +30,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <!---=================================================================
  * REGISTRO DE CLIENTES
@@ -102,7 +100,8 @@
                                 <label for="validationCustom14">Razón social</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control formulario_grupo-input" id="razoncli"
-                                        placeholder="Razón social" name="razoncli" autocomplete="off">
+                                        placeholder="Razón social" name="razoncli" autocomplete="off"
+                                        onkeyup="mayusP(this);">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
@@ -113,7 +112,7 @@
                                 <label for="validationCustom14">RFC</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control formulario_grupo-input" id="rfccli"
-                                        placeholder="RFC" name="rfccli" autocomplete="off">
+                                        placeholder="RFC" name="rfccli" autocomplete="off" onkeyup="mayusP(this);">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">

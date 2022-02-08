@@ -58,21 +58,21 @@ tablaCliente = $(".tablaClientes").DataTable({
             text: '<i class="fas fa-copy text-white"></i>',
             titleAttr: 'Copiar al portapapeles',
             className: 'btn btn-primary mrbtn',
-            title: 'Datos de alumnos'
+            title: 'Datos de clientes'
         },
         {
             extend: 'csvHtml5',
             text: '<i class="fas fa-file-excel text-white"></i> ',
             titleAttr: 'Desacargar en CSV',
             className: 'btn btn-primary mrbtn',
-            title: 'Datos de alumnos'
+            title: 'Datos de clientes'
         },
         {
             extend: 'excelHtml5',
             text: '<i class="fas fa-file-excel text-white"></i> ',
             titleAttr: 'Exportar a Excel',
             className: 'btn btn-primary mrbtn',
-            title: 'Datos de alumnos'
+            title: 'Datos de clientes'
         },
         {
             extend: 'pdfHtml5',
@@ -80,7 +80,7 @@ tablaCliente = $(".tablaClientes").DataTable({
             titleAttr: 'Exportar a PDF',
             className: 'btn btn-primary mrbtn ',
             orientation: 'landscape',
-            title: 'Datos de alumnos',
+            title: 'Datos de clientes',
             pageSize: 'LEGAL',
             customize: function (doc) {
                 doc.defaultStyle.fontSize = 8;
@@ -91,14 +91,14 @@ tablaCliente = $(".tablaClientes").DataTable({
             text: '<i class="fa fa-print text-white"></i> ',
             titleAttr: 'Imprimir',
             className: 'btn btn-primary mrbtn',
-            title: 'Datos de alumnos'
+            title: 'Datos de clientes'
         },
     ]
 });
 /**=================================================================
  * VALIDACIÓN DE FORMULARIO
  ===================================================================*/
-
+/**-----Convertir en mayúsculas la entrada en el input */
 function contactFormC() {
     const $formc = d.getElementById("formCli"),
         inputs = d.querySelectorAll("#formCli input");
@@ -200,7 +200,7 @@ function contactFormC() {
                     // console.log('error', err);
                     Swal.fire({
                         position: "top-end",
-                        icon: "success",
+                        icon: "error",
                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
                         showConfirmButton: false,
                         timer: 2000
@@ -402,7 +402,7 @@ function contactFormEditC() {
                     // console.log('error', err);
                     Swal.fire({
                         position: "top-end",
-                        icon: "success",
+                        icon: "error",
                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
                         showConfirmButton: false,
                         timer: 2000
