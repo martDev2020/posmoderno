@@ -201,7 +201,7 @@ function contactFormC() {
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
-                        title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        text: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
                         showConfirmButton: false,
                         timer: 2000
                     })
@@ -403,7 +403,7 @@ function contactFormEditC() {
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
-                        title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
                         showConfirmButton: false,
                         timer: 2000
                     })

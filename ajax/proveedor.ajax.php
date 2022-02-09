@@ -88,6 +88,46 @@ class ProveedorAjax
         $response = ModeloProveedor::mdlEliminarP($tabla, $valor);
         echo $response;
     }
+    /**=================================================================
+     * VALIDAR NONMBRE DE PROVEEDOR
+     ===================================================================*/
+    public $nombreprovP;
+    public function ajaxValidarNP()
+    {
+        $item = "nombre_prov";
+        $value = $this->nombreprovP;
+        $response = ControladorProveedor::ctrMostrarProveedor($item, $value);
+        echo json_encode($response);
+    }
+    /**=================================================================
+     * VALIDAR EMAIL DE PROVEEDOR
+     ===================================================================*/
+    public $emailprovP;
+    public function ajaxValidarEmailP()
+    {
+        $item = "email_prov";
+        $value = $this->emailprovP;
+        $response = ControladorProveedor::ctrMostrarProveedor($item, $value);
+        echo json_encode($response);
+    }
+}
+/**=================================================================
+ * VALIDAR NO REPETIR NOMBRE PROVEEDOR
+ ===================================================================*/
+if (isset($_POST["nombreprovP"])) {
+    $validNP = new ProveedorAjax();
+    $validNP->nombreprovP = $_POST["nombreprovP"];
+    $validNP->ajaxValidarNP();
+    // echo json_encode($_POST["nombreprovP"]);
+}
+/**=================================================================
+ * VALIDAR NO REPETIR EMAIL PROVEEDOR
+ ===================================================================*/
+if (isset($_POST["emailprovP"])) {
+    $validEmailP = new ProveedorAjax();
+    $validEmailP->emailprovP = $_POST["emailprovP"];
+    $validEmailP->ajaxValidarEmailP();
+    // echo json_encode($_POST["emailprovP"]);
 }
 /**=================================================================
  * RECIBIR DATOS DE PROVEEDOR PARA GUARDAR

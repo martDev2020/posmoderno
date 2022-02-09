@@ -55,7 +55,7 @@ class ControladorClientes
                 Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
+                text: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
                 showConfirmButton: false,
                 timer: 1500
                 })        
@@ -99,7 +99,7 @@ class ControladorClientes
                 Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
+                text: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
                 showConfirmButton: false,
                 timer: 2000
                 })

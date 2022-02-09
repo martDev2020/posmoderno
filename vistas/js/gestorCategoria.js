@@ -129,7 +129,7 @@ function contactFormCat() {
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "¡La imagen debe estar en formato JPG o PNG!",
+                text: "¡La imagen debe estar en formato JPG o PNG!",
                 showConfirmButton: false,
                 timer: 3000
             })
@@ -140,7 +140,7 @@ function contactFormCat() {
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "¡La imagen no debe pesar más de 2MB!",
+                text: "¡La imagen no debe pesar más de 2MB!",
                 showConfirmButton: false,
                 timer: 3000
             })
@@ -183,9 +183,15 @@ function contactFormCat() {
                     setTimeout(() => {
                         d.querySelector('.alert-val-danger').classList.remove("alert-val-activo");
                     }, 5000);
+                    // Swal.fire({
+                    //     position: "top-end",
+                    //     icon: "error",
+                    //     text: `¡El nombre ${$nameCli} ya existe en la base de datos!`,
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // })
                     $nombreCat.value = "";
                 }
-
             })
             .catch(function (err) {
                 // console.log('error', err);
@@ -495,7 +501,7 @@ d.addEventListener("DOMContentLoaded", contactFormCat);
 //                     Swal.fire({
 //                         position: "top-end",
 //                         icon: "success",
-//                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+//                         text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
 //                         showConfirmButton: false,
 //                         timer: 2000
 //                     })

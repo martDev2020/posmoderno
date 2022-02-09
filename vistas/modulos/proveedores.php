@@ -1,5 +1,4 @@
 <div class="row">
-
     <div class="col-md-12">
         <div class="ms-panel">
             <div class="col-md-3 col-sm-6">
@@ -29,9 +28,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <!---=================================================================
  * REGISTRO DE PROVEEDORES
@@ -56,6 +53,9 @@
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No ingresar caracteres especiales
+                                </div>
+                                <div class="alert alert-danger alert-val-danger alert-solid" role="alert">
+                                    El nombre ya existe en la base de datos
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3" id="val-dirprov">
@@ -95,6 +95,10 @@
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No es un email correcto.
+                                </div>
+                                <div class="alert alert-danger alert-val-danger alert-solid" id="email-alert"
+                                    role="alert">
+                                    El email ya existe en la base de datos
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3" id="val-descripprov">
