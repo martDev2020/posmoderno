@@ -91,6 +91,94 @@ class AjaxCliente
         $response = ModeloClientes::mdlEdliminarCliente($tabla, $value);
         echo $response;
     }
+    /**=================================================================
+     * VALIDAR NO REPETIR NOMBRE
+     ===================================================================*/
+    public $nameCliente;
+    public function ajaxValidarNombre()
+    {
+        $item = "nombre_cliente";
+        $value = $this->nameCliente;
+        // echo json_encode($value);
+        // return;
+        $response = ControladorClientes::ctrMostrarClientes($item, $value);
+        echo json_encode($response);
+    }
+    /**=================================================================
+     * VALIDAR NO REPETIR EMAIL
+     ===================================================================*/
+    public $emailCliente;
+    public function ajaxValidarEmail()
+    {
+        $item = "email";
+        $value = $this->emailCliente;
+        // echo json_encode($value);
+        // return;
+        $response = ControladorClientes::ctrMostrarClientes($item, $value);
+        echo json_encode($response);
+    }
+    /**=================================================================
+     * VALIDAR NO REPETIR RAZÓN SOCIAL
+     ===================================================================*/
+    public $razonSCliente;
+    public function ajaxValidarRZ()
+    {
+        $item = "razonSocial_cli";
+        $value = $this->razonSCliente;
+        // echo json_encode($value);
+        // return;
+        $response = ControladorClientes::ctrMostrarClientes($item, $value);
+        echo json_encode($response);
+    }
+    /**=================================================================
+     * VALIDAR NO REPETIR RFC
+     ===================================================================*/
+    public $rfcCliente;
+    public function ajaxValidarRFC()
+    {
+        $item = "rfc_cli";
+        $value = $this->rfcCliente;
+        // echo json_encode($value);
+        // return;
+        $response = ControladorClientes::ctrMostrarClientes($item, $value);
+        echo json_encode($response);
+    }
+}
+/**=================================================================
+ * VALIDAR NO REPETIR NOMBRE
+ ===================================================================*/
+if (isset($_POST["nameCliente"])) {
+    $valNombre = new AjaxCliente();
+    $valNombre->nameCliente = $_POST["nameCliente"];
+    $valNombre->ajaxValidarNombre();
+    // echo json_encode($_POST["nameCliente"]);
+}
+/**=================================================================
+ * VALIDAR NO REPETIR EMAIL
+ ===================================================================*/
+if (isset($_POST["emailCliente"])) {
+    $valemailClie = new AjaxCliente();
+    $valemailClie->emailCliente = $_POST["emailCliente"];
+    $valemailClie->ajaxValidarEmail();
+    // echo json_encode($_POST["emailCliente"]);
+}
+/**=================================================================
+ * VALIDAR NO REPETIR RAZÓN SOCIAL
+ ===================================================================*/
+if (isset($_POST["razonSCliente"])) {
+    $valrazonSClienteClie = new AjaxCliente();
+    $valrazonSClienteClie->razonSCliente = $_POST["razonSCliente"];
+    $valrazonSClienteClie->ajaxValidarRZ();
+    // echo json_encode($_POST["razonSCliente"]);
+}
+/**=================================================================
+ * VALIDAR NO REPETIR RFC
+ ===================================================================*/
+if (isset($_POST["rfcCliente"])) {
+    $valrfcClienteClie = new AjaxCliente();
+    $valrfcClienteClie->rfcCliente = $_POST["rfcCliente"];
+    $valrfcClienteClie->ajaxValidarRFC();
+    // echo json_encode($_POST["rfcCliente"]);
 }
 /**=================================================================
  * DATOS PARA CAMBIAR EL STATUS DE CLIENTE

@@ -56,6 +56,9 @@
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No ingresar caracteres especiales
                                 </div>
+                                <div class="alert alert-danger alert-val-danger alert-solid" id="nom-cli" role="alert">
+                                    El nombre ya existe en la base de datos
+                                </div>
                             </div>
                             <div class="col-md-4 mb-3" id="val-dircli">
                                 <label for="validationCustomUsername2">Dirección</label>
@@ -95,6 +98,10 @@
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No es un email correcto.
                                 </div>
+                                <div class="alert alert-danger alert-val-danger alert-solid" id="email-cliente"
+                                    role="alert">
+                                    El email ya existe en la base de datos
+                                </div>
                             </div>
                             <div class="col-md-4 mb-3" id="val-razoncli">
                                 <label for="validationCustom14">Razón social</label>
@@ -104,8 +111,11 @@
                                         onkeyup="mayusP(this);">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
-                                <div class="alert alert-success alert-val alert-solid" role="alert">
+                                <div class="alert alert-success alert-val alert-solid" id="email-cli" role="alert">
                                     No ingresar caracteres especiales.
+                                </div>
+                                <div class="alert alert-danger alert-val-danger alert-solid" id="rz-cli" role="alert">
+                                    La razón social ya existe en la base de datos
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3" id="val-rfccli">
@@ -117,6 +127,9 @@
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No ingresar caracteres especiales, número máximo de caracteres es 13.
+                                </div>
+                                <div class="alert alert-danger alert-val-danger alert-solid" id="rfc-cli" role="alert">
+                                    El RFC ya existe en la base de datos
                                 </div>
                             </div>
                         </div>
