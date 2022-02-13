@@ -101,25 +101,25 @@ tablaCategoria = $(".tablaCategoria").DataTable({
  ===================================================================*/
 
 function contactFormCat() {
-    const $formc = d.getElementById("formCli"),
-        inputs = d.querySelectorAll("#formCli input"),
-        $nombreCat = d.getElementById("nombrecat");
+    const $formcat = d.getElementById("formCateg"),
+        inputs = d.querySelectorAll("#formCateg input"),
+        $nombreCat = d.getElementById("nombrecat"),
+        $textareaC = d.querySelectorAll("#formCateg textarea");
 
     /**=================================================================
-       * PREVISUZLIARA IMAGEN
-    ===================================================================*/
+         * PREVISUZLIARA IMAGEN
+      ===================================================================*/
     /*=============================================
-    VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
-    =============================================*/
+      VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+      =============================================*/
     let imagenCat = null;
     $(".fotoCategoria").change(function () {
-
         imagenCat = this.files[0];
-        /**Nota: al ejecutar el código y colocar los límites de la cadena de 
+        /**Nota: al ejecutar el código y colocar los límites de la cadena de
          * trasferencia de datos en los códigos correspondientes a este apartado,
          * se presentaba un error, el atributo imagenCat retronaba nulo,
          * el error estaba en declarar la línea anterior con un tipo de variable,
-         * en este caso era const. 
+         * en este caso era const.
          */
         // console.log("imagenCat ", imagenCat);
 
@@ -131,10 +131,9 @@ function contactFormCat() {
                 icon: "error",
                 text: "¡La imagen debe estar en formato JPG o PNG!",
                 showConfirmButton: false,
-                timer: 3000
-            })
+                timer: 3000,
+            });
             // return;
-
         } else if (imagenCat["size"] > 2000000) {
             $(".fotoCategoria").val("");
             Swal.fire({
@@ -142,46 +141,52 @@ function contactFormCat() {
                 icon: "error",
                 text: "¡La imagen no debe pesar más de 2MB!",
                 showConfirmButton: false,
-                timer: 3000
-            })
+                timer: 3000,
+            });
             // return;
         } else {
             // Esa imagen se convierte en un archivo.
-            const datosImagen = new FileReader;
+            const datosImagen = new FileReader();
             datosImagen.readAsDataURL(imagenCat);
             $(datosImagen).on("load", function (e) {
-
                 const rutaImagen = e.target.result;
                 $(".previsualizarCat").attr("src", rutaImagen);
-                $('.modal').on('hidden.bs.modal', function () {
+                $(".modal").on("hidden.bs.modal", function () {
                     // $(".alert").remove(); //lo utilice para borrar la clase alert de mensaje de duplicidad
-                    $(".previsualizarCat").attr("src", "vistas/img/categoria/default/anonymous.png");
-                })
-            })
+                    $(".previsualizarCat").attr(
+                        "src",
+                        "vistas/img/categoria/default/anonymous.png"
+                    );
+                });
+            });
         }
-    })
+    });
     /**---------Fin dprevisualizar imagen */
     /**=================================================================
-     * VALIDAR SI NOMBRE DE CATEGORÍA EXISTE
-     ===================================================================*/
-    $nombreCat.addEventListener("change", e => {
+       * VALIDAR SI NOMBRE DE CATEGORÍA EXISTE
+       ===================================================================*/
+    $nombreCat.addEventListener("change", (e) => {
         // console.log(e);
         const $nameCli = e.target.value;
         // console.log($nameCli);
         let data = new FormData();
         data.append("nameCli", $nameCli);
-        fetch('ajax/categoria.ajax.php', {
-            method: 'POST',
+        fetch("ajax/categoria.ajax.php", {
+            method: "POST",
             body: data,
-            mode: "cors"
+            mode: "cors",
         })
-            .then(res => (res.ok ? res.json() : Promise.reject(res)))
-            .then(json => {
+            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+            .then((json) => {
                 // console.log(json);
                 if (json.length != 0) {
-                    d.querySelector('.alert-val-danger').classList.add('alert-val-activo');
+                    d.querySelector(".alert-val-danger").classList.add(
+                        "alert-val-activo"
+                    );
                     setTimeout(() => {
-                        d.querySelector('.alert-val-danger').classList.remove("alert-val-activo");
+                        d.querySelector(".alert-val-danger").classList.remove(
+                            "alert-val-activo"
+                        );
                     }, 5000);
                     // Swal.fire({
                     //     position: "top-end",
@@ -197,326 +202,309 @@ function contactFormCat() {
                 // console.log('error', err);
                 let message = err.statusText || "Ocurrió un error";
                 $nombreCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-            })
-    })
+            });
+    });
     /**------Fin de valición de categoría si existe. */
 
-    //     const $regExpre = {
-    //         nombrecli: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
-    //         dircli: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-    //         telcli: /^\d{10}$/,
-    //         emailcli: /^[A-Za-z0-9]+(\.[A-Za-z0-9]+|-[A-Za-z0-9]+|_[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})$/,
-    //         razoncli: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-    //         rfccli: /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/
-    //     }
-    //     const $regExpre2 = {
-    //         rfccli: /^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$/
-    //     }
-    //     /**Con homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?([A-Z\d]{2})([A\d])$
-    //      * sin homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$
-    //      * simplificada: ^([A-Z]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2}(?:[A\d]))?$
-    //      */
-    //     /**------Objeto para validar si los campos estan vacíos. */
-    //     const campos = {
-    //         nombrecli: false,
-    //         dircli: false,
-    //         telcli: false,
-    //         emailcli: false,
-    //         razoncli: false,
-    //         rfccli: false
-    //     }
-    //     const validarForm = (e) => {
-    //         // console.log("Se ejecutó");
-    //         // console.log(e.target.name);
-    //         /**El name es del input, es decir, se ejecuta todos los name */
-    //         switch (e.target.name) {
-    //             case "nombrecli":
-    //                 validarInput($regExpre.nombrecli, e.target, 'nombrecli');
-    //                 break;
-    //             case "dircli":
-    //                 validarInput($regExpre.dircli, e.target, 'dircli');
-    //                 break;
-    //             case "telcli":
-    //                 validarInput($regExpre.telcli, e.target, 'telcli');
-    //                 break;
-    //             case "emailcli":
-    //                 validarInput($regExpre.emailcli, e.target, 'emailcli');
-    //                 break;
-    //             case "razoncli":
-    //                 validarInput($regExpre.razoncli, e.target, 'razoncli');
-    //                 break;
-    //             case "rfccli":
-    //                 validarInput($regExpre.rfccli, e.target, 'rfccli') ||
-    //                     validarInput($regExpre2.rfccli, e.target, 'rfccli');
-    //         }
-    //     }
-    //     const validarInput = (expresion, input, campo) => {
-    //         if (expresion.test(input.value)) {
-    //             d.querySelector(`#val-${campo} .alert-val`).classList.remove("alert-val-activo");
-    //             // Valida que los campos no esten vacíos.
-    //             campos[campo] = true;
-    //         } else {
-    //             d.querySelector(`#val-${campo} .alert-val`).classList.add('alert-val-activo');
-    //             setTimeout(() => {
-    //                 d.querySelector(`#val-${campo} .alert-val`).classList.remove("alert-val-activo");
-    //             }, 5000);
-    //             campos[campo] = false;
-    //         }
-    //     }
+    const $regExpre = {
+        nombrecat: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+        descripcat: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+    };
+    /**------Objeto para validar si los campos estan vacíos. */
+    const camposCat = {
+        nombrecat: false,
+        descripcat: false,
+    };
+    const validarFormCat = (e) => {
+        // console.log("Se ejecutó");
+        // console.log(e.target.name);
+        /**El name es del input, es decir, se ejecuta todos los name */
+        switch (e.target.name) {
+            case "nombrecat":
+                validarInput($regExpre.nombrecat, e.target, "nombrecat");
+                break;
+            case "descripcat":
+                validarInput($regExpre.descripcat, e.target, "descripcat");
+                break;
+        }
+    };
+    const validarInput = (expresion, input, campo) => {
+        if (expresion.test(input.value)) {
+            d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+                "alert-val-activo"
+            );
+            // Valida que los Car no esten vacíos.
+            camposCat[campo] = true;
+        } else {
+            d.querySelector(`#val-${campo} .alert-val`).classList.add(
+                "alert-val-activo"
+            );
+            setTimeout(() => {
+                d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+                    "alert-val-activo"
+                );
+            }, 5000);
+            camposCat[campo] = false;
+        }
+    };
 
-    //     inputs.forEach((input) => {
-    //         input.addEventListener("keyup", validarForm);
-    //         input.addEventListener("blur", validarForm);
-    //     })
-    //     /**=================================================================
-    //      * CAPTURAR DATOS PARA GUARDAR PROVEEDOR
-    //      ===================================================================*/
-    //     $formc.addEventListener("submit", function (e) {
-    //         // /console.log("Excelente");
-    //         e.preventDefault();
-    //         /**-----Validación de datos */
-    //         if (campos.nombrecli && campos.dircli && campos.emailcli && campos.telcli && campos.razoncli && campos.rfccli) {
-
-    //             /**------Fin validación de datos */
-    //             let data = new FormData($formc);
-    //             // console.log(data);
-    //             fetch('ajax/cliente.ajax.php', {
-    //                 method: 'POST',
-    //                 body: data,
-    //                 mode: "cors"
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     console.log(data);
-    //                     if (data === "ok") {
-    //                         toastr.success('Se guardaron los datos de cliente correctamente.', 'Datos guardados');
-    //                         tablaCliente.ajax.reload(null, false);
-    //                     }
-    //                     $formc.reset();
-    //                 })
-    //                 .catch(function (err) {
-    //                     // console.log('error', err);
-    //                     Swal.fire({
-    //                         position: "top-end",
-    //                         icon: "success",
-    //                         title: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
-    //                         showConfirmButton: false,
-    //                         timer: 2000
-    //                     })
-    //                 })
-    //             // $('#modal-4').modal('hide');
-    //         } else {
-    //             d.getElementById('form-mensaje').classList.add('alert-val-activo');
-    //             setTimeout(() => {
-    //                 d.getElementById("form-mensaje").classList.remove('alert-val-activo');
-    //             }, 5000);
-    //         }
-    //     })
-    //     /**=================================================================
-    //     * ACTIVAR Y DESACTIVAR BOTÓN DE STATUS
-    //     ===================================================================*/
-    //     const $status = d.querySelector(".btnActivarC");
-    //     // console.log("$status ", $status);
-    //     d.addEventListener("click", (e) => {
-    //         // console.log(e.target);
-    //         let $idClientes = e.target.getAttribute("idClientes");
-    //         // console.log($idClientes);
-    //         let $estadoCliente = e.target.getAttribute("estadoCliente");
-    //         // console.log($estadoProveedor);
-    //         let data = new FormData();
-    //         data.append("activeIdC", $idClientes);
-    //         data.append("activeSC", $estadoCliente);
-    //         fetch('ajax/cliente.ajax.php', {
-    //             method: 'POST',
-    //             body: data,
-    //             mode: "cors"
-    //         })
-    //             .then(res => (res.ok ? res.json() : Promise.reject(res)))
-    //             .then(json => {
-    //                 // console.log(json);
-    //                 tablaCliente.ajax.reload(null, false);
-    //             })
-    //             .catch(function (err) {
-    //                 // console.log('error', err);
-    //                 let message = err.statusText || "Ocurrió un error";
-    //                 $status.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-    //             })
-    //         if ($estadoCliente == 0) {
-    //             $(this).removeClass('btn-outline-success');
-    //             $(this).addClass('btn-outline-danger');
-    //             $(this).html('Desactivado');
-    //             $(this).attr('estadoCliente', 1);
-    //             // $status.classList.remove("btn-outline-success");
-    //             // $status.classList.add("btn-outline-danger");
-    //             // $status.innerHTML = `Desactivado`;
-    //             // e.target.getAttribute("estadoCliente", 1);
-    //         } else {
-    //             // $status.classList.add("btn-outline-success");
-    //             // $status.classList.remove("btn-outline-danger");
-    //             // $status.innerHTML = `Activado`;
-    //             // e.target.getAttribute("estadoCliente", 1);
-    //             $(this).addClass('btn-outline-success');
-    //             $(this).removeClass('btn-outline-danger');
-    //             $(this).html('Activado');
-    //             $(this).attr('estadoCliente', 0);
-    //         }
-    //     })
-    //     /**------------Fin de descativar o activar status */
+    inputs.forEach((input) => {
+        input.addEventListener("keyup", validarFormCat);
+        input.addEventListener("blur", validarFormCat);
+    });
+    $textareaC.forEach((textarea) => {
+        textarea.addEventListener("keyup", validarFormCat);
+        textarea.addEventListener("blur", validarFormCat);
+    });
+    /**=================================================================
+       * CAPTURAR DATOS PARA GUARDAR CATEGORÍA
+       ===================================================================*/
+    $formcat.addEventListener("submit", function (e) {
+        // console.log("Excelente");
+        e.preventDefault();
+        if (imagenCat === null) {
+            d.querySelector('#val-fotoCat .alert-val').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.querySelector('#val-fotoCat .alert-val').classList.remove('alert-val-activo');
+            }, 5000);
+        }
+        /**-----Validación de datos */
+        if (camposCat.nombrecat && imagenCat != null && descripcat.value != 0) {
+            /**------Fin validación de datos */
+            let data = new FormData($formcat);
+            // console.log(data);
+            fetch("ajax/categoria.ajax.php", {
+                method: "POST",
+                body: data,
+                mode: "cors",
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    // console.log(data);
+                    if (data === "ok") {
+                        toastr.success('Se guardaron los datos de cliente correctamente.', 'Datos guardados');
+                        tablaCategoria.ajax.reload(null, false);
+                    }
+                    $formcat.reset();
+                })
+                .catch(function (err) {
+                    // console.log('error', err);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title:
+                            "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                });
+            // $('#modal-4').modal('hide');
+        } else {
+            d.getElementById("form-mensajecat").classList.add("alert-val-activo");
+            setTimeout(() => {
+                d.getElementById("form-mensajecat").classList.remove(
+                    "alert-val-activo"
+                );
+            }, 5000);
+        }
+    });
+    /**=================================================================
+      * ACTIVAR Y DESACTIVAR BOTÓN DE STATUS
+      ===================================================================*/
+    const $statusCat = d.querySelector(".btnActivarCat");
+    // console.log("$status ", $status);
+    d.addEventListener("click", (e) => {
+        // console.log(e.target);
+        let $idCategoria = e.target.getAttribute("idCategoria");
+        // console.log($idCategoria);
+        let $estadoCategoria = e.target.getAttribute("estadoCategoria");
+        // console.log($estadoProveedor);
+        let data = new FormData();
+        data.append("activeIdCat", $idCategoria);
+        data.append("activeSCat", $estadoCategoria);
+        fetch('ajax/categoria.ajax.php', {
+            method: 'POST',
+            body: data,
+            mode: "cors"
+        })
+            .then(res => (res.ok ? res.json() : Promise.reject(res)))
+            .then(json => {
+                // console.log(json);
+                tablaCategoria.ajax.reload(null, false);
+            })
+            .catch(function (err) {
+                // console.log('error', err);
+                let message = err.statusText || "Ocurrió un error";
+                $statusCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+            })
+        if ($estadoCategoria == 0) {
+            $(this).removeClass('btn-outline-success');
+            $(this).addClass('btn-outline-danger');
+            $(this).html('Desactivado');
+            $(this).attr('estadoCliente', 1);
+            // $status.classList.remove("btn-outline-success");
+            // $status.classList.add("btn-outline-danger");
+            // $status.innerHTML = `Desactivado`;
+            // e.target.getAttribute("estadoCliente", 1);
+        } else {
+            // $status.classList.add("btn-outline-success");
+            // $status.classList.remove("btn-outline-danger");
+            // $status.innerHTML = `Activado`;
+            // e.target.getAttribute("estadoCliente", 1);
+            $(this).addClass('btn-outline-success');
+            $(this).removeClass('btn-outline-danger');
+            $(this).html('Activado');
+            $(this).attr('estadoCliente', 0);
+        }
+    })
+    /**------------Fin de descativar o activar status */
 }
 d.addEventListener("DOMContentLoaded", contactFormCat);
 /**--------------------Fin para guardar datos de cliente */
 /**=================================================================
     * EDICIÓN DE CLIENTE
     ===================================================================*/
-// const idClientes = (id) => {
-//     let idC = id;
-//     // console.log("idC ", idC);
-//     let url = "ajax/cliente.ajax.php";
-//     let data = new FormData();
-//     data.append('idClientes', idC);
-//     fetch(url, {
-//         method: 'POST',
-//         body: data,
-//         mode: 'cors'
-//     })
-//         .then(res => (res.ok ? res.json() : Promise.reject(res)))
-//         .then(json => {
-//             // console.log(json);
-//             idCliente.value = json.id;
-//             nombrecliE.value = json.nombre_cliente;
-//             telcliE.value = json.telefono_cli;
-//             dircliE.value = json.direccion_cli;
-//             razoncliE.value = json.razonSocial_cli;
-//             rfccliE.value = json.rfc_cli;
-//             emailcliE.value = json.email;
-//         })
-//         .catch(function (err) {
-//             // console.error('Error', err);
-//             let message = err.statusText || "Ocurrió un error";
-//             idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//         })
-// }
-// /**-------Fin edición de proveedor */
-// /**=================================================================
-// * VALIDACIÓN DE FORMULARIO EDICIÓN
-// ===================================================================*/
-// function contactFormEditC() {
-//     const $formcEdit = d.getElementById("formCliE"),
-//         inputs = d.querySelectorAll("#formCliE input");
+const idCategoria = (id) => {
+    let idCat = id;
+    // console.log("idCat", idCat);
+    let url = "ajax/categoria.ajax.php";
+    let data = new FormData();
+    data.append('idCategoria', idCat);
+    fetch(url, {
+        method: 'POST',
+        body: data,
+        mode: 'cors'
+    })
+        .then(res => (res.ok ? res.json() : Promise.reject(res)))
+        .then(json => {
+            // console.log(json);
+            idCategorias.value = json.id;
+            nombrecatE.value = json.nombre_cat;
+            descripcatE.value = json.descrip_cat;
+            if (json.foto_cat != 0) {
+                d.querySelector(".antiguaFotoCatE").value = json.foto_cat;
+                d.getElementById("previsualizarCat").src = json.foto_cat;
+            } else {
+                d.getElementById("previsualizarCat").src = 'vistas/img/categoria/default/anonymous.png';
+            }
+        })
+        .catch(function (err) {
+            // console.error('Error', err);
+            let message = err.statusText || "Ocurrió un error";
+            idCategoria.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+        })
+}
+/**-------Fin edición de proveedor */
+/**=================================================================
+* VALIDACIÓN DE FORMULARIO EDICIÓN
+===================================================================*/
+function contactFormEditC() {
+    const $formcatEdit = d.getElementById("formCategE"),
+        inputs = d.querySelectorAll("#formCategE input")
+    $textareaCE = d.querySelectorAll("#formCateg textarea");
 
-//     const $regExpre = {
-//         nombrecliE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
-//         dircliE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-//         telcliE: /^\d{10}$/,
-//         emailcliE: /^[A-Za-z0-9]+(\.[A-Za-z0-9]+|-[A-Za-z0-9]+|_[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})$/,
-//         razoncliE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-//         rfccliE: /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/
-//     }
-//     const $regExpre2 = {
-//         rfccliE: /^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$/
-//     }
-//     /**Con homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?([A-Z\d]{2})([A\d])$
-//      * sin homoclave: ^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$
-//      * simplificada: ^([A-Z]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2}(?:[A\d]))?$
-//      */
-//     /**------Objeto para validar si los campos estan vacíos. */
-//     const camposE = {
-//         nombrecliE: false,
-//         dircliE: false,
-//         telcliE: false,
-//         emailcliE: false,
-//         razoncliE: false,
-//         rfccliE: false
-//     }
-//     const validarFormE = (e) => {
-//         // console.log("Se ejecutó");
-//         // console.log(e.target.name);
-//         /**El name es del input, es decir, se ejecuta todos los name */
-//         switch (e.target.name) {
-//             case "nombrecliE":
-//                 validarInput($regExpre.nombrecliE, e.target, 'nombrecliE');
-//                 break;
-//             case "dircliE":
-//                 validarInput($regExpre.dircliE, e.target, 'dircliE');
-//                 break;
-//             case "telcliE":
-//                 validarInput($regExpre.telcliE, e.target, 'telcliE');
-//                 break;
-//             case "emailcliE":
-//                 validarInput($regExpre.emailcliE, e.target, 'emailcliE');
-//                 break;
-//             case "razoncliE":
-//                 validarInput($regExpre.razoncliE, e.target, 'razoncliE');
-//                 break;
-//             case "rfccliE":
-//                 validarInput($regExpre.rfccliE, e.target, 'rfccliE') ||
-//                     validarInput($regExpre2.rfccliE, e.target, 'rfccliE');
-//         }
-//     }
-//     const validarInput = (expresion, input, campo) => {
-//         if (expresion.test(input.value)) {
-//             d.querySelector(`#val-${campo} .alert-val`).classList.remove("alert-val-activo");
-//             // Valida que los camposE no esten vacíos.
-//             camposE[campo] = true;
-//         } else {
-//             d.querySelector(`#val-${campo} .alert-val`).classList.add('alert-val-activo');
-//             setTimeout(() => {
-//                 d.querySelector(`#val-${campo} .alert-val`).classList.remove("alert-val-activo");
-//             }, 5000);
-//             camposE[campo] = false;
-//         }
-//     }
+    const $regExpre = {
+        nombrecatE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+        descripcatE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+    };
+    /**------Objeto para validar si los campos estan vacíos. */
+    const camposCatE = {
+        nombrecatE: false,
+        descripcatE: false,
+    };
+    const validarFormCatE = (e) => {
+        // console.log("Se ejecutó");
+        // console.log(e.target.name);
+        /**El name es del input, es decir, se ejecuta todos los name */
+        switch (e.target.name) {
+            case "nombrecatE":
+                validarInput($regExpre.nombrecatE, e.target, "nombrecatE");
+                break;
+            case "descripcatE":
+                validarInput($regExpre.descripcatE, e.target, "descripcatE");
+                break;
+        }
+    };
+    const validarInput = (expresion, input, campo) => {
+        if (expresion.test(input.value)) {
+            d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+                "alert-val-activo"
+            );
+            // Valida que los Car no esten vacíos.
+            camposCatE[campo] = true;
+        } else {
+            d.querySelector(`#val-${campo} .alert-val`).classList.add(
+                "alert-val-activo"
+            );
+            setTimeout(() => {
+                d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+                    "alert-val-activo"
+                );
+            }, 5000);
+            camposCatE[campo] = false;
+        }
+    };
 
-//     inputs.forEach((input) => {
-//         input.addEventListener("keyup", validarFormE);
-//         input.addEventListener("blur", validarFormE);
-//     })
-//     /**=================================================================
-//      * CAPTURAR DATOS PARA GUARDAR PROVEEDOR
-//      ===================================================================*/
-//     $formcEdit.addEventListener("submit", function (e) {
-//         // /console.log("Excelente");
-//         e.preventDefault();
-//         /**-----Validación de datos */
-//         if (idCliente != 0 && nombrecliE != 0 && dircliE != 0 && razoncliE != 0 && telcliE != 0 && rfccliE != 0 && emailcliE != 0) {
-//             /**------Fin validación de datos */
-//             let data = new FormData($formcEdit);
-//             // console.log(data);
-//             fetch('ajax/cliente.ajax.php', {
-//                 method: 'POST',
-//                 body: data,
-//                 mode: "cors"
-//             })
-//                 .then(res => res.json())
-//                 .then(data => {
-//                     // console.log(data);
-//                     if (data === "ok") {
-//                         toastr.success('Se actualizaron los datos de cliente correctamente.', 'Datos guardados');
-//                         tablaCliente.ajax.reload(null, false);
-//                     }
-//                     // $formcEdit.reset();
-//                 })
-//                 .catch(function (err) {
-//                     // console.log('error', err);
-//                     Swal.fire({
-//                         position: "top-end",
-//                         icon: "success",
-//                         text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
-//                         showConfirmButton: false,
-//                         timer: 2000
-//                     })
-//                 })
-//             // $('#modal-4').modal('hide');
-//         } else {
-//             d.getElementById('form-mensajeE').classList.add('alert-val-activo');
-//             setTimeout(() => {
-//                 d.getElementById("form-mensajeE").classList.remove('alert-val-activo');
-//             }, 5000);
-//         }
-//     })
-// }
-// d.addEventListener("DOMContentLoaded", contactFormEditC);
-// /**-------------Fin edición de formulario */
+    inputs.forEach((input) => {
+        input.addEventListener("keyup", validarFormCatE);
+        input.addEventListener("blur", validarFormCatE);
+    });
+    $textareaCE.forEach((textarea) => {
+        textarea.addEventListener("keyup", validarFormCatE);
+        textarea.addEventListener("blur", validarFormCatE);
+    });
+    /**=================================================================
+* CAPTURAR DATOS PARA GUARDAR EDICIÓN DE CATEGORÍA
+===================================================================*/
+    $formcatEdit.addEventListener("submit", function (e) {
+        // console.log("Excelente");
+        e.preventDefault();
+        if (imagenCat === null) {
+            d.querySelector('#val-fotoCatE .alert-val').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.querySelector('#val-fotoCatE .alert-val').classList.remove('alert-val-activo');
+            }, 5000);
+        }
+        /**-----Validación de datos */
+        if (idCategorias != 0 && nombrecatE != 0 && imagenCat != null && descripcatE.value != 0) {
+            /**------Fin validación de datos */
+            let data = new FormData($formcatEdit);
+            // console.log(data);
+            fetch('ajax/categoria.ajax.php', {
+                method: 'POST',
+                body: data,
+                mode: "cors"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data === "ok") {
+                        toastr.success('Se actualizaron los datos de categoria correctamente.', 'Datos guardados');
+                        tablaCategoria.ajax.reload(null, false);
+                    }
+                    // $formcEdit.reset();
+                })
+                .catch(function (err) {
+                    // console.log('error', err);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                })
+            // $('#modal-4').modal('hide');
+        } else {
+            d.getElementById('form-mensajecatE').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.getElementById("form-mensajecatE").classList.remove('alert-val-activo');
+            }, 5000);
+        }
+    })
+}
+d.addEventListener("DOMContentLoaded", contactFormEditC);
+/**-------------Fin edición de formulario */
 // /**=================================================================
 //     * ELIMINAR PROVEEDOR
 //     ===================================================================*/

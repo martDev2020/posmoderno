@@ -206,7 +206,7 @@ if (isset($_POST["nombrecli"])) {
     // echo json_encode($_POST["nombrecli"]);
 }
 /**=================================================================
- * TREAER ID CLIENTE PARA EDICIÓN
+ * TRAER ID CLIENTE PARA EDICIÓN
  ===================================================================*/
 if (isset($_POST["idClientes"])) {
     // echo $_POST["idClientes"];

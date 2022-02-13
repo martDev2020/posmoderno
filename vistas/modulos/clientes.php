@@ -217,7 +217,8 @@
                                 <label for="validationCustom14">Razón social</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control formulario_grupo-input" id="razoncliE"
-                                        placeholder="Razón social" name="razoncliE" autocomplete="off">
+                                        placeholder="Razón social" name="razoncliE" autocomplete="off"
+                                        onkeyup="mayusP(this);">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
@@ -228,7 +229,7 @@
                                 <label for="validationCustom14">RFC</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control formulario_grupo-input" id="rfccliE"
-                                        placeholder="RFC" name="rfccliE" autocomplete="off">
+                                        placeholder="RFC" name="rfccliE" autocomplete="off" onkeyup="mayusP(this);">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">

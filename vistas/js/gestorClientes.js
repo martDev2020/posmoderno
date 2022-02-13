@@ -135,7 +135,7 @@ function contactFormC() {
         razoncli: false,
         rfccli: false,
     };
-    const validarForm = (e) => {
+    const validarFormCli = (e) => {
         // console.log("Se ejecutó");
         // console.log(e.target.name);
         /**El name es del input, es decir, se ejecuta todos los name */
@@ -158,6 +158,7 @@ function contactFormC() {
             case "rfccli":
                 validarInput($regExpre.rfccli, e.target, "rfccli") ||
                     validarInput($regExpre2.rfccli, e.target, "rfccli");
+                break;
         }
     };
     const validarInput = (expresion, input, campo) => {
@@ -181,8 +182,8 @@ function contactFormC() {
     };
 
     inputs.forEach((input) => {
-        input.addEventListener("keyup", validarForm);
-        input.addEventListener("blur", validarForm);
+        input.addEventListener("keyup", validarFormCli);
+        input.addEventListener("blur", validarFormCli);
     });
     /**=================================================================
       * VALIDAR SI NOMBRE DE CLIENTES EXISTE
@@ -371,7 +372,7 @@ function contactFormC() {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     if (data === "ok") {
                         toastr.success(
                             "Se guardaron los datos de cliente correctamente.",

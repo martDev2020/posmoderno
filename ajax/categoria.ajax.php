@@ -17,6 +17,50 @@ class CategoriaAjax
         $response = ControladorCategoria::ctrMostrarCategoria($item, $value);
         echo json_encode($response);
     }
+    /**=================================================================
+     * GUARDAR DATOS DE CATEGORÍA
+     ===================================================================*/
+    public $nombrecat;
+    public $descripcat;
+    public $fotoCat;
+    public function ajaxGuardarCat()
+    {
+        $datos = array(
+            'nombrecat' => $this->nombrecat,
+            'descripcat' => $this->descripcat,
+            'fotoCat' => $this->fotoCat
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorCategoria::ctrGuardarCat($datos);
+        echo $response;
+    }
+    /**=================================================================
+     * ACTIVAR STATUS Y DESACTIVAR
+     ===================================================================*/
+    public $activeIdCat;
+    public $activeSCat;
+    public function ajaxStatusCat()
+    {
+        $tabla = "categoria";
+        $item1 = "id";
+        $value1 = $this->activeIdCat;
+        $item2 = "activo";
+        $value2 = $this->activeSCat;
+        $reponse = ModeloCategoria::mdlMostrarSCat($tabla, $item1, $value1, $item2, $value2);
+        echo $reponse;
+    }
+    /**=================================================================
+     * ID PARA MOSTRAR DATOS Y EDITAR
+     ===================================================================*/
+    public $idCategoria;
+    public function ajaxIdcatEdit()
+    {
+        $item = "id";
+        $value = $this->idCategoria;
+        $response = ControladorCategoria::ctrMostarCatE($item, $value);
+        echo json_encode($response);
+    }
 }
 /**=================================================================
  * VALIDAR NO REPETIR NOMBRE
@@ -26,4 +70,39 @@ if (isset($_POST["nameCli"])) {
     $valNombre->nameCli = $_POST["nameCli"];
     $valNombre->ajaxValidarNombre();
     // echo json_encode($_POST["nameCli"]);
+}
+/**=================================================================
+ * RECIBIR DATOS PARA GUARDAR
+ ===================================================================*/
+if (isset($_POST["nombrecat"])) {
+    $categ = new CategoriaAjax();
+    $categ->nombrecat = $_POST["nombrecat"];
+    $categ->descripcat = $_POST["descripcat"];
+    if (isset($_FILES["fotoCat"])) {
+        // echo json_encode($_FILES["fotoCat"]);
+        $categ->fotoCat = $_FILES["fotoCat"];
+    } else {
+        $categ->fotoCat = null;
+    }
+    $categ->ajaxGuardarCat();
+    // echo json_encode($_POST["nombrecat"]);
+}
+/**=================================================================
+ * ACTIVAR STATUS Y DESACTIVAR
+ ===================================================================*/
+if (isset($_POST["activeIdCat"])) {
+    $statusCat = new CategoriaAjax();
+    $statusCat->activeIdCat = $_POST["activeIdCat"];
+    $statusCat->activeSCat = $_POST["activeSCat"];
+    $statusCat->ajaxStatusCat();
+    // echo json_encode($_POST["activeIdCat"]);
+}
+/**=================================================================
+ * OBETNER DATOS CON ID PARA EDICIÓN
+ ===================================================================*/
+if (isset($_POST["idCategoria"])) {
+    // echo json_encode($_POST["idCategoria"]);
+    $idCat = new CategoriaAjax();
+    $idCat->idCategoria = $_POST["idCategoria"];
+    $idCat->ajaxIdcatEdit();
 }

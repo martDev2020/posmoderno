@@ -29,7 +29,6 @@
     <!-- Page Specific CSS (Toastr.css) -->
     <link href="vistas\assets\css\toastr.min.css" rel="stylesheet">
     <link href="vistas\assets\css\sweetalert2.min.css" rel="stylesheet">
-    <script src="vistas/js/activar.js"></script>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="vistas/img/plantilla/cart.png">
 
