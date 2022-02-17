@@ -146,7 +146,7 @@
                             <div class="col-md-6 mb-3" id="val-fotoCatE">
                                 <label for="validationCustom14">Subir foto categoría</label>
                                 <div class="input-group">
-                                    <input type="hidden" class="antiguaFotoCatE">
+                                    <input type="hidden" class="antiguaFotoCatE" name="antiguaFotoCatE">
                                     <input type="file" class="fotoCategoria form-control formulario_grupo-input"
                                         id="fotoCatE" name="fotoCatE" autocomplete="off">
                                     <p class="help-block"><b>Tamaño recomendado 500px * 500px <br> Peso máximo de la

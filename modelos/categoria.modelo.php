@@ -95,4 +95,31 @@ class ModeloCategoria
         $stmt->close();
         $stmt = null;
     }
+    /**=================================================================
+     * EDITAR CAETEGORÍA
+     ===================================================================*/
+    static public function mdlEditarCateg($tabla, $datos)
+    {
+        // ob_end_clean();
+        // echo json_encode($datos);
+        // return;
+        $stmt = Conexion::conectar()->prepare(
+            "UPDATE $tabla SET
+            nombre_cat = :nombre_cat,
+            descrip_cat = :descrip_cat,
+            foto_cat = :foto_cat
+            WHERE id = :id"
+        );
+        $stmt->bindParam(":nombre_cat", $datos["nombrecatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":descrip_cat", $datos["descripcatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":foto_cat", $datos["fotoCatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["idCategorias"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

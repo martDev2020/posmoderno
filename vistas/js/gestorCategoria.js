@@ -107,7 +107,7 @@ function contactFormCat() {
         $textareaC = d.querySelectorAll("#formCateg textarea");
 
     /**=================================================================
-         * PREVISUZLIARA IMAGEN
+         * PREVISUZLIAR IMAGEN
       ===================================================================*/
     /*=============================================
       VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
@@ -362,7 +362,7 @@ function contactFormCat() {
 d.addEventListener("DOMContentLoaded", contactFormCat);
 /**--------------------Fin para guardar datos de cliente */
 /**=================================================================
-    * EDICIÓN DE CLIENTE
+    * EDICIÓN DE CATEGORÍA
     ===================================================================*/
 const idCategoria = (id) => {
     let idCat = id;
@@ -402,6 +402,62 @@ function contactFormEditC() {
     const $formcatEdit = d.getElementById("formCategE"),
         inputs = d.querySelectorAll("#formCategE input")
     $textareaCE = d.querySelectorAll("#formCateg textarea");
+    /**=================================================================
+         * PREVISUZLIAR IMAGEN
+      ===================================================================*/
+    /*=============================================
+      VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+      =============================================*/
+    let imagenCat = null;
+    $(".fotoCategoria").change(function () {
+        imagenCat = this.files[0];
+        /**Nota: al ejecutar el código y colocar los límites de la cadena de
+         * trasferencia de datos en los códigos correspondientes a este apartado,
+         * se presentaba un error, el atributo imagenCat retronaba nulo,
+         * el error estaba en declarar la línea anterior con un tipo de variable,
+         * en este caso era const.
+         */
+        // console.log("imagenCat ", imagenCat);
+
+        if (imagenCat["type"] != "image/jpeg" && imagenCat["type"] != "image/png") {
+            // Se deja una vez más el espacio.
+            $(".fotoCategoria").val("");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                text: "¡La imagen debe estar en formato JPG o PNG!",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            // return;
+        } else if (imagenCat["size"] > 2000000) {
+            $(".fotoCategoria").val("");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                text: "¡La imagen no debe pesar más de 2MB!",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            // return;
+        } else {
+            // Esa imagen se convierte en un archivo.
+            const datosImagen = new FileReader();
+            datosImagen.readAsDataURL(imagenCat);
+            $(datosImagen).on("load", function (e) {
+                const rutaImagen = e.target.result;
+                $(".previsualizarCat").attr("src", rutaImagen);
+                $(".modal").on("hidden.bs.modal", function () {
+                    // $(".alert").remove(); //lo utilice para borrar la clase alert de mensaje de duplicidad
+                    $(".previsualizarCat").attr(
+                        "src",
+                        "vistas/img/categoria/default/anonymous.png"
+                    );
+                });
+            });
+        }
+    });
+    /**---------Fin dprevisualizar imagen */
 
     const $regExpre = {
         nombrecatE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
@@ -459,14 +515,14 @@ function contactFormEditC() {
     $formcatEdit.addEventListener("submit", function (e) {
         // console.log("Excelente");
         e.preventDefault();
-        if (imagenCat === null) {
-            d.querySelector('#val-fotoCatE .alert-val').classList.add('alert-val-activo');
-            setTimeout(() => {
-                d.querySelector('#val-fotoCatE .alert-val').classList.remove('alert-val-activo');
-            }, 5000);
-        }
+        // if (imagenCat === null) {
+        //     d.querySelector('#val-fotoCatE .alert-val').classList.add('alert-val-activo');
+        //     setTimeout(() => {
+        //         d.querySelector('#val-fotoCatE .alert-val').classList.remove('alert-val-activo');
+        //     }, 5000);
+        // }
         /**-----Validación de datos */
-        if (idCategorias != 0 && nombrecatE != 0 && imagenCat != null && descripcatE.value != 0) {
+        if (idCategorias != 0 && nombrecatE != 0 && descripcatE.value != 0) {
             /**------Fin validación de datos */
             let data = new FormData($formcatEdit);
             // console.log(data);
@@ -477,7 +533,7 @@ function contactFormEditC() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data === "ok") {
                         toastr.success('Se actualizaron los datos de categoria correctamente.', 'Datos guardados');
                         tablaCategoria.ajax.reload(null, false);

@@ -61,6 +61,28 @@ class CategoriaAjax
         $response = ControladorCategoria::ctrMostarCatE($item, $value);
         echo json_encode($response);
     }
+    /**=================================================================
+     * EDITAR CATEGORIA
+     ===================================================================*/
+    public $idCategorias;
+    public $nombrecatE;
+    public $descripcatE;
+    public $fotoCatE;
+    public $antiguaFotoCatE;
+    public function ajaxEditCategoria()
+    {
+        $datos = array(
+            'idCategorias' => $this->idCategorias,
+            'nombrecatE' => $this->nombrecatE,
+            'descripcatE' => $this->descripcatE,
+            'fotoCatE' => $this->fotoCatE,
+            'antiguaFotoCatE' => $this->antiguaFotoCatE
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorCategoria::ctrEdicionCat($datos);
+        echo $response;
+    }
 }
 /**=================================================================
  * VALIDAR NO REPETIR NOMBRE
@@ -98,11 +120,28 @@ if (isset($_POST["activeIdCat"])) {
     // echo json_encode($_POST["activeIdCat"]);
 }
 /**=================================================================
- * OBETNER DATOS CON ID PARA EDICIÓN
+ * OBTNER DATOS CON ID PARA EDICIÓN
  ===================================================================*/
 if (isset($_POST["idCategoria"])) {
     // echo json_encode($_POST["idCategoria"]);
     $idCat = new CategoriaAjax();
     $idCat->idCategoria = $_POST["idCategoria"];
     $idCat->ajaxIdcatEdit();
+}
+/**=================================================================
+ * DATOS PARA EDICIÓN
+ ===================================================================*/
+if (isset($_POST["idCategorias"])) {
+    // echo json_encode($_POST["idCategorias"]);
+    $editCat = new CategoriaAjax();
+    $editCat->idCategorias = $_POST["idCategorias"];
+    $editCat->nombrecatE = $_POST["nombrecatE"];
+    $editCat->descripcatE = $_POST["descripcatE"];
+    if (isset($_FILES["fotoCatE"])) {
+        $editCat->fotoCatE = $_FILES["fotoCatE"];
+    } else {
+        $editCat->fotoCatE = null;
+    }
+    $editCat->antiguaFotoCatE = $_POST["antiguaFotoCatE"];
+    $editCat->ajaxEditCategoria();
 }

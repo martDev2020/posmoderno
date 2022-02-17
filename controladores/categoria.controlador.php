@@ -93,4 +93,85 @@ class ControladorCategoria
             }
         }
     }
+    /**=================================================================
+     * EDICIÓI DE CATEGORÍA
+     ===================================================================*/
+    static public function ctrEdicionCat($datos)
+    {
+        // echo json_encode($datos);
+        // return;
+        require_once "../modelos/categoria.modelo.php";
+        if (isset($datos["idCategorias"])) {
+            if (
+                preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["nombrecatE"]) &&
+                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["descripcatE"])
+            ) {
+                $rutaImagen = "../" . $datos["antiguaFotoCatE"];
+
+                if (isset($datos["fotoCatE"]["tmp_name"]) && !empty($datos["fotoCatE"]["tmp_name"])) {
+                    /*=============================================
+					BORRAMOS ANTIGUA FOTO CATEGORÍAS
+					=============================================*/
+
+                    unlink("../" . $datos["antiguaFotoCatE"]);
+                    /*=============================================
+					DEFINIMOS LAS MEDIDAS
+					=============================================*/
+                    list($ancho, $alto) = getimagesize($datos["fotoCatE"]["tmp_name"]);
+                    $nuevoAncho = 500;
+                    $nuevoAlto = 500;
+                    /*=============================================
+    				DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+    				=============================================*/
+                    if ($datos["fotoCatE"]["type"] == "image/jpeg") {
+                        /*=============================================
+    					GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+    					=============================================*/
+                        $aleatorio = mt_rand(100, 999);
+
+                        $rutaImagen = "../vistas/img/categoria/cat1/" . $aleatorio . ".jpg";
+                        $origen = imagecreatefromjpeg($datos["fotoCatE"]["tmp_name"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagejpeg($destino, $rutaImagen);
+                    }
+
+                    if ($datos["fotoCatE"]["type"] == "image/png") {
+                        /*=============================================
+    					GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+    					=============================================*/
+                        $aleatorio = mt_rand(100, 999);
+                        $rutaImagen = "../vistas/img/categoria/cat1/" . $aleatorio . ".png";
+                        $origen = imagecreatefrompng($datos["fotoCatE"]["tmp_name"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagealphablending($destino, FALSE);
+                        imagesavealpha($destino, TRUE);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagepng($destino, $rutaImagen);
+                    }
+                }
+                $datos = array(
+                    'idCategorias' => $datos["idCategorias"],
+                    'nombrecatE' => $datos["nombrecatE"],
+                    'descripcatE' => $datos["descripcatE"],
+                    'fotoCatE' => substr($rutaImagen, 3),
+                );
+                // echo json_encode($datos);
+                // return;
+                $response = ModeloCategoria::mdlEditarCateg("categoria", $datos);
+                return $response;
+            } else {
+                echo '<script>
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    text: "¡Datos icorrectos o vacíos, no deben tener caracterres especiales!",
+                    showConfimButton: false,
+                    timer: 1500
+                })
+                </script>';
+            }
+        }
+    }
 }
