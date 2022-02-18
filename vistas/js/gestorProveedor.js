@@ -529,7 +529,7 @@ const idEliminarP = (id) => {
                 .then((res) => (res.ok ? res.json() : Promise.reject(res)))
                 .then((json) => {
                     // console.log(json);
-                    if (json == "ok") {
+                    if (json === "ok") {
                         Swal.fire({
                             icon: "success",
                             title: "Datos eliminados",

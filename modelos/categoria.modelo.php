@@ -122,4 +122,19 @@ class ModeloCategoria
         $stmt->close();
         $stmt = null;
     }
+    /**=================================================================
+     * ELIMINARA DATOS
+     ===================================================================*/
+    static public function mdlCategoriaDelete($tabla, $datosDelete)
+    {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id=:id");
+        $stmt->bindParam(":id", $datosDelete, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

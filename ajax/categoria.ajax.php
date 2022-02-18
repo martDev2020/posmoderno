@@ -83,7 +83,24 @@ class CategoriaAjax
         $response = ControladorCategoria::ctrEdicionCat($datos);
         echo $response;
     }
+    /**=================================================================
+     * ELEIMINAR DATOS
+     ===================================================================*/
+    public $ideliminarCat;
+    public $fotoCatD;
+    public function ajaxDeleteCat()
+    {
+        $datos = array(
+            'ideliminarCat' => $this->ideliminarCat,
+            'fotoCatD' => $this->fotoCatD
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorCategoria::ctrEliminarCat($datos);
+        echo $response;
+    }
 }
+
 /**=================================================================
  * VALIDAR NO REPETIR NOMBRE
  ===================================================================*/
@@ -144,4 +161,14 @@ if (isset($_POST["idCategorias"])) {
     }
     $editCat->antiguaFotoCatE = $_POST["antiguaFotoCatE"];
     $editCat->ajaxEditCategoria();
+}
+/**=================================================================
+ * ELIMINAR DATOS
+ ===================================================================*/
+if (isset($_POST["ideliminarCat"])) {
+    $deleteCat = new CategoriaAjax();
+    $deleteCat->ideliminarCat = $_POST["ideliminarCat"];
+    $deleteCat->fotoCatD = $_POST["fotoCatD"];
+    $deleteCat->ajaxDeleteCat();
+    // echo json_encode($_POST["ideliminarCat"]);
 }

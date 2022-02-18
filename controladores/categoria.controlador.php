@@ -174,4 +174,21 @@ class ControladorCategoria
             }
         }
     }
+    /**=================================================================
+     * ELIMINARA CATEGORÍA
+     ===================================================================*/
+    static public function ctrEliminarCat($datos)
+    {
+        // echo json_encode($datos);
+        // return;
+        require_once "../modelos/categoria.modelo.php";
+        if (isset($datos["ideliminarCat"])) {
+            $datosDelete = $datos["ideliminarCat"];
+            if ($datos["fotoCatD"] != "" && $datos["fotoCatD"] !=  'vistas/img/categoria/default/anonymous.png') {
+                unlink("../" . $datos["fotoCatD"]);
+            }
+            $response = ModeloCategoria::mdlCategoriaDelete("categoria", $datosDelete);
+            return $response;
+        }
+    }
 }

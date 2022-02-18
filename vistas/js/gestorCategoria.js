@@ -286,6 +286,10 @@ function contactFormCat() {
                         tablaCategoria.ajax.reload(null, false);
                     }
                     $formcat.reset();
+                    $(".previsualizarCat").attr(
+                        "src",
+                        "vistas/img/categoria/default/anonymous.png"
+                    );
                 })
                 .catch(function (err) {
                     // console.log('error', err);
@@ -561,48 +565,70 @@ function contactFormEditC() {
 }
 d.addEventListener("DOMContentLoaded", contactFormEditC);
 /**-------------Fin edición de formulario */
-// /**=================================================================
-//     * ELIMINAR PROVEEDOR
-//     ===================================================================*/
-// const idEliminarC = (id) => {
-//     let idCdelete = id;
-//     // console.log("idPdelete ", idPdelete);
-//     Swal.fire({
-//         title: "¿Estás seguro de eliminar los datos?",
-//         icon: "warning",
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         confirmButtonText: 'Si',
-//         cancelButtonText: 'No'
-//     }).then((result) => {
-//         if (result.value) {
-//             let url = "ajax/cliente.ajax.php";
-//             let data = new FormData();
-//             data.append('ideliminarC', idCdelete);
-//             fetch(url, {
-//                 method: 'POST',
-//                 body: data,
-//                 mode: 'cors'
-//             }).then(res => (res.ok ? res.json() : Promise.reject(res)))
-//                 .then(json => {
-//                     // console.log(json);
-//                     if (json == "ok") {
-//                         Swal.fire({
-//                             icon: 'success',
-//                             title: 'Datos eliminados',
-//                             showConfirmButton: false,
-//                             timer: 1500
-//                         })
-//                     }
-//                     tablaCliente.ajax.reload(null, false);
-//                 })
-//                 .catch(function (err) {
-//                     // console.error('Error', err);
-//                     let message = err.statusText || "Ocurrió un error";
-//                     idEliminarC.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//                 })
-//         }
-//     })
-// }
-// /**----------------Eliminar proveedor */
+/**=================================================================
+    * ELIMINAR CATEGORÍA
+    ===================================================================*/
+const idEliminarCat = (id) => {
+    let idCatdelete = id;
+    // console.log("idCat", idCatdelete);
+    let url = "ajax/categoria.ajax.php";
+    let data = new FormData();
+    data.append('idCategoria', idCatdelete);
+    fetch(url, {
+        method: 'POST',
+        body: data,
+        mode: 'cors'
+    })
+        .then(res => (res.ok ? res.json() : Promise.reject(res)))
+        .then(json => {
+            // console.log(json);
+            let $idCatD = json.id;
+            // console.log($idCatD)
+            const $fotoDelete = json.foto_cat;
+            // console.log($fotoDelete);
+            Swal.fire({
+                title: "¿Estás seguro de eliminar los datos?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.value) {
+                    let url = "ajax/categoria.ajax.php";
+                    let data = new FormData();
+                    data.append('ideliminarCat', $idCatD);
+                    data.append('fotoCatD', $fotoDelete);
+                    fetch(url, {
+                        method: 'POST',
+                        body: data,
+                        mode: 'cors'
+                    }).then(res => (res.ok ? res.json() : Promise.reject(res)))
+                        .then(json => {
+                            // console.log(json);
+                            if (json === "ok") {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Datos eliminados',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                            tablaCategoria.ajax.reload(null, false);
+                        })
+                        .catch(function (err) {
+                            // console.error('Error', err);
+                            let message = err.statusText || "Ocurrió un error";
+                            idEliminarCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                        })
+                }
+            })
+        })
+        .catch(function (err) {
+            // console.error('Error', err);
+            let message = err.statusText || "Ocurrió un error";
+            idEliminarCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+        })
+}
+/**-------Fin eliminara categoría */
