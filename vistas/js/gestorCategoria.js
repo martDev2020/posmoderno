@@ -282,7 +282,7 @@ function contactFormCat() {
                 .then((data) => {
                     // console.log(data);
                     if (data === "ok") {
-                        toastr.success('Se guardaron los datos de cliente correctamente.', 'Datos guardados');
+                        toastr.success('Se guardaron los datos de categoría correctamente.', 'Datos guardados');
                         tablaCategoria.ajax.reload(null, false);
                     }
                     $formcat.reset();
@@ -364,7 +364,7 @@ function contactFormCat() {
     /**------------Fin de descativar o activar status */
 }
 d.addEventListener("DOMContentLoaded", contactFormCat);
-/**--------------------Fin para guardar datos de cliente */
+/**--------------------Fin para guardar datos de categoria */
 /**=================================================================
     * EDICIÓN DE CATEGORÍA
     ===================================================================*/
@@ -398,7 +398,7 @@ const idCategoria = (id) => {
             idCategoria.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
         })
 }
-/**-------Fin edición de proveedor */
+/**-------Fin edición de categoria */
 /**=================================================================
 * VALIDACIÓN DE FORMULARIO EDICIÓN
 ===================================================================*/
@@ -631,4 +631,4 @@ const idEliminarCat = (id) => {
             idEliminarCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
         })
 }
-/**-------Fin eliminara categoría */
+/**-------Fin eliminar categoría */

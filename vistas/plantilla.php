@@ -126,7 +126,7 @@
     <script src="vistas/js/plantilla.js"></script>
     <script src="vistas/js/gestorClientes.js"></script>
     <script src="vistas/js/gestorCategoria.js"></script>
-
+    <script src="vistas/js/gestorSubcategoria.js"></script>
 </body>
 
 </html>
