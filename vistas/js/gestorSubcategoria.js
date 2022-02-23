@@ -155,7 +155,7 @@ function contactFormCat() {
                 $(".previsualizarsubCat").attr("src", rutaImagen);
                 $(".modal").on("hidden.bs.modal", function () {
                     // $(".alert").remove(); //lo utilice para borrar la clase alert de mensaje de duplicidad
-                    $(".previsualizarCat").attr(
+                    $(".previsualizarsubCat").attr(
                         "src",
                         "vistas/img/subcategorias/default/anonymous.png"
                     );
@@ -399,7 +399,7 @@ const idsubCategoriaE = (id) => {
                 d.querySelector(".antiguaFotosubCatE").value = json.foto_subcat;
                 d.getElementById("img-previewsubcE").src = json.foto_subcat;
             } else {
-                d.getElementById("img-previewsubcE").src = 'vistas/img/categoria/default/anonymous.png';
+                d.getElementById("img-previewsubcE").src = 'vistas/img/subcategorias/default/anonymous.png';
             }
         })
         .catch(function (err) {
@@ -409,175 +409,227 @@ const idsubCategoriaE = (id) => {
         })
 }
 /**-------Fin edición de subcategoria */
-// /**=================================================================
-// * VALIDACIÓN DE FORMULARIO EDICIÓN
-// ===================================================================*/
-// function contactFormEditC() {
-//     const $formcatEdit = d.getElementById("formCategE"),
-//         inputs = d.querySelectorAll("#formCategE input")
-//     $textareaCE = d.querySelectorAll("#formCateg textarea");
-//     /**=================================================================
-//          * PREVISUZLIAR IMAGEN
-//       ===================================================================*/
-//     /*=============================================
-//       VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
-//       =============================================*/
-//     let imagenCat = null;
-//     $(".fotoCategoria").change(function () {
-//         imagenCat = this.files[0];
-//         /**Nota: al ejecutar el código y colocar los límites de la cadena de
-//          * trasferencia de datos en los códigos correspondientes a este apartado,
-//          * se presentaba un error, el atributo imagenCat retronaba nulo,
-//          * el error estaba en declarar la línea anterior con un tipo de variable,
-//          * en este caso era const.
-//          */
-//         // console.log("imagenCat ", imagenCat);
+/**=================================================================
+* VALIDACIÓN DE FORMULARIO EDICIÓN
+===================================================================*/
+function contactFormEditsubCE() {
+    const $formsubcatE = d.getElementById("formsubCategE"),
+        inputssubE = d.querySelectorAll("#formsubCategE input"),
+        $nombresubCatE = d.getElementById("nombresubcatE"),
+        $textareasubCE = d.querySelectorAll("#formsubCateg textarea"),
+        $selectE = d.getElementById("valid-select");
+    /**=================================================================
+    * PREVISUZLIAR IMAGEN
+ ===================================================================*/
+    /*=============================================
+      VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+      =============================================*/
+    let imagensubCatE = null;
+    $(".fotosubCategoriaE").change(function () {
+        imagensubCatE = this.files[0];
+        /**Nota: al ejecutar el código y colocar los límites de la cadena de
+         * trasferencia de datos en los códigos correspondientes a este apartado,
+         * se presentaba un error, el atributo imagensubCatE retronaba nulo,
+         * el error estaba en declarar la línea anterior con un tipo de variable,
+         * en este caso era const.
+         */
+        // console.log("imagensubCatE ", imagensubCatE);
 
-//         if (imagenCat["type"] != "image/jpeg" && imagenCat["type"] != "image/png") {
-//             // Se deja una vez más el espacio.
-//             $(".fotoCategoria").val("");
-//             Swal.fire({
-//                 position: "top-end",
-//                 icon: "error",
-//                 text: "¡La imagen debe estar en formato JPG o PNG!",
-//                 showConfirmButton: false,
-//                 timer: 3000,
-//             });
-//             // return;
-//         } else if (imagenCat["size"] > 2000000) {
-//             $(".fotoCategoria").val("");
-//             Swal.fire({
-//                 position: "top-end",
-//                 icon: "error",
-//                 text: "¡La imagen no debe pesar más de 2MB!",
-//                 showConfirmButton: false,
-//                 timer: 3000,
-//             });
-//             // return;
-//         } else {
-//             // Esa imagen se convierte en un archivo.
-//             const datosImagen = new FileReader();
-//             datosImagen.readAsDataURL(imagenCat);
-//             $(datosImagen).on("load", function (e) {
-//                 const rutaImagen = e.target.result;
-//                 $(".previsualizarCat").attr("src", rutaImagen);
-//                 $(".modal").on("hidden.bs.modal", function () {
-//                     // $(".alert").remove(); //lo utilice para borrar la clase alert de mensaje de duplicidad
-//                     $(".previsualizarCat").attr(
-//                         "src",
-//                         "vistas/img/categoria/default/anonymous.png"
-//                     );
-//                 });
-//             });
-//         }
-//     });
-//     /**---------Fin dprevisualizar imagen */
+        if (imagensubCatE["type"] != "image/jpeg" && imagensubCatE["type"] != "image/png") {
+            // Se deja una vez más el espacio.
+            $(".fotosubCategoriaE").val("");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                text: "¡La imagen debe estar en formato JPG o PNG!",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            // return;
+        } else if (imagensubCatE["size"] > 2000000) {
+            $(".fotosubCategoriaE").val("");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                text: "¡La imagen no debe pesar más de 2MB!",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            // return;
+        } else {
+            // Esa imagen se convierte en un archivo.
+            const datosImagen = new FileReader();
+            datosImagen.readAsDataURL(imagensubCatE);
+            $(datosImagen).on("load", function (e) {
+                const rutaImagen = e.target.result;
+                $(".previsualizarsubCatE").attr("src", rutaImagen);
+                $(".modal").on("hidden.bs.modal", function () {
+                    // $(".alert").remove(); //lo utilice para borrar la clase alert de mensaje de duplicidad
+                    $(".previsualizarsubCatE").attr(
+                        "src",
+                        "vistas/img/subcategorias/default/anonymous.png"
+                    );
+                });
+            });
+        }
+    });
+    /**---------Fin dprevisualizar imagen */
+    /**=================================================================
+  * VALIDAR SI NOMBRE DE SUBCATEGORÍA EXISTE
+  ===================================================================*/
+    $nombresubCatE.addEventListener("change", (e) => {
+        // console.log(e);
+        const $subcate = e.target.value;
+        // console.log($subcate);
+        let data = new FormData();
+        data.append("subcate", $subcate);
+        fetch("ajax/subcategoria.ajax.php", {
+            method: "POST",
+            body: data,
+            mode: "cors",
+        })
+            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+            .then((json) => {
+                // console.log(json);
+                if (json.length != 0) {
+                    d.querySelector(".alert-val-danger").classList.add(
+                        "alert-val-activo"
+                    );
+                    setTimeout(() => {
+                        d.querySelector(".alert-val-danger").classList.remove(
+                            "alert-val-activo"
+                        );
+                    }, 5000);
+                    // Swal.fire({
+                    //     position: "top-end",
+                    //     icon: "error",
+                    //     text: `¡El nombre ${$nameCli} ya existe en la base de datos!`,
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // })
+                    $nombresubCat.value = "";
+                }
+            })
+            .catch(function (err) {
+                // console.log('error', err);
+                let message = err.statusText || "Ocurrió un error";
+                $nombresubCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+            });
+    });
+    /**------Fin de valición de subcategoría si existe. */
 
-//     const $regExpre = {
-//         nombrecatE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
-//         descripcatE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
-//     };
-//     /**------Objeto para validar si los campos estan vacíos. */
-//     const camposCatE = {
-//         nombrecatE: false,
-//         descripcatE: false,
-//     };
-//     const validarFormCatE = (e) => {
-//         // console.log("Se ejecutó");
-//         // console.log(e.target.name);
-//         /**El name es del input, es decir, se ejecuta todos los name */
-//         switch (e.target.name) {
-//             case "nombrecatE":
-//                 validarInput($regExpre.nombrecatE, e.target, "nombrecatE");
-//                 break;
-//             case "descripcatE":
-//                 validarInput($regExpre.descripcatE, e.target, "descripcatE");
-//                 break;
-//         }
-//     };
-//     const validarInput = (expresion, input, campo) => {
-//         if (expresion.test(input.value)) {
-//             d.querySelector(`#val-${campo} .alert-val`).classList.remove(
-//                 "alert-val-activo"
-//             );
-//             // Valida que los Car no esten vacíos.
-//             camposCatE[campo] = true;
-//         } else {
-//             d.querySelector(`#val-${campo} .alert-val`).classList.add(
-//                 "alert-val-activo"
-//             );
-//             setTimeout(() => {
-//                 d.querySelector(`#val-${campo} .alert-val`).classList.remove(
-//                     "alert-val-activo"
-//                 );
-//             }, 5000);
-//             camposCatE[campo] = false;
-//         }
-//     };
+    const $regExpre = {
+        nombresubcatE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+        descripsubcatE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+    };
+    /**------Objeto para validar si los campos estan vacíos. */
+    const campossubCatE = {
+        nombresubcatE: false,
+        descripsubcatE: false,
+    };
+    const validarFormsubCatE = (e) => {
+        // console.log("Se ejecutó");
+        // console.log(e.target.name);
+        /**El name es del input, es decir, se ejecuta todos los name */
+        switch (e.target.name) {
+            case "nombresubcatE":
+                validarInput($regExpre.nombresubcatE, e.target, "nombresubcatE");
+                break;
+            case "descripsubcatE":
+                validarInput($regExpre.descripsubcatE, e.target, "descripsubcatE");
+                break;
+        }
+    };
+    const validarInput = (expresion, input, campo) => {
+        if (expresion.test(input.value)) {
+            d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+                "alert-val-activo"
+            );
+            // Valida que los Car no esten vacíos.
+            campossubCatE[campo] = true;
+        } else {
+            d.querySelector(`#val-${campo} .alert-val`).classList.add(
+                "alert-val-activo"
+            );
+            setTimeout(() => {
+                d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+                    "alert-val-activo"
+                );
+            }, 5000);
+            campossubCatE[campo] = false;
+        }
+    };
 
-//     inputs.forEach((input) => {
-//         input.addEventListener("keyup", validarFormCatE);
-//         input.addEventListener("blur", validarFormCatE);
-//     });
-//     $textareaCE.forEach((textarea) => {
-//         textarea.addEventListener("keyup", validarFormCatE);
-//         textarea.addEventListener("blur", validarFormCatE);
-//     });
-//     /**=================================================================
-// * CAPTURAR DATOS PARA GUARDAR EDICIÓN DE CATEGORÍA
-// ===================================================================*/
-//     $formcatEdit.addEventListener("submit", function (e) {
-//         // console.log("Excelente");
-//         e.preventDefault();
-//         // if (imagenCat === null) {
-//         //     d.querySelector('#val-fotoCatE .alert-val').classList.add('alert-val-activo');
-//         //     setTimeout(() => {
-//         //         d.querySelector('#val-fotoCatE .alert-val').classList.remove('alert-val-activo');
-//         //     }, 5000);
-//         // }
-//         /**-----Validación de datos */
-//         if (idCategorias != 0 && nombrecatE != 0 && descripcatE.value != 0) {
-//             /**------Fin validación de datos */
-//             let data = new FormData($formcatEdit);
-//             // console.log(data);
-//             fetch('ajax/categoria.ajax.php', {
-//                 method: 'POST',
-//                 body: data,
-//                 mode: "cors"
-//             })
-//                 .then(res => res.json())
-//                 .then(data => {
-//                     // console.log(data);
-//                     if (data === "ok") {
-//                         toastr.success('Se actualizaron los datos de categoria correctamente.', 'Datos guardados');
-//                         tablaCategoria.ajax.reload(null, false);
-//                     }
-//                     // $formcEdit.reset();
-//                 })
-//                 .catch(function (err) {
-//                     // console.log('error', err);
-//                     Swal.fire({
-//                         position: "top-end",
-//                         icon: "success",
-//                         text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
-//                         showConfirmButton: false,
-//                         timer: 2000
-//                     })
-//                 })
-//             // $('#modal-4').modal('hide');
-//         } else {
-//             d.getElementById('form-mensajecatE').classList.add('alert-val-activo');
-//             setTimeout(() => {
-//                 d.getElementById("form-mensajecatE").classList.remove('alert-val-activo');
-//             }, 5000);
-//         }
-//     })
-// }
-// d.addEventListener("DOMContentLoaded", contactFormEditC);
-// /**-------------Fin edición de formulario */
-// /**=================================================================
-//     * ELIMINAR CATEGORÍA
-//     ===================================================================*/
+    inputssubE.forEach((input) => {
+        input.addEventListener("keyup", validarFormsubCatE);
+        input.addEventListener("blur", validarFormsubCatE);
+    });
+    $textareasubCE.forEach((textarea) => {
+        textarea.addEventListener("keyup", validarFormsubCatE);
+        textarea.addEventListener("blur", validarFormsubCatE);
+    });
+    /**=================================================================
+* CAPTURAR DATOS PARA GUARDAR EDICIÓN DE SUBCATEGORÍA
+===================================================================*/
+    $formsubcatE.addEventListener("submit", function (e) {
+        // console.log("Excelente");
+        e.preventDefault();
+        if (imagensubCatE === null) {
+            d.querySelector('#val-fotosubCat .alert-val').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.querySelector('#val-fotosubCat .alert-val').classList.remove('alert-val-activo');
+            }, 5000);
+        }
+        // const selectE = $selectE.value;
+        // if (selectE === "") {
+        //     d.querySelector('#val-selectcatE .alert-val').classList.add('alert-val-activo');
+        //     setTimeout(() => {
+        //         d.querySelector('#val-selectcatE .alert-val').classList.remove('alert-val-activo');
+        //     }, 5000);
+        // }
+        /**-----Validación de datos */
+        if (idSucatE != 0 && nombresubcatE != 0 && descripsubcatE.value != 0) {
+            /**------Fin validación de datos */
+            let data = new FormData($formsubcatE);
+            // console.log(data);
+            fetch('ajax/subcategoria.ajax.php', {
+                method: 'POST',
+                body: data,
+                mode: "cors"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data === "ok") {
+                        toastr.success('Se actualizaron los datos de categoria correctamente.', 'Datos guardados');
+                        tablaSubCategoria.ajax.reload(null, false);
+                    }
+                    $formsubcatE.reset();
+                })
+                .catch(function (err) {
+                    // console.log('error', err);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                })
+            // $('#modal-4').modal('hide');
+        } else {
+            d.getElementById('form-mensajesubcatE').classList.add('alert-val-activo');
+            setTimeout(() => {
+                d.getElementById("form-mensajesubcatE").classList.remove('alert-val-activo');
+            }, 5000);
+        }
+    })
+}
+d.addEventListener("DOMContentLoaded", contactFormEditsubCE);
+/**-------------Fin edición de formulario */
+/**=================================================================
+    * ELIMINAR CATEGORÍA
+===================================================================*/
 // const idEliminarCat = (id) => {
 //     let idCatdelete = id;
 //     // console.log("idCat", idCatdelete);

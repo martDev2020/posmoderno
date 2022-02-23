@@ -63,6 +63,30 @@ class AjaxSubcategorias
         $response = ControladorSubCategoria::ctrMostrarEdit($item, $value);
         echo json_encode($response);
     }
+    /**=================================================================
+     * GUARDAR EDICIÓN
+     ===================================================================*/
+    public $idSucatE;
+    public $selectcatE;
+    public $nombresubcatE;
+    public $descripsubcatE;
+    public $fotosubCatE;
+    public $antiguaFotosubCatE;
+    public function ajaxGurdarSubCatE()
+    {
+        $datos = array(
+            'idSucatE' => $this->idSucatE,
+            'selectcatE' => $this->selectcatE,
+            'nombresubcatE' => $this->nombresubcatE,
+            'descripsubcatE' => $this->descripsubcatE,
+            'fotosubCatE' => $this->fotosubCatE,
+            'antiguaFotosubCatE' => $this->antiguaFotosubCatE
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorSubCategoria::ctrEdidiconSubC($datos);
+        echo $response;
+    }
 }
 /**=================================================================
  * VALIDAR NO REPETIR SUBACTEGORÍA
@@ -106,4 +130,22 @@ if (isset($_POST["idsubCategoriaE"])) {
     $trerdatos = new AjaxSubcategorias();
     $trerdatos->idsubCategoriaE = $_POST["idsubCategoriaE"];
     $trerdatos->ajaxTrerEdit();
+}
+/**=================================================================
+ * GUARDAR DATOS EDICIÓN
+ ===================================================================*/
+if (isset($_POST["idSucatE"])) {
+    // echo json_encode($_POST["idSucatE"]);
+    $subE = new AjaxSubcategorias();
+    $subE->idSucatE = $_POST["idSucatE"];
+    $subE->selectcatE = $_POST["selectcatE"];
+    $subE->nombresubcatE = $_POST["nombresubcatE"];
+    $subE->descripsubcatE = $_POST["descripsubcatE"];
+    if (isset($_FILES["fotosubCatE"])) {
+        $subE->fotosubCatE = $_FILES["fotosubCatE"];
+    } else {
+        $subE->fotosubCatE = null;
+    }
+    $subE->antiguaFotosubCatE = $_POST["antiguaFotosubCatE"];
+    $subE->ajaxGurdarSubCatE();
 }

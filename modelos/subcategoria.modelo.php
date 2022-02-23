@@ -92,4 +92,33 @@ class ModeloSubcatgoria
         $stmt->close();
         $stmt = null;
     }
+    /**=================================================================
+     * EDITAR SUBCAETEGORÍA
+     ===================================================================*/
+    static public function mdlEditarSubCateg($tabla, $datos)
+    {
+        // ob_end_clean();
+        // echo json_encode($datos);
+        // return;
+        $stmt = Conexion::conectar()->prepare(
+            "UPDATE $tabla SET
+            idCateg = :idCateg,
+            nombre_subcat = :nombre_subcat,
+            descrip_subcat = :descrip_subcat,
+            foto_subcat = :foto_subcat
+            WHERE id = :id"
+        );
+        $stmt->bindParam(":idCateg", $datos["selectcatE"], PDO::PARAM_INT);
+        $stmt->bindParam(":nombre_subcat", $datos["nombresubcatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":descrip_subcat", $datos["descripsubcatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":foto_subcat", $datos["fotosubCatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["idSucatE"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <center><img src="vistas/img/categoria/default/anonymous.png" id="img-previewsubcE"
+                                <center><img src="vistas/img/subcategorias/default/anonymous.png" id="img-previewsubcE"
                                         class="img-thumbnail previsualizarsubCatE" width="50%">
                                 </center>
                             </div>
