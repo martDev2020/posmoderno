@@ -95,7 +95,7 @@ class ControladorSubCategoria
         }
     }
     /**=================================================================
-     * EDICIÓI DE SUBCATEGORÍA
+     * EDICIÓN DE SUBCATEGORÍA
      ===================================================================*/
     static public function ctrEdidiconSubC($datos)
     {
@@ -174,6 +174,23 @@ class ControladorSubCategoria
                 })
                 </script>';
             }
+        }
+    }
+    /**=================================================================
+     * ELIMINAR DATOS
+     ===================================================================*/
+    static public function ctrEliminarsubCat($datos)
+    {
+        // echo json_encode($datos);
+        // return;
+        require_once "../modelos/subcategoria.modelo.php";
+        if (isset($datos["ideliminarsubCat"])) {
+            $datosDelete = $datos["ideliminarsubCat"];
+            if ($datos["fotosubCatD"] != "" && $datos["fotosubCatD"] !=  'vistas/img/subcategorias/default/anonymous.png') {
+                unlink("../" . $datos["fotosubCatD"]);
+            }
+            $response = ModeloSubcatgoria::mdlSubCategoriaDelete("subcategoria", $datosDelete);
+            return $response;
         }
     }
 }

@@ -214,13 +214,13 @@ function contactFormC() {
                     //     showConfirmButton: false,
                     //     timer: 3000
                     // })
-                    $nombreCat.value = "";
+                    $nombreClie.value = "";
                 }
             })
             .catch(function (err) {
                 // console.log('error', err);
                 let message = err.statusText || "Ocurrió un error";
-                $nombreCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                $nombreClie.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
             });
     });
     /**------Fin de valición de cliente si existe. */

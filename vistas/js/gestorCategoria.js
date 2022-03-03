@@ -105,7 +105,7 @@ function contactFormCat() {
         inputs = d.querySelectorAll("#formCateg input"),
         $nombreCat = d.getElementById("nombrecat"),
         $textareaC = d.querySelectorAll("#formCateg textarea");
-
+    toastr.options = { "positionClass": "toast-top-right" }
     /**=================================================================
          * PREVISUZLIAR IMAGEN
       ===================================================================*/
@@ -278,7 +278,7 @@ function contactFormCat() {
                 body: data,
                 mode: "cors",
             })
-                .then((res) => res.json())
+                .then((res) => (res.ok ? res.json() : Promise.reject(res)))
                 .then((data) => {
                     // console.log(data);
                     if (data === "ok") {
@@ -535,10 +535,10 @@ function contactFormEditC() {
                 body: data,
                 mode: "cors"
             })
-                .then(res => res.json())
-                .then(data => {
+                .then(res => (res.ok ? res.json() : Promise.reject(res)))
+                .then(json => {
                     // console.log(data);
-                    if (data === "ok") {
+                    if (json === "ok") {
                         toastr.success('Se actualizaron los datos de categoria correctamente.', 'Datos guardados');
                         tablaCategoria.ajax.reload(null, false);
                     }
@@ -565,6 +565,14 @@ function contactFormEditC() {
 }
 d.addEventListener("DOMContentLoaded", contactFormEditC);
 /**-------------Fin edición de formulario */
+/**=================================================================
+ * OFERTA DE CATEGORÍA
+ ===================================================================*/
+const idCatOferta = (id) => {
+    let idcatOf = id;
+    console.log(idcatOf);
+}
+/**---------------Fin oferta categoría */
 /**=================================================================
     * ELIMINAR CATEGORÍA
     ===================================================================*/

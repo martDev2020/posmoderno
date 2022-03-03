@@ -1,33 +1,31 @@
 <?php
 require_once "conexion.php";
-class ModeloSubcatgoria
+class ModeloDep
 {
     /**=================================================================
-     * MOSTRAR DATOS PARA TABLA SUBACATEGORIA
+     * MOSTRAR DATOS
      ===================================================================*/
-    static public function mdlMostrarSubacategoria($tabla, $item, $value)
+    static public function mdlMostrarDep($tabla, $item, $value)
     {
         if ($item != null) {
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item =:$item");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
             $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetchAll();
         } else {
-            $stmt = Conexion::conectar()->prepare("SELECT*FROM $tabla ORDER BY id DESC");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC");
             $stmt->execute();
             return $stmt->fetchAll();
         }
+        // exit;
         $stmt->close();
         $stmt = null;
     }
     /**=================================================================
-     * TRAER ID PARA EDICIÓN
+     * MOSTRAR DATOS CON ID PARA EDICIÓN
      ===================================================================*/
-    static public function mdlMostrarsubCateE($tabla, $item, $value)
+    static public function mdlMostrarDepE($tabla, $item, $value)
     {
-        // ob_end_clean();
-        // echo json_encode($item);
-        // return;
         if ($item != null) {
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
             $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
@@ -38,52 +36,49 @@ class ModeloSubcatgoria
             $stmt->execute();
             return $stmt->fetchAll();
         }
+        // exit;
         $stmt->close();
         $stmt = null;
     }
     /**=================================================================
-     * ACTIVAR STATUS
+     * ACTIVAR STAUS DESACTIVAR
      ===================================================================*/
-    static public function mdlMostrarStasub($tabla, $item1, $value1, $item2, $value2)
+    static public function mdlActualizarStatusDep($tabla, $item1, $value1, $item2,  $value2)
     {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item2=:$item2 WHERE $item1 = :$item1");
+        // echo json_encode($value1);
+        // return;
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
+
         $stmt->bindParam(":" . $item1, $value1, PDO::PARAM_STR);
         $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_STR);
+
         if ($stmt->execute()) {
             return json_encode("ok");
         } else {
             return json_encode("error");
         }
+
         $stmt->close();
         $stmt = null;
     }
     /**=================================================================
-     * GURDAR DATOS
+     * GUARDAR DATOS
      ===================================================================*/
-    static public function mdlGurardarsubCat($tabla, $datos)
+    static public function mdlGurardarDep($tabla, $datos)
     {
         // ob_end_clean();
         // echo json_encode($datos);
         // return;
         $stmt = Conexion::conectar()->prepare(
-            "INSERT INTO $tabla 
-            (idCateg,
-            nombre_subcat,
-            descrip_subcat,
-            activo,
-            foto_subcat)
+            "INSERT INTO $tabla
+            (nombre_dep,
+            activo)
             VALUES
-            (:idCateg,
-            :nombre_subcat,
-            :descrip_subcat,
-            :activo,
-            :foto_subcat)"
+            (:nombre_dep,
+            :activo)"
         );
-        $stmt->bindParam(":idCateg", $datos["selectcat"], PDO::PARAM_INT);
-        $stmt->bindParam(":nombre_subcat", $datos["nombresubcat"], PDO::PARAM_STR);
-        $stmt->bindParam(":descrip_subcat", $datos["descripsubcat"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_dep", $datos["nombredep"], PDO::PARAM_STR);
         $stmt->bindParam(":activo", $datos["activo"], PDO::PARAM_INT);
-        $stmt->bindParam(":foto_subcat", $datos["fotosubCat"], PDO::PARAM_STR);
         if ($stmt->execute()) {
             return json_encode("ok");
         } else {
@@ -93,26 +88,20 @@ class ModeloSubcatgoria
         $stmt = null;
     }
     /**=================================================================
-     * EDITAR SUBCATEGORÍA
+     * EDICIÓN
      ===================================================================*/
-    static public function mdlEditarSubCateg($tabla, $datos)
+    static public function mdlEditarDep($tabla, $datos)
     {
         // ob_end_clean();
         // echo json_encode($datos);
         // return;
         $stmt = Conexion::conectar()->prepare(
             "UPDATE $tabla SET
-            idCateg = :idCateg,
-            nombre_subcat = :nombre_subcat,
-            descrip_subcat = :descrip_subcat,
-            foto_subcat = :foto_subcat
+            nombre_dep = :nombre_dep
             WHERE id = :id"
         );
-        $stmt->bindParam(":idCateg", $datos["selectcatE"], PDO::PARAM_INT);
-        $stmt->bindParam(":nombre_subcat", $datos["nombresubcatE"], PDO::PARAM_STR);
-        $stmt->bindParam(":descrip_subcat", $datos["descripsubcatE"], PDO::PARAM_STR);
-        $stmt->bindParam(":foto_subcat", $datos["fotosubCatE"], PDO::PARAM_STR);
-        $stmt->bindParam(":id", $datos["idSucatE"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_dep", $datos["nombredepE"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["idDepE"], PDO::PARAM_STR);
         if ($stmt->execute()) {
             return json_encode("ok");
         } else {
@@ -122,15 +111,12 @@ class ModeloSubcatgoria
         $stmt = null;
     }
     /**=================================================================
-     * ELIMNAR DATOS
+     * ELIMINARA DATOS
      ===================================================================*/
-    static public function mdlSubCategoriaDelete($tabla, $datosDelete)
+    static public function mdlEdliminarDep($tabla, $value)
     {
-        // ob_clean();
-        // echo json_encode($datosDelete);
-        // return;
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id=:id");
-        $stmt->bindParam(":id", $datosDelete, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $value, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return json_encode("ok");
         } else {

@@ -18,7 +18,7 @@
                                 <th>Descripción</th>
                                 <th>Status</th>
                                 <th>Imagen</th>
-                                <th>Fecha de alta</th>
+                                <th>Fecha alta/modiciación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>

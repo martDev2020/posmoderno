@@ -87,6 +87,22 @@ class AjaxSubcategorias
         $response = ControladorSubCategoria::ctrEdidiconSubC($datos);
         echo $response;
     }
+    /**=================================================================
+     * ELIMINARA DATOS
+     ===================================================================*/
+    public $ideliminarsubCat;
+    public $fotosubCatD;
+    public function ajaxDeletesubCat()
+    {
+        $datos = array(
+            'ideliminarsubCat' => $this->ideliminarsubCat,
+            'fotosubCatD' => $this->fotosubCatD
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorSubCategoria::ctrEliminarsubCat($datos);
+        echo $response;
+    }
 }
 /**=================================================================
  * VALIDAR NO REPETIR SUBACTEGORÍA
@@ -148,4 +164,14 @@ if (isset($_POST["idSucatE"])) {
     }
     $subE->antiguaFotosubCatE = $_POST["antiguaFotosubCatE"];
     $subE->ajaxGurdarSubCatE();
+}
+/**=================================================================
+ * ELIMINAR DATOS
+ ===================================================================*/
+if (isset($_POST["ideliminarsubCat"])) {
+    $deletesubCat = new AjaxSubcategorias();
+    $deletesubCat->ideliminarsubCat = $_POST["ideliminarsubCat"];
+    $deletesubCat->fotosubCatD = $_POST["fotosubCatD"];
+    $deletesubCat->ajaxDeletesubCat();
+    // echo json_encode($_POST["ideliminarCat"]);
 }

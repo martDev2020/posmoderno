@@ -38,40 +38,19 @@
                  <li> <a href="empleados">Gestión de empleados</a> </li>
              </ul>
          </li>
-         <!-- <li class="menu-item">
-             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#form-elements" aria-expanded="false"
-                 aria-controls="form-elements">
-                 <span><i class="material-icons fs-16">input</i>Categroías</span>
-             </a>
-             <ul id="form-elements" class="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
-                 <li> <a href="categorias">Gestión categorías</a> </li>
-             </ul>
-         </li> -->
-         <!-- /Form Elements -->
          <!-- Charts -->
-         <!-- <li class="menu-item">
+         <li class="menu-item">
              <a href="#" class="has-chevron" data-toggle="collapse" data-target="#charts" aria-expanded="false"
                  aria-controls="charts">
-                 <span><i class="material-icons fs-16">equalizer</i>Subcategorías</span>
+                 <span><i class="material-icons fs-16">equalizer</i>Productos</span>
              </a>
              <ul id="charts" class="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">
-                 <li> <a href="subcategorias">Gestión subcategorías</a> </li>
-             </ul>
-         </li> -->
-         <!-- /Charts -->
-         <!-- Tables -->
-         <li class="menu-item">
-             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#tables" aria-expanded="false"
-                 aria-controls="tables">
-                 <span><i class="material-icons fs-16">tune</i>Productos</span>
-             </a>
-             <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
                  <li> <a href="categorias">Gestión categorías</a> </li>
-                 <li> <a href="subcategorias">Gestión subcategorías</a> </li>
-                 <li> <a href="productos">Gestión de productos</a> </li>
+                 <li> <a href="subcategorias">Gestión subcategorías</a></li>
+                 <li> <a href="productos">Gestión productos</a> </li>
              </ul>
          </li>
-         <!-- /Tables -->
+         <!-- /Charts -->
          <!-- Popups -->
          <li class="menu-item">
              <a href="#" class="has-chevron" data-toggle="collapse" data-target="#popups" aria-expanded="false"
@@ -113,6 +92,17 @@
              </a>
              <ul id="pages" class="collapse" aria-labelledby="pages" data-parent="#side-nav-accordion">
                  <li> <a href="tasimpuesto">Tasa impuesto</a> </li>
+             </ul>
+         </li>
+         <li class="menu-item">
+             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#work" aria-expanded="false"
+                 aria-controls="pages">
+                 <span><i class="material-icons fs-16">insert_drive_file</i>Áreas de trabajo</span>
+             </a>
+             <ul id="work" class="collapse" aria-labelledby="work" data-parent="#side-nav-accordion">
+                 <li> <a href="departamento">Departamento</a> </li>
+                 <li> <a href="empresa">Empresa</a> </li>
+                 <li> <a href="regfiscal">Régimen fiscal</a> </li>
              </ul>
          </li>
          <!-- /Pages -->

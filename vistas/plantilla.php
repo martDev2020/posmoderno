@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Mystic Dashboard</title>
+    <title>MARS MULTISCUCURSAL</title>
     <!-- Iconic Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="vistas\vendors\iconic-fonts\font-awesome\css\all.min.css" rel="stylesheet">
@@ -29,6 +29,8 @@
     <!-- Page Specific CSS (Toastr.css) -->
     <link href="vistas\assets\css\toastr.min.css" rel="stylesheet">
     <link href="vistas\assets\css\sweetalert2.min.css" rel="stylesheet">
+    <!-- Timepicker -->
+    <link href="vistas/assets/timepicker/timepicker.css"" rel=" stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="vistas/img/plantilla/cart.png">
 
@@ -43,7 +45,7 @@
     <?php
     /**=================================================================
      * HORA DEL SEVIDOR
-     ===================================================================*/
+===================================================================*/
     date_default_timezone_set('America/Mexico_City');
     $zonahoraria = date_default_timezone_get();
 
@@ -70,6 +72,9 @@
             $_GET["ruta"] == "empleados" ||
             $_GET["ruta"] == "ventas" ||
             $_GET["ruta"] == "compras" ||
+            $_GET["ruta"] == "empresa" ||
+            $_GET["ruta"] == "departamento" ||
+            $_GET["ruta"] == "regfiscal" ||
             $_GET["ruta"] == "restbase"
         ) {
             include "modulos/" . $_GET["ruta"] . ".php";
@@ -91,6 +96,7 @@
     <!-- Page Specific Scripts Start -->
     <script src="vistas\assets\js\slick.min.js"> </script>
     <script src="vistas\assets\js\moment.js"> </script>
+    <script src="vistas\assets\timepicker\timepicker.js"></script>
     <script src="vistas\assets\js\jquery.webticker.min.js"> </script>
     <script src="vistas\assets\js\Chart.bundle.min.js"> </script>
     <script src="vistas\assets\js\Chart.Financial.js"> </script>
@@ -120,13 +126,16 @@
     <script src="vistas\assets\js\toast.js"> </script>
     <script src="vistas\assets\js\promise.min.js"> </script>
     <script src="vistas\assets\js\sweetalert2.min.js"> </script>
+
     <!-- <script src="vistas\assets\js\sweet-alerts.js"> </script> -->
 
     <script src="vistas/js/gestorProveedor.js"></script>
     <script src="vistas/js/plantilla.js"></script>
     <script src="vistas/js/gestorClientes.js"></script>
     <script src="vistas/js/gestorCategoria.js"></script>
-    <script src="vistas/js/gestorSubcategoria.js"></script>
+    <script src="vistas/js/gestorSubCategoria.js"></script>
+    <script src="vistas/js/gestorDep.js"></script>
+    <script src="vistas/js/gestorRF.js"></script>
 </body>
 
 </html>

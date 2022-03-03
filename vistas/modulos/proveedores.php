@@ -19,7 +19,7 @@
                                 <th>Teléfono</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th>Fecha de alta</th>
+                                <th>Fecha alta/modiciación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>

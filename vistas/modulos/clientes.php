@@ -21,7 +21,7 @@
                                 <th>Status</th>
                                 <th>RFC</th>
                                 <th>Email</th>
-                                <th>Fecha de alta</th>
+                                <th>Fecha alta/modiciaciónth>
                                 <th>Acciones</th>
                             </tr>
                         </thead>

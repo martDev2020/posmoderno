@@ -18,6 +18,9 @@ body {
   .modal-dialog {
     max-width: 70% !important;
   }
+  .modal-hora {
+    max-width: 50% !important;
+  }
 }
 /* --------------Fin medias quueries */
 /**=================================================================
@@ -68,4 +71,18 @@ body {
   display: block;
   margin-top: -1rem !important;
 }
+.datepicker {
+  z-index: 1050 !important;
+}
+.marginBotton {
+  margin-top: 0.5em;
+}
 /* ------Fin vaidaciones */
+/**=================================================================
+ * MEDIAS QUERIES
+ ===================================================================*/
+@media screen and (min-width: 767.98px) {
+  .popover {
+    top: 22% !important;
+  }
+}
