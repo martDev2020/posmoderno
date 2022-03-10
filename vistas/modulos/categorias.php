@@ -208,15 +208,16 @@
                         <div class="form-row ms-list">
                             <div class="col-md-4 mb-3" id="val-descCat">
                                 <label for="validationCustom11">Descuento categoría</label>
-                                <input type="hidden" id="idCatOf" name="idCatOf">
+                                <input type="hidden" id="idPromC" name="idPromC">
                                 <label class="ms-checkbox-wrap ms-checkbox-primary">
-                                    <input type="radio" value="" name="radioExample2">
+                                    <input type="radio" value="descat" name="offer1" id="offer1" onclick="PromCat();">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control formulario_grupo-input valorOferta"
+                                    <input type="number"
+                                        class="form-control formulario_grupo-input valorOferta disabledmodal"
                                         id="descCat" name="descCat" min="0" step="any" placeholder="Descuento"
-                                        autocomplete="off">
+                                        autocomplete="off" disabled="disabled">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend2">%</span>
                                     </div>
@@ -229,15 +230,17 @@
                             <div class="col-md-4 mb-3" id="val-precOfCat">
                                 <label for="validationCustom11">Precio categoría</label>
                                 <label class="ms-checkbox-wrap ms-checkbox-primary">
-                                    <input type="radio" value="" name="radioExample2">
+                                    <input type="radio" value="precio-cat" name="offer1" id="offer2"
+                                        onclick="PromCat();">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control formulario_grupo-input valorOferta"
+                                    <input type="number"
+                                        class="form-control disabledmodal formulario_grupo-input valorOferta"
                                         id="precOfCat" name="precOfCat" min="0" step="any" placeholder="Precio"
-                                        autocomplete="off">
+                                        autocomplete="off" disabled="disabled">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupPrepend2">%</span>
+                                        <span class="input-group-text" id="inputGroupPrepend2">$</span>
                                     </div>
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
@@ -248,12 +251,15 @@
                             <div class="col-md-4 mb-3" id="val-prodCat">
                                 <label for="validationCustom11">Artículo (2 * 1)</label>
                                 <label class="ms-checkbox-wrap ms-checkbox-primary">
-                                    <input type="radio" value="" name="radioExample2">
+                                    <input type="radio" value="articulo-cat" value="1" name="offer1" id="offer3"
+                                        onclick="PromCat();">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control formulario_grupo-input valorOferta"
-                                        id="prodCat" name="prodCat" placeholder="Producto" autocomplete="off">
+                                    <input type="text"
+                                        class="form-control disabledmodal formulario_grupo-input valorOferta"
+                                        id="prodCat" name="prodCat" placeholder="Producto" autocomplete="off"
+                                        disabled="disabled">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
@@ -265,13 +271,15 @@
                             <div class="col-md-4 mb-3" id="val-piezaminCat">
                                 <label for="validationCustom11">Pieza mínima</label>
                                 <label class="ms-checkbox-wrap">
-                                    <input type="checkbox" value="">
+                                    <input type="checkbox" class="disabledmodal" value="4" id="pzmin" name="pzmin"
+                                        disabled="disabled" onclick="HabilitarCheck();">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="input-group">
                                     <input type="number" min="0" step="any"
-                                        class="form-control formulario_grupo-input valorOferta" id="piezaminCat"
-                                        name="piezaminCat" placeholder="Pieza mínima" autocomplete="off">
+                                        class="form-control disabledmodal formulario_grupo-input valorOferta"
+                                        id="piezaminCat" name="piezaminCat" placeholder="Pieza mínima"
+                                        autocomplete="off" disabled="disabled">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
@@ -281,13 +289,15 @@
                             <div class="col-md-4 mb-3" id="val-piezapromCat">
                                 <label for="validationCustom11">Pieza promoción</label>
                                 <label class="ms-checkbox-wrap">
-                                    <input type="checkbox" value="">
+                                    <input type="checkbox" class="disabledmodal" value="5" id="pzprom" name="pzprom"
+                                        disabled="disabled" onclick="HbilitarCheck2();">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="input-group">
                                     <input type="number" min="0" step="any"
-                                        class="form-control formulario_grupo-input valorOferta" id="piezapromCat"
-                                        name="piezapromCat" placeholder="Pieza mínima" autocomplete="off">
+                                        class="form-control disabledmodal formulario_grupo-input valorOferta"
+                                        id="piezapromCat" name="piezapromCat" placeholder="Pieza promoción"
+                                        autocomplete="off" disabled="disabled">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
@@ -297,7 +307,8 @@
                             <div class="col-md-4 mb-3" id="val-artmixtCat">
                                 <label for="validationCustom11">Artículos mixtos</label>
                                 <label class="ms-checkbox-wrap">
-                                    <input type="checkbox" name="artmixtCat" value="5">
+                                    <input type="checkbox" class="disabledmodal" name="artmixtCat" id="artmixtCat"
+                                        disabled="disabled">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
@@ -339,11 +350,11 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-4 mb-3" id="val-iniFeCat">
+                            <div class="col-md-4 mb-3" id="val-finFeCat">
                                 <label for="validationCustom11">Fecha final</label>
                                 <div class="input-group">
                                     <input type='text' class="form-control formulario_grupo-input datepicker"
-                                        placeholder="Fecha final" autocomplete="off" name="iniFeCat" id="iniFeCat">
+                                        placeholder="Fecha final" autocomplete="off" name="finFeCat" id="finFeCat">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend2"><i
                                                 class="fa fa-calendar"></i></span>
@@ -372,7 +383,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="alert alert-danger alert-val alert-solid" role="alert" id="form-mensajecatE">
+                <div class="alert alert-danger alert-val alert-solid" role="alert" id="form-mensajecatProm">
                     <strong>Error: revisa los campos que estén correctos y no deben estar vacíos.</strong>
                 </div>
                 <div class="d-flex justify-content-between">

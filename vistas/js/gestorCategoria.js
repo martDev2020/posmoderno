@@ -114,7 +114,7 @@ function contactFormCat() {
       =============================================*/
     let imagenCat = null;
     $(".fotoCategoria").change(function () {
-        imagenCat = this.files[0];
+        imagenCat = this.files[ 0 ];
         /**Nota: al ejecutar el código y colocar los límites de la cadena de
          * trasferencia de datos en los códigos correspondientes a este apartado,
          * se presentaba un error, el atributo imagenCat retronaba nulo,
@@ -123,7 +123,7 @@ function contactFormCat() {
          */
         // console.log("imagenCat ", imagenCat);
 
-        if (imagenCat["type"] != "image/jpeg" && imagenCat["type"] != "image/png") {
+        if (imagenCat[ "type" ] != "image/jpeg" && imagenCat[ "type" ] != "image/png") {
             // Se deja una vez más el espacio.
             $(".fotoCategoria").val("");
             Swal.fire({
@@ -134,7 +134,7 @@ function contactFormCat() {
                 timer: 3000,
             });
             // return;
-        } else if (imagenCat["size"] > 2000000) {
+        } else if (imagenCat[ "size" ] > 2000000) {
             $(".fotoCategoria").val("");
             Swal.fire({
                 position: "top-end",
@@ -234,7 +234,7 @@ function contactFormCat() {
                 "alert-val-activo"
             );
             // Valida que los Car no esten vacíos.
-            camposCat[campo] = true;
+            camposCat[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -244,7 +244,7 @@ function contactFormCat() {
                     "alert-val-activo"
                 );
             }, 5000);
-            camposCat[campo] = false;
+            camposCat[ campo ] = false;
         }
     };
 
@@ -414,7 +414,7 @@ function contactFormEditC() {
       =============================================*/
     let imagenCat = null;
     $(".fotoCategoria").change(function () {
-        imagenCat = this.files[0];
+        imagenCat = this.files[ 0 ];
         /**Nota: al ejecutar el código y colocar los límites de la cadena de
          * trasferencia de datos en los códigos correspondientes a este apartado,
          * se presentaba un error, el atributo imagenCat retronaba nulo,
@@ -423,7 +423,7 @@ function contactFormEditC() {
          */
         // console.log("imagenCat ", imagenCat);
 
-        if (imagenCat["type"] != "image/jpeg" && imagenCat["type"] != "image/png") {
+        if (imagenCat[ "type" ] != "image/jpeg" && imagenCat[ "type" ] != "image/png") {
             // Se deja una vez más el espacio.
             $(".fotoCategoria").val("");
             Swal.fire({
@@ -434,7 +434,7 @@ function contactFormEditC() {
                 timer: 3000,
             });
             // return;
-        } else if (imagenCat["size"] > 2000000) {
+        } else if (imagenCat[ "size" ] > 2000000) {
             $(".fotoCategoria").val("");
             Swal.fire({
                 position: "top-end",
@@ -491,7 +491,7 @@ function contactFormEditC() {
                 "alert-val-activo"
             );
             // Valida que los Car no esten vacíos.
-            camposCatE[campo] = true;
+            camposCatE[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -501,7 +501,7 @@ function contactFormEditC() {
                     "alert-val-activo"
                 );
             }, 5000);
-            camposCatE[campo] = false;
+            camposCatE[ campo ] = false;
         }
     };
 
@@ -565,13 +565,6 @@ function contactFormEditC() {
 }
 d.addEventListener("DOMContentLoaded", contactFormEditC);
 /**-------------Fin edición de formulario */
-/**=================================================================
- * OFERTA DE CATEGORÍA
- ===================================================================*/
-const idCatOferta = (id) => {
-    let idcatOf = id;
-    console.log(idcatOf);
-}
 /**---------------Fin oferta categoría */
 /**=================================================================
     * ELIMINAR CATEGORÍA
@@ -640,3 +633,5 @@ const idEliminarCat = (id) => {
         })
 }
 /**-------Fin eliminar categoría */
+
+

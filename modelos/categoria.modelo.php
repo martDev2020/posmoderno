@@ -96,6 +96,45 @@ class ModeloCategoria
         $stmt = null;
     }
     /**=================================================================
+     * GURADAR DATOS DE PROMOCIÓN
+     ===================================================================*/
+    static public function mdlGuardarProm($tabla, $datos1)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "UPDATE $tabla SET
+            descripprom_cat =:descripprom_cat,
+            oferta_cat = :oferta_cat,
+            descOferta_cat = :descOferta_cat,
+            preOferta_cat = :preOferta_cat,
+            prodpor_cat = :prodpor_cat,
+            piezamin_cat = :piezamin_cat,
+            piezaprom_cat = :piezaprom_cat,
+            artmixt_cat = :artmixt_cat,
+            iniOferta_cat = :iniOferta_cat,
+            finOferta_cat = :finOferta_cat
+            WHERE id = :id"
+        );
+        $stmt->bindParam(":descripprom_cat", $datos1["descripOfC"], PDO::PARAM_STR);
+        $stmt->bindParam(":oferta_cat", $datos1["offer1"], PDO::PARAM_STR);
+        $stmt->bindParam(":descOferta_cat", $datos1["descCat"], PDO::PARAM_INT);
+        $stmt->bindParam(":preOferta_cat", $datos1["precOfCat"], PDO::PARAM_INT);
+        $stmt->bindParam(":prodpor_cat", $datos1["prodCat"], PDO::PARAM_STR);
+        $stmt->bindParam(":piezamin_cat", $datos1["piezaminCat"], PDO::PARAM_INT);
+        $stmt->bindParam(":piezaprom_cat", $datos1["piezapromCat"], PDO::PARAM_INT);
+        $stmt->bindParam(":artmixt_cat", $datos1["artmixtCat"], PDO::PARAM_INT);
+        $stmt->bindParam(":iniOferta_cat", $datos1["fechHoraIni"], PDO::PARAM_STR);
+        $stmt->bindParam(":finOferta_cat", $datos1["fechHoraFin"], PDO::PARAM_STR);
+        $stmt->bindParam(":finOferta_cat", $datos1["fechHoraFin"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos1["idPromC"], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+    /**=================================================================
      * EDITAR CAETEGORÍA
      ===================================================================*/
     static public function mdlEditarCateg($tabla, $datos)

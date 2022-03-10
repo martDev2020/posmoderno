@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>MARS MULTISCUCURSAL</title>
     <!-- Iconic Fonts -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="vistas\assets\css\font.css" rel="stylesheet">
     <link href="vistas\vendors\iconic-fonts\font-awesome\css\all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="vistas\vendors\iconic-fonts\flat-icons\flaticon.css">
     <link rel="stylesheet" href="vistas\vendors\iconic-fonts\cryptocoins\cryptocoins.css">
@@ -128,14 +128,14 @@
     <script src="vistas\assets\js\sweetalert2.min.js"> </script>
 
     <!-- <script src="vistas\assets\js\sweet-alerts.js"> </script> -->
-
-    <script src="vistas/js/gestorProveedor.js"></script>
     <script src="vistas/js/plantilla.js"></script>
+    <script src="vistas/js/gestorProveedor.js"></script>
     <script src="vistas/js/gestorClientes.js"></script>
     <script src="vistas/js/gestorCategoria.js"></script>
     <script src="vistas/js/gestorSubCategoria.js"></script>
     <script src="vistas/js/gestorDep.js"></script>
     <script src="vistas/js/gestorRF.js"></script>
+    <script src="vistas/js/gestorPromCat.js"></script>
 </body>
 
 </html>

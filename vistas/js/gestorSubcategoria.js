@@ -116,7 +116,7 @@ function contactFormCat() {
       =============================================*/
     let imagensubCat = null;
     $(".fotosubCategoria").change(function () {
-        imagensubCat = this.files[0];
+        imagensubCat = this.files[ 0 ];
         /**Nota: al ejecutar el código y colocar los límites de la cadena de
          * trasferencia de datos en los códigos correspondientes a este apartado,
          * se presentaba un error, el atributo imagensubCat retronaba nulo,
@@ -125,7 +125,7 @@ function contactFormCat() {
          */
         // console.log("imagensubCat ", imagensubCat);
 
-        if (imagensubCat["type"] != "image/jpeg" && imagensubCat["type"] != "image/png") {
+        if (imagensubCat[ "type" ] != "image/jpeg" && imagensubCat[ "type" ] != "image/png") {
             // Se deja una vez más el espacio.
             $(".fotosubCategoria").val("");
             Swal.fire({
@@ -136,7 +136,7 @@ function contactFormCat() {
                 timer: 3000,
             });
             // return;
-        } else if (imagensubCat["size"] > 2000000) {
+        } else if (imagensubCat[ "size" ] > 2000000) {
             $(".fotosubCategoria").val("");
             Swal.fire({
                 position: "top-end",
@@ -236,7 +236,7 @@ function contactFormCat() {
                 "alert-val-activo"
             );
             // Valida que los Car no esten vacíos.
-            campossubCat[campo] = true;
+            campossubCat[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -246,7 +246,7 @@ function contactFormCat() {
                     "alert-val-activo"
                 );
             }, 5000);
-            campossubCat[campo] = false;
+            campossubCat[ campo ] = false;
         }
     };
 
@@ -426,7 +426,7 @@ function contactFormEditsubCE() {
       =============================================*/
     let imagensubCatE = null;
     $(".fotosubCategoriaE").change(function () {
-        imagensubCatE = this.files[0];
+        imagensubCatE = this.files[ 0 ];
         /**Nota: al ejecutar el código y colocar los límites de la cadena de
          * trasferencia de datos en los códigos correspondientes a este apartado,
          * se presentaba un error, el atributo imagensubCatE retronaba nulo,
@@ -435,7 +435,7 @@ function contactFormEditsubCE() {
          */
         // console.log("imagensubCatE ", imagensubCatE);
 
-        if (imagensubCatE["type"] != "image/jpeg" && imagensubCatE["type"] != "image/png") {
+        if (imagensubCatE[ "type" ] != "image/jpeg" && imagensubCatE[ "type" ] != "image/png") {
             // Se deja una vez más el espacio.
             $(".fotosubCategoriaE").val("");
             Swal.fire({
@@ -446,7 +446,7 @@ function contactFormEditsubCE() {
                 timer: 3000,
             });
             // return;
-        } else if (imagensubCatE["size"] > 2000000) {
+        } else if (imagensubCatE[ "size" ] > 2000000) {
             $(".fotosubCategoriaE").val("");
             Swal.fire({
                 position: "top-end",
@@ -546,7 +546,7 @@ function contactFormEditsubCE() {
                 "alert-val-activo"
             );
             // Valida que los Car no esten vacíos.
-            campossubCatE[campo] = true;
+            campossubCatE[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -556,7 +556,7 @@ function contactFormEditsubCE() {
                     "alert-val-activo"
                 );
             }, 5000);
-            campossubCatE[campo] = false;
+            campossubCatE[ campo ] = false;
         }
     };
 

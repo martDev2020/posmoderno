@@ -88,7 +88,7 @@
          <li class="menu-item">
              <a href="#" class="has-chevron" data-toggle="collapse" data-target="#pages" aria-expanded="false"
                  aria-controls="pages">
-                 <span><i class="material-icons fs-16">insert_drive_file</i>Finanzas</span>
+                 <span><i class="material-icons fs-16">attach_money</i>Finanzas</span>
              </a>
              <ul id="pages" class="collapse" aria-labelledby="pages" data-parent="#side-nav-accordion">
                  <li> <a href="tasimpuesto">Tasa impuesto</a> </li>
