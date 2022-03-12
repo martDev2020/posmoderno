@@ -246,7 +246,7 @@ inputs.forEach((input) => {
  ===================================================================*/
 const idCatOferta = (id) => {
     let idcatOf = id;
-    console.log(idcatOf);
+    // console.log(idcatOf);
     /**=================================================================
        * SE MUESTA DATOA PARA EDICIÓN
        ===================================================================*/
@@ -355,57 +355,6 @@ $formOffer.addEventListener("submit", function (e) {
             }, 5000);
         }
     }
-
-    // if ($iniOfCat === "") {
-    //     d.querySelector("#val-iniOfCat .alert-val").classList.add(
-    //         "alert-val-activo"
-    //     );
-    //     setTimeout(() => {
-    //         d.querySelector("#val-iniOfCat .alert-val").classList.remove(
-    //             "alert-val-activo"
-    //         );
-    //     }, 5000);
-    // }
-    // if ($iniHoraCat === "") {
-    //     d.querySelector("#val-iniHoraCat .alert-val").classList.add(
-    //         "alert-val-activo"
-    //     );
-    //     setTimeout(() => {
-    //         d.querySelector("#val-iniHoraCat .alert-val").classList.remove(
-    //             "alert-val-activo"
-    //         );
-    //     }, 5000);
-    // }
-    // if ($finFeCat === "") {
-    //     d.querySelector("#val-finFeCat .alert-val").classList.add(
-    //         "alert-val-activo"
-    //     );
-    //     setTimeout(() => {
-    //         d.querySelector("#val-finFeCat .alert-val").classList.remove(
-    //             "alert-val-activo"
-    //         );
-    //     }, 5000);
-    // }
-    // if ($finHoraCat === "") {
-    //     d.querySelector("#val-finHoraCat .alert-val").classList.add(
-    //         "alert-val-activo"
-    //     );
-    //     setTimeout(() => {
-    //         d.querySelector("#val-finHoraCat .alert-val").classList.remove(
-    //             "alert-val-activo"
-    //         );
-    //     }, 5000);
-    // }
-    // if (!$piezaminCat.disabled && $piezaminCatG === "") {
-    //     d.querySelector("#val-piezaminCat .alert-val").classList.add(
-    //         "alert-val-activo"
-    //     );
-    //     setTimeout(() => {
-    //         d.querySelector("#val-piezaminCat .alert-val").classList.remove(
-    //             "alert-val-activo"
-    //         );
-    //     }, 5000);
-    // }
 
     if (
         (idPromC != "" &&
