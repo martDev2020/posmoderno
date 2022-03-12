@@ -263,7 +263,7 @@
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
-                                    No debe estar vacío
+                                    No debe estar vacío, ingresar número * número.
                                 </div>
                             </div>
                         </div>
