@@ -114,7 +114,7 @@ const $offer1 = d.getElementById("offer1"),
     $iniHoraCatG = d.getElementById("iniHoraCat"),
     $finFeCatG = d.getElementById("finFeCat"),
     $finHoraCatG = d.getElementById("finHoraCat"),
-    $ingrecat = d.getElementById("ingrecat"),
+    $ingrecatProm = d.getElementById("ingrecatProm"),
     $formOffer = d.getElementById("formOfC"),
     inputs = d.querySelectorAll("#formOfC input");
 
@@ -410,6 +410,7 @@ const idCatOferta = (id) => {
                 iniHoraCat.value = json.iniOferta_cat.slice(-9);
                 finFeCat.value = json.finOferta_cat.slice(0, 10);
                 finHoraCat.value = json.finOferta_cat.slice(-9);
+                $ingrecatProm.disabled = false;
             } else {
                 // console.log(json.activo);
                 Swal.fire({
@@ -425,7 +426,7 @@ const idCatOferta = (id) => {
                 $iniHoraCatG.disabled = true;
                 $finFeCatG.disabled = true;
                 $finHoraCatG.disabled = true;
-                $ingrecat.disabled = true;
+                $ingrecatProm.disabled = true;
             }
         })
         .catch(function (err) {

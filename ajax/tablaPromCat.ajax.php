@@ -114,7 +114,7 @@ class TablaPromCat
                     $fechaEntrada = strtotime(date($promcategoria[$i]["finOferta_cat"]));
                     $fechaActual2 = strtotime($fechaActual);
                     // var_dump($finOferta);
-                    /** ----Método para inicar la oferta */
+                    /** ----Método para iniciar la oferta */
                     $fechIni = strtotime(date($promcategoria[$i]["iniOferta_cat"]));
                     /**----------Fín método para iniciar la oferta */
                     if ($promcategoria[$i]["oferta_cat"] === "precio-cat") {

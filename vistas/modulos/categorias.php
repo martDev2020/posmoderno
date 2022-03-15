@@ -388,7 +388,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" id="ingrecat" class="btn btn-primary shadow-none">Guardar</button>
+                    <button type="submit" id="ingrecatProm" class="btn btn-primary shadow-none">Guardar</button>
 
                 </div>
                 </form>
