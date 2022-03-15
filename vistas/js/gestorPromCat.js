@@ -114,6 +114,7 @@ const $offer1 = d.getElementById("offer1"),
     $iniHoraCatG = d.getElementById("iniHoraCat"),
     $finFeCatG = d.getElementById("finFeCat"),
     $finHoraCatG = d.getElementById("finHoraCat"),
+    $ingrecat = d.getElementById("ingrecat"),
     $formOffer = d.getElementById("formOfC"),
     inputs = d.querySelectorAll("#formOfC input");
 
@@ -358,56 +359,74 @@ const idCatOferta = (id) => {
     })
         .then((res) => (res.ok ? res.json() : Promise.reject(res)))
         .then((json) => {
-            // console.log(json);
-            idPromC.value = json.id;
-            descripOfC.value = json.descripprom_cat;
-            if (offer1.value === json.oferta_cat) {
-                $offer1.checked = true;
-                $descCat.disabled = false;
-                descCat.value = json.descOferta_cat;
-                $pzmin.checked = true;
-                $pzmin.disabled = false;
-                $piezaminCat.disabled = false;
-                piezaminCat.value = json.piezamin_cat;
-                $pzprom.checked = true;
-                $pzprom.disabled = false;
-                $piezapromCat.disabled = false;
-                piezapromCat.value = json.piezaprom_cat;
-                if (json.artmixt_cat != null) {
-                    $artmixtCat.disabled = false;
-                    $artmixtCat.checked = true;
-                } else {
-                    $artmixtCat.checked = false;
-                    $artmixtCat.disabled = false;
+            // console.log(json.activo);
+            if (json.activo != 0) {
+                idPromC.value = json.id;
+                descripOfC.value = json.descripprom_cat;
+                if (offer1.value === json.oferta_cat) {
+                    $offer1.checked = true;
+                    $descCat.disabled = false;
+                    descCat.value = json.descOferta_cat;
+                    $pzmin.checked = true;
+                    $pzmin.disabled = false;
+                    $piezaminCat.disabled = false;
+                    piezaminCat.value = json.piezamin_cat;
+                    $pzprom.checked = true;
+                    $pzprom.disabled = false;
+                    $piezapromCat.disabled = false;
+                    piezapromCat.value = json.piezaprom_cat;
+                    if (json.artmixt_cat != null) {
+                        $artmixtCat.disabled = false;
+                        $artmixtCat.checked = true;
+                    } else {
+                        $artmixtCat.checked = false;
+                        $artmixtCat.disabled = false;
+                    }
+                } else if (offer2.value === json.oferta_cat) {
+                    offer2.checked = true;
+                    $precOfCat.disabled = false;
+                    precOfCat.value = json.preOferta_cat;
+                    $pzmin.checked = true;
+                    $pzmin.disabled = false;
+                    $piezaminCat.disabled = false;
+                    piezaminCat.value = json.piezamin_cat;
+                    $pzprom.checked = true;
+                    $pzprom.disabled = false;
+                    $piezapromCat.disabled = false;
+                    piezapromCat.value = json.piezaprom_cat;
+                    if (json.artmixt_cat != null) {
+                        $artmixtCat.disabled = false;
+                        $artmixtCat.checked = true;
+                    } else {
+                        $artmixtCat.checked = false;
+                        $artmixtCat.disabled = false;
+                    }
+                } else if (offer3.value === json.oferta_cat) {
+                    offer3.checked = true;
+                    $prodCat.disabled = false;
+                    prodCat.value = json.prodpor_cat;
                 }
-            } else if (offer2.value === json.oferta_cat) {
-                offer2.checked = true;
-                $precOfCat.disabled = false;
-                precOfCat.value = json.preOferta_cat;
-                $pzmin.checked = true;
-                $pzmin.disabled = false;
-                $piezaminCat.disabled = false;
-                piezaminCat.value = json.piezamin_cat;
-                $pzprom.checked = true;
-                $pzprom.disabled = false;
-                $piezapromCat.disabled = false;
-                piezapromCat.value = json.piezaprom_cat;
-                if (json.artmixt_cat != null) {
-                    $artmixtCat.disabled = false;
-                    $artmixtCat.checked = true;
-                } else {
-                    $artmixtCat.checked = false;
-                    $artmixtCat.disabled = false;
-                }
-            } else if (offer3.value === json.oferta_cat) {
-                offer3.checked = true;
-                $prodCat.disabled = false;
-                prodCat.value = json.prodpor_cat;
+                iniOfCat.value = json.iniOferta_cat.slice(0, 10);
+                iniHoraCat.value = json.iniOferta_cat.slice(-9);
+                finFeCat.value = json.finOferta_cat.slice(0, 10);
+                finHoraCat.value = json.finOferta_cat.slice(-9);
+            } else {
+                // console.log(json.activo);
+                Swal.fire({
+                    icon: 'info',
+                    title: 'La categoría no está activa',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                offer1.disabled = true;
+                offer2.disabled = true;
+                offer3.disabled = true;
+                $iniOfCatG.disabled = true;
+                $iniHoraCatG.disabled = true;
+                $finFeCatG.disabled = true;
+                $finHoraCatG.disabled = true;
+                $ingrecat.disabled = true;
             }
-            iniOfCat.value = json.iniOferta_cat.slice(0, 10);
-            iniHoraCat.value = json.iniOferta_cat.slice(-9);
-            finFeCat.value = json.finOferta_cat.slice(0, 10);
-            finHoraCat.value = json.finOferta_cat.slice(-9);
         })
         .catch(function (err) {
             // console.error('Error', err);
