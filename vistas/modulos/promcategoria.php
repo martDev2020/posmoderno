@@ -24,7 +24,6 @@
                                 <th>Artículos mixtos</th>
                                 <th>Inicio promoción</th>
                                 <th>Fin promoción</th>
-                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <!-- Se trae desde js -->

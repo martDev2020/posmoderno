@@ -75,8 +75,8 @@ class TablaPromCat
                 /**=================================================================
                  * VALIDACIÓN POR PIEZA PROMOCIÓN
                  ===================================================================*/
-                if ($promcategoria[$i]["artmixt_cat"] != null) {
-                    $pzmix = $promcategoria[$i]["artmixt_cat"];
+                if ($promcategoria[$i]["artmixt_cat"] != null && $promcategoria[$i]["artmixt_cat"] == 1) {
+                    $pzmix = "Si";
                 } else {
                     $pzmix = "<small>SIN PIEZA MIXTA</small>";
                 }
@@ -119,39 +119,39 @@ class TablaPromCat
                     /**----------Fín método para iniciar la oferta */
                     if ($promcategoria[$i]["oferta_cat"] === "precio-cat") {
                         if ($fechaEntrada < $fechaActual2 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<span class='badge badge-font badge-dark'>Descuento por precio finalizado.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-dark'>Descuento por precio finalizado.</span></h3></center>";
                         } else if ($finOferta == 0 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<h3><span class='badge badge-font badge-success'>Descuento por precio termina hoy.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-success'>Descuento por precio termina hoy.</span></h3></center>";
                         } else if ($finOferta == 1 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<h3><span class='badge badge-font badge-warning'>Descuento por precio termina en " . $finOferta . " día</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-warning'>Descuento por precio termina en " . $finOferta . " día</span></h3></center>";
                         } else if ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada) {
-                            $promo = "<h3><span class='badge badge-font badge-primary'>Descuento por precio termina en " . $finOferta . " días.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-primary'>Descuento por precio termina en " . $finOferta . " días.</span></h3></center>";
                         } else {
                             $promo = "<center><h3><span class='badge badge-font badge-light'>Oferta inactiva</span></h3></center>";
                         }
                     }
                     if ($promcategoria[$i]["oferta_cat"] === "articulo-cat") {
                         if ($fechaEntrada < $fechaActual2 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<h3><span class='badge badge-font badge-dark'>Promoción por producto (x) finalizado.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-dark'>Promoción por producto (x) finalizado.</span></h3></center>";
                         } else if ($finOferta == 0 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<h3><span class='badge badge-font badge-success'>Promoción por producto (x) termina hoy.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-success'>Promoción por producto (x) termina hoy.</span></h3></center>";
                         } else if ($finOferta == 1 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<h3><span class='badge badge-font badge-warning'>Promoción por producto (x) termina en " . $finOferta . " día.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-warning'>Promoción por producto (x) termina en " . $finOferta . " día.</span></h3></center>";
                         } else if ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada) {
-                            $promo = "<h3><span class='badge badge-font badge-primary'>Promoción por producto (x) termina en " . $finOferta . " días</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-primary'>Promoción por producto (x) termina en " . $finOferta . " días</span></h3></center>";
                         } else {
                             $promo = "<center><h3><span class='badge badge-font badge-dark'>Oferta inactiva</span></h3></center>";
                         }
                     }
                     if ($promcategoria[$i]["oferta_cat"] === "descat") {
                         if ($fechaEntrada < $fechaActual2) {
-                            $promo = "<h3><span class='badge badge-font badge-dark'>Promoción por descuento % finalizado.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-dark'>Promoción por descuento % finalizado.</span></h3></center>";
                         } else if ($finOferta == 0) {
-                            $promo = "<h3><span class='badge badge-font badge-success'>Promoción por descuento % termina hoy.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-success'>Promoción por descuento % termina hoy.</span></h3></center>";
                         } else if ($finOferta == 1 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
-                            $promo = "<h3><span class='badge badge-font badge-warning'>Promoción por descuento % termina en " . $finOferta . " día.</span></h3>";
+                            $promo = "<center><h3><span class='badge badge-font badge-warning'>Promoción por descuento % termina en " . $finOferta . " día.</span></h3></center>";
                         } else if ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada) {
-                            $promo = "<span class='badge badge-primary'><h3>Promoción por descuento % termina en " . $finOferta . " días</span>";
+                            $promo = "<center><h3><span class='badge badge-primary'>Promoción por descuento % termina en " . $finOferta . " días</span></h3></center>";
                         } else {
                             $promo = "<center><h3><span class='badge badge-font badge-light'>Oferta inactiva</span></h3></center>";
                         }
@@ -159,12 +159,6 @@ class TablaPromCat
                 } else {
                     $promo = "<small>SIN PROMOCIÓN</small>";
                 }
-                // $estado = "<button type='button' class='btn btn-table-icon btn-pill " . $colorEstado . " btnActivarCat' idCategoria='" . $promcategoria[$i]["id"] . "' estadoCategoria='" . $estadoCategoria . "'>" . $textoEstado . "</button>";
-                /**===================================
-                 * TRAER LAS ACCIONES
-             ===================================**/
-                $id = $promcategoria[$i]["id"];
-                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarCategoria' onclick='idPromCatE($id);' data-toggle='modal' data-target='#modal-editCat'><i class='fa fa-edit'></i></button></div></center>";
                 /**===================================
                  * CONSTRUiR LOS DATOS JSON
              ===================================**/
@@ -181,8 +175,7 @@ class TablaPromCat
                     "' . $pizprom . '",
                     "' . $pzmix . '",
                     "' . $iniOfer . '",
-                    "' . $finofer . '",
-                    "' . $acciones . '"
+                    "' . $finofer . '"
                 ],';
             }
             # Se substrae la última coma que cierra el json(es la anaterior).

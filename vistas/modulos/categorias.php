@@ -307,8 +307,8 @@
                             <div class="col-md-4 mb-3" id="val-artmixtCat">
                                 <label for="validationCustom11">Artículos mixtos</label>
                                 <label class="ms-checkbox-wrap">
-                                    <input type="checkbox" class="disabledmodal" name="artmixtCat" id="artmixtCat"
-                                        disabled="disabled">
+                                    <input type="checkbox" class="disabledmodal" value="1" name="artmixtCat"
+                                        id="artmixtCat" disabled="disabled">
                                     <i class="ms-checkbox-check"></i>
                                 </label>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
