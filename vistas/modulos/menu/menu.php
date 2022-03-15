@@ -50,6 +50,17 @@
                  <li> <a href="productos">Gestión productos</a> </li>
              </ul>
          </li>
+         <li class="menu-item">
+             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#prom" aria-expanded="false"
+                 aria-controls="prom">
+                 <span><i class="material-icons fs-16">equalizer</i>Promociones</span>
+             </a>
+             <ul id="prom" class="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">
+                 <li> <a href="promcategoria">Promoción categorías</a> </li>
+                 <li> <a href="promsubcategoria">Promoción subcategorías</a></li>
+                 <li> <a href="promproductos">Promoción productos</a> </li>
+             </ul>
+         </li>
          <!-- /Charts -->
          <!-- Popups -->
          <li class="menu-item">

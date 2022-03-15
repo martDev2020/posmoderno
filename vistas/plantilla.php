@@ -75,7 +75,10 @@
             $_GET["ruta"] == "empresa" ||
             $_GET["ruta"] == "departamento" ||
             $_GET["ruta"] == "regfiscal" ||
-            $_GET["ruta"] == "restbase"
+            $_GET["ruta"] == "restbase" ||
+            $_GET["ruta"] == "promcategoria" ||
+            $_GET["ruta"] == "promsubcategoria" ||
+            $_GET["ruta"] == "promproductos"
         ) {
             include "modulos/" . $_GET["ruta"] . ".php";
         }

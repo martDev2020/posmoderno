@@ -59,21 +59,21 @@ tablaCategoria = $(".tablaCategoria").DataTable({
             text: '<i class="fas fa-copy text-white"></i>',
             titleAttr: "Copiar al portapapeles",
             className: "btn btn-primary mrbtn",
-            title: "Datos de categoria",
+            title: "Datos de categorías",
         },
         {
             extend: "csvHtml5",
             text: '<i class="fas fa-file-excel text-white"></i> ',
             titleAttr: "Desacargar en CSV",
             className: "btn btn-primary mrbtn",
-            title: "Datos de categoria",
+            title: "Datos de categorías",
         },
         {
             extend: "excelHtml5",
             text: '<i class="fas fa-file-excel text-white"></i> ',
             titleAttr: "Exportar a Excel",
             className: "btn btn-primary mrbtn",
-            title: "Datos de categoria",
+            title: "Datos de categorías",
         },
         {
             extend: "pdfHtml5",
@@ -81,7 +81,7 @@ tablaCategoria = $(".tablaCategoria").DataTable({
             titleAttr: "Exportar a PDF",
             className: "btn btn-primary mrbtn ",
             orientation: "landscape",
-            title: "Datos de categoria",
+            title: "Datos de categorías",
             pageSize: "LEGAL",
             customize: function (doc) {
                 doc.defaultStyle.fontSize = 8;
@@ -92,7 +92,7 @@ tablaCategoria = $(".tablaCategoria").DataTable({
             text: '<i class="fa fa-print text-white"></i> ',
             titleAttr: "Imprimir",
             className: "btn btn-primary mrbtn",
-            title: "Datos de categoria",
+            title: "Datos de categorías",
         },
     ],
 });
@@ -364,7 +364,7 @@ function contactFormCat() {
     /**------------Fin de descativar o activar status */
 }
 d.addEventListener("DOMContentLoaded", contactFormCat);
-/**--------------------Fin para guardar datos de categoria */
+/**--------------------Fin para guardar datos de promociones categorías */
 /**=================================================================
     * EDICIÓN DE CATEGORÍA
     ===================================================================*/

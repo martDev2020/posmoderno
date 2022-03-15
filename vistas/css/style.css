@@ -11,6 +11,10 @@ body {
   min-width: 100px !important;
   margin-top: 0 !important;
 }
+.badge-font {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
 /**=================================================================
  * MEDIAS QUERIES
  ===================================================================*/
