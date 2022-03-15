@@ -144,16 +144,16 @@ class TablaPromCat
                         }
                     }
                     if ($promcategoria[$i]["oferta_cat"] === "descat") {
-                        if ($fechaEntrada < $fechaActual2) {
+                        if ($fechaEntrada < $fechaActual2 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
                             $promo = "<center><h3><span class='badge badge-font badge-dark'>Promoción por descuento % finalizado.</span></h3></center>";
-                        } else if ($finOferta == 0) {
+                        } else if ($finOferta == 0 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
                             $promo = "<center><h3><span class='badge badge-font badge-success'>Promoción por descuento % termina hoy.</span></h3></center>";
                         } else if ($finOferta == 1 && ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada)) {
                             $promo = "<center><h3><span class='badge badge-font badge-warning'>Promoción por descuento % termina en " . $finOferta . " día.</span></h3></center>";
                         } else if ($fechaActual2 >= $fechIni && $fechaActual2 <= $fechaEntrada) {
                             $promo = "<center><h3><span class='badge badge-primary'>Promoción por descuento % termina en " . $finOferta . " días</span></h3></center>";
                         } else {
-                            $promo = "<center><h3><span class='badge badge-font badge-light'>Oferta inactiva</span></h3></center>";
+                            $promo = "<center><h3><span class='badge badge-font badge-danger'>Oferta inactiva</span></h3></center>";
                         }
                     }
                 } else {
