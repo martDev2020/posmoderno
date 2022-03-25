@@ -417,7 +417,7 @@
                                 <label for="validationCustom11"><b>Días</b></label>
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Lunes">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Lunes</label>
@@ -454,7 +454,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Martes">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Martes</label>
@@ -489,7 +489,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Miercoles">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Miércoles</label>
@@ -524,7 +524,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Jueves">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Jueves</label>
@@ -559,7 +559,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Viernes">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Viernes</label>
@@ -594,7 +594,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Sabado">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Sábado</label>
@@ -629,7 +629,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <label class="ms-checkbox-wrap">
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="Domingo">
                                         <i class="ms-checkbox-check"></i>
                                     </label>
                                     <label for="validationCustom11">Domingo</label>

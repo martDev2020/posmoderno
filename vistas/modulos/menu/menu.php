@@ -84,6 +84,16 @@
              </ul>
          </li>
          <!-- /Icons -->
+         <li class="menu-item">
+             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#unity" aria-expanded="false"
+                 aria-controls="unity">
+                 <span><i class="material-icons fs-16">beach_access</i>Unidades</span>
+             </a>
+             <ul id="unity" class="collapse" aria-labelledby="icons" data-parent="#side-nav-accordion">
+                 <li> <a href="unicompra">Unidad compra</a> </li>
+                 <li> <a href="univenta">Unidad venta</a> </li>
+             </ul>
+         </li>
          <!-- Maps -->
          <li class="menu-item">
              <a href="#" class="has-chevron" data-toggle="collapse" data-target="#maps" aria-expanded="false"

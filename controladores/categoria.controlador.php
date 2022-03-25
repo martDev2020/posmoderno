@@ -20,7 +20,7 @@ class ControladorCategoria
         return $response;
     }
     /**=================================================================
-     * GUARADAR DATOS DE CATEGORÍA
+     * GUARDAR DATOS DE CATEGORÍA
      ===================================================================*/
     static public function ctrGuardarCat($datos)
     {
@@ -94,7 +94,7 @@ class ControladorCategoria
         }
     }
     /**=================================================================
-     * EDICIÓI DE CATEGORÍA
+     * EDICIÓN DE CATEGORÍA
      ===================================================================*/
     static public function ctrEdicionCat($datos)
     {

@@ -53,7 +53,9 @@
                                         $value = null;
                                         $categorias = ControladorCategoria::ctrMostrarCategoria($item, $value);
                                         foreach ($categorias as $key => $value1) {
-                                            echo '<option value="' . $value1["id"] . '">' . $value1["nombre_cat"] . '</option>';
+                                            if ($value1["activo"] == 1) {
+                                                echo '<option value="' . $value1["id"] . '">' . $value1["nombre_cat"] . '</option>';
+                                            }
                                         }
                                         ?>
                                     </select>

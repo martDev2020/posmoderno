@@ -84,7 +84,7 @@ class CategoriaAjax
         echo $response;
     }
     /**=================================================================
-     * ELEIMINAR DATOS
+     * ELIMINAR DATOS
      ===================================================================*/
     public $ideliminarCat;
     public $fotoCatD;

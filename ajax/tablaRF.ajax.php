@@ -34,7 +34,7 @@ class AjaxTablaRF
                  * TRAER LAS ACCIONES
                      ===================================**/
                 $id = $response[$i]["id"];
-                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarRF' onclick='idRF($id);' data-toggle='modal' data-target='#modal-editRF'><i class='fa fa-edit'></i></button><button class='btn-danger ms-btn-icon btn-pill btnEliminarRRF' onclick='idEliminarRF($id);'><i class='fas fa-trash'></i></div></center>";
+                $acciones = "<center><div class='btn-group'><button type='button' class='btn-primary ms-btn-icon btn-pill btnEditarRF' onclick='idEditRF($id);' data-toggle='modal' data-target='#modal-editRF'><i class='fa fa-edit'></i></button><button class='btn-danger ms-btn-icon btn-pill btnEliminarRRF' onclick='idEliminarRF($id);'><i class='fas fa-trash'></i></div></center>";
                 /**=================================================================
                  * CONSTTURIR LOS DATOS JSON
                      ===================================================================*/

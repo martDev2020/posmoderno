@@ -19,6 +19,22 @@ class ModeloRF
         }
     }
     /**=================================================================
+     * MOSTRAR DATOS PARA EDICIÓN
+     ===================================================================*/
+    static public function mdlMostrarEdit($tabla, $item, $value)
+    {
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT*FROM $tabla WHERE $item=:$item");
+            $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
+        } else {
+            $stmt = Conexion::conectar()->prepare("SELECT*FROM $tabla ORDER BY id DESC");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+    /**=================================================================
      * ACTIVAR STAUS DESACTIVAR
      ===================================================================*/
     static public function mdlMostrarSRF($tabla, $item1, $value1, $item2, $value2)
@@ -38,5 +54,48 @@ class ModeloRF
 
         $stmt->close();
         $stmt = null;
+    }
+    /**=================================================================
+     * GUARDAR DATOS
+     ===================================================================*/
+    static public function mdlGurardarRF($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "INSERT INTO $tabla (
+            claveRegimenFiscal,
+            descrip_regFis,
+            nombre_regFis,
+            activo)
+            VALUES
+            (:claveRegimenFiscal,
+            :descrip_regFis,
+            :nombre_regFis,
+            :activo)"
+        );
+        $stmt->bindParam(":claveRegimenFiscal", $datos["claRF"], PDO::PARAM_STR);
+        $stmt->bindParam(":descrip_regFis", $datos["descripRF"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_regFis", $datos["nomRF"], PDO::PARAM_STR);
+        $stmt->bindParam(":activo", $datos["activo"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+    /**=================================================================
+     * GUARDAR DATOS EDICIÓN
+     ===================================================================*/
+    static function mdlEditarRF($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "UPDATE $tabla SET
+            claveRegimenFiscal = :claveRegimenFiscal,
+            descrip_regFis = :descrip_regFis,
+            nombre_regFis = :nombre_regFis
+            WHERE id = :id"
+        );
+        $stmt->bindParam(":claveRegimenFiscal", $datos["claRFE"], PDO::PARAM_STR);
     }
 }

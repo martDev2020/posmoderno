@@ -341,7 +341,7 @@ inputs.forEach((input) => {
     input.addEventListener("blur", validarProm);
 });
 /**=================================================================
- * OBTENER DATOS PARA GUARDAR
+ * OBTENER DATOS PARA EDITAR
  ===================================================================*/
 const idCatOferta = (id) => {
     let idcatOf = id;
@@ -438,7 +438,6 @@ const idCatOferta = (id) => {
     /**Validación de datos */
 
 };
-
 
 $formOffer.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -546,3 +545,8 @@ $formOffer.addEventListener("submit", function (e) {
     }
 });
 /**------------Fin obtención de datos para guardar. */
+/**=================================================================
+ * OBTENER DATOS PARA HORARIOS AVANZADOS
+ ===================================================================*/
+
+/**----------Fin para recibir datos de horarios avanzados */

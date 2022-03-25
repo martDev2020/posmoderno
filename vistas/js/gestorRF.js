@@ -103,12 +103,12 @@ tablaRF = $(".tablaRegF").DataTable({
 function contactFormRF() {
   const $formRF = d.getElementById("formRF"),
     inputsRF = d.querySelectorAll("#formRF input"),
-    $nombreRF = d.getElementById("nomRF"),
+    $nomRF = d.getElementById("nomRF"),
     $claveRF = d.getElementById("claRF");
 
-  const $regExpre = {
+  const $regExpreRF = {
     claRF: /^\d{8}$/,
-    nomRF: /^ [A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{ 1, 250}$/,
+    nomRF: /^ [A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
     descripRF: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
   };
   /**------Objeto para validar si los campos estan vacíos. */
@@ -123,10 +123,10 @@ function contactFormRF() {
     /**El name es del input, es decir, se ejecuta todos los name */
     switch (e.target.name) {
       case "claRF":
-        validarInputRF($regExpre.claRF, e.target, "claRF");
+        validarInputRF($regExpreRF.claRF, e.target, "claRF");
         break;
       case "nomRF":
-        validarInputRF($regExpre.nomRF, e.target, "nomRF");
+        validarInputRF($regExpreRF.nomRF, e.target, "nomRF");
         break;
     }
   };
@@ -136,7 +136,7 @@ function contactFormRF() {
         "alert-val-activo"
       );
       // Valida que los campos no esten vacíos.
-      camposRF[campo] = true;
+      camposRF[ campo ] = true;
     } else {
       d.querySelector(`#val-${campo} .alert-val`).classList.add(
         "alert-val-activo"
@@ -146,7 +146,7 @@ function contactFormRF() {
           "alert-val-activo"
         );
       }, 5000);
-      camposRF[campo] = false;
+      camposRF[ campo ] = false;
     }
   };
 
@@ -254,7 +254,10 @@ function contactFormRF() {
     // /console.log("Excelente");
     e.preventDefault();
     /**-----Validación de datos */
-    if (camposRF.claRF && camposRF.nomRF) {
+    const a = $nomRF.value,
+      b = claRF.value;
+
+    if (a != "" && b != "") {
       /**------Fin validación de datos */
       let data = new FormData($formRF);
       // console.log(data);
@@ -265,7 +268,7 @@ function contactFormRF() {
       })
         .then((res) => (res.ok ? res.json() : Promise.reject(res)))
         .then((json) => {
-          // console.log(data);
+          console.log(json);
           if (json === "ok") {
             toastr.success(
               "Se guardaron los datos de régimen fiscal correctamente.",
@@ -273,7 +276,7 @@ function contactFormRF() {
             );
             tablaRF.ajax.reload(null, false);
           }
-          $formD.reset();
+          $formRF.reset();
         })
         .catch(function (err) {
           // console.log('error', err);
@@ -298,172 +301,187 @@ d.addEventListener("DOMContentLoaded", contactFormRF);
 /**--------------------Fin para guardar datos de régimen fiscal */
 /**=================================================================
     * EDICIÓN
+===================================================================*/
+const idEditRF = (id) => {
+  let idURFe = id;
+  // console.log("idURFe ", idURFe);
+  let url = "ajax/regimenRF.ajax.php";
+  let data = new FormData();
+  data.append("idURFe", idURFe);
+  fetch(url, {
+    method: "POST",
+    body: data,
+    mode: "cors",
+  })
+    .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+    .then((json) => {
+      // console.log(json);
+      idRFedit.value = json.id;
+      claRFE.value = json.claveRegimenFiscal;
+      descripRFE.value = json.descrip_regFis;
+      nomRFE.value = json.nombre_regFis;
+    })
+    .catch(function (err) {
+      // console.error('Error', err);
+      let message = err.statusText || "Ocurrió un error";
+      idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+    });
+};
+/**-------Fin edición */
+/**=================================================================
+* VALIDACIÓN DE FORMULARIO EDICIÓN
+===================================================================*/
+function formRFedit() {
+  const $formRFE = d.getElementById("formRFE"),
+    inputsRFE = d.querySelectorAll("#formRFE input"),
+    $nombreRFE = d.getElementById("nomRFE"),
+    $descRFE = d.getElementById("descripRFE"),
+    $claveRFE = d.getElementById("claRFE");
+
+  const $regExpre = {
+    claRFE: /^\d{8}$/,
+    nomRFE: /^ [A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+    descripRFE: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/,
+  };
+  /**------Objeto para validar si los campos estan vacíos. */
+  const camposRF = {
+    claRFE: false,
+    nomRFE: false,
+    descripRFE: false,
+  };
+  const validarFormRFE = (e) => {
+    // console.log("Se ejecutó");
+    // console.log(e.target.name);
+    /**El name es del input, es decir, se ejecuta todos los name */
+    switch (e.target.name) {
+      case "claRFE":
+        validarInputRF($regExpre.claRFE, e.target, "claRFE");
+        break;
+      case "nomRFE":
+        validarInputRF($regExpre.nomRFE, e.target, "nomRFE");
+        break;
+    }
+  };
+  const validarInputRF = (expresion, input, campo) => {
+    if (expresion.test(input.value)) {
+      d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+        "alert-val-activo"
+      );
+      // Valida que los campos no esten vacíos.
+      camposRF[ campo ] = true;
+    } else {
+      d.querySelector(`#val-${campo} .alert-val`).classList.add(
+        "alert-val-activo"
+      );
+      setTimeout(() => {
+        d.querySelector(`#val-${campo} .alert-val`).classList.remove(
+          "alert-val-activo"
+        );
+      }, 5000);
+      camposRF[ campo ] = false;
+    }
+  };
+
+  inputsRFE.forEach((input) => {
+    input.addEventListener("keyup", validarFormRFE);
+    input.addEventListener("blur", validarFormRFE);
+  });
+  /**=================================================================
+      * VALIDAR SI CLAVE RÉGIMEN FISCAL EXISTE
+      ===================================================================*/
+  $claveRFE.addEventListener("change", (e) => {
+    // console.log(e);
+    const $claveRF = e.target.value;
+    // console.log($clave);
+    let data = new FormData();
+    data.append("clave", $claveRF);
+    fetch("ajax/regimenRF.ajax.php", {
+      method: "POST",
+      body: data,
+      mode: "cors",
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((json) => {
+        // console.log(json);
+        if (json.length != 0) {
+          d.querySelector(".alert-val-danger").classList.add(
+            "alert-val-activo"
+          );
+          setTimeout(() => {
+            d.querySelector(".alert-val-danger").classList.remove(
+              "alert-val-activo"
+            );
+          }, 5000);
+          // Swal.fire({
+          //     position: "top-end",
+          //     icon: "error",
+          //     text: `¡El nombre ${$nameCli} ya existe en la base de datos!`,
+          //     showConfirmButton: false,
+          //     timer: 3000
+          // })
+          $claveRFE.value = "";
+        }
+      })
+      .catch(function (err) {
+        // console.log('error', err);
+        let message = err.statusText || "Ocurrió un error";
+        $claveRFE.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+      });
+  });
+  /**=================================================================
+     * CAPTURAR DATOS PARA MODIFICAR
+     ===================================================================*/
+  $formRFE.addEventListener("submit", function (e) {
+    // /console.log("Excelente");
+    e.preventDefault();
+    /**-----Validación de datos */
+    if (idRFedit != "" && claRFE != "" && nomRFE != "") {
+      /**------Fin validación de datos */
+      let data = new FormData($formRFE);
+      // console.log(data);
+      fetch("ajax/regimenRF.ajax.php", {
+        method: "POST",
+        body: data,
+        mode: "cors",
+      })
+        .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+        .then((json) => {
+          console.log(json);
+          if (json === "ok") {
+            toastr.success(
+              "Se actualizaron los datos de regimen fiscal correctamente.",
+              "Datos guardados"
+            );
+            tablaRF.ajax.reload(null, false);
+          }
+          // $formcEdit.reset();
+        })
+        .catch(function (err) {
+          // console.log('error', err);
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        });
+      // $('#modal-4').modal('hide');
+    } else {
+      d.getElementById("form-mensajeRF").classList.add("alert-val-activo");
+      setTimeout(() => {
+        d.getElementById("form-mensajeRF").classList.remove(
+          "alert-val-activo"
+        );
+      }, 5000);
+    }
+  });
+}
+d.addEventListener("DOMContentLoaded", formRFedit);
+/**-------------Fin edición de formulario */
+/**=================================================================
+    * ELIMINAR PROVEEDOR
     ===================================================================*/
-// const idDep = (id) => {
-//     let idDep = id;
-//     // console.log("idDep ", idDep);
-//     let url = "ajax/departamento.ajax.php";
-//     let data = new FormData();
-//     data.append("idDep", idDep);
-//     fetch(url, {
-//         method: "POST",
-//         body: data,
-//         mode: "cors",
-//     })
-//         .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-//         .then((json) => {
-//             // console.log(json);
-//             idDepE.value = json.id;
-//             nombredepE.value = json.nombre_dep;
-//         })
-//         .catch(function (err) {
-//             // console.error('Error', err);
-//             let message = err.statusText || "Ocurrió un error";
-//             idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//         });
-// };
-// /**-------Fin edición */
-// /**=================================================================
-// * VALIDACIÓN DE FORMULARIO EDICIÓN
-// ===================================================================*/
-// function contactFormEditDep() {
-//     const $formDE = d.getElementById("formDepE"),
-//         inputsDE = d.querySelectorAll("#formDepE input"),
-//         $nombreDepE = d.getElementById("nombredepE");
-
-//     const $regExpre = {
-//         nombredepE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
-//     };
-//     /**------Objeto para validar si los campos estan vacíos. */
-//     const camposdepE = {
-//         nombredepE: false,
-//     };
-//     const validarFormDepE = (e) => {
-//         // console.log("Se ejecutó");
-//         // console.log(e.target.name);
-//         /**El name es del input, es decir, se ejecuta todos los name */
-//         switch (e.target.name) {
-//             case "nombredepE":
-//                 validarInputDE($regExpre.nombredepE, e.target, "nombredepE");
-//                 break;
-//         }
-//     };
-//     const validarInputDE = (expresion, input, campo) => {
-//         if (expresion.test(input.value)) {
-//             d.querySelector(`#val-${campo} .alert-val`).classList.remove(
-//                 "alert-val-activo"
-//             );
-//             // Valida que los campos no esten vacíos.
-//             camposdepE[campo] = true;
-//         } else {
-//             d.querySelector(`#val-${campo} .alert-val`).classList.add(
-//                 "alert-val-activo"
-//             );
-//             setTimeout(() => {
-//                 d.querySelector(`#val-${campo} .alert-val`).classList.remove(
-//                     "alert-val-activo"
-//                 );
-//             }, 5000);
-//             camposdepE[campo] = false;
-//         }
-//     };
-
-//     inputsDE.forEach((input) => {
-//         input.addEventListener("keyup", validarFormDepE);
-//         input.addEventListener("blur", validarFormDepE);
-//     });
-//     /**=================================================================
-//       * VALIDAR SI NOMBRE DEPARTAMENTO EXISTE
-//       ===================================================================*/
-//     $nombreDepE.addEventListener("change", (e) => {
-//         // console.log(e);
-//         const $nameDE = e.target.value;
-//         // console.log($nameDE);
-//         let data = new FormData();
-//         data.append("nameD", $nameDE);
-//         fetch("ajax/departamento.ajax.php", {
-//             method: "POST",
-//             body: data,
-//             mode: "cors",
-//         })
-//             .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-//             .then((json) => {
-//                 // console.log(json);
-//                 if (json.length != 0) {
-//                     d.querySelector(".alert-val-danger").classList.add("alert-val-activo");
-//                     setTimeout(() => {
-//                         d.querySelector(".alert-val-danger").classList.remove("alert-val-activo");
-//                     }, 5000);
-//                     // Swal.fire({
-//                     //     position: "top-end",
-//                     //     icon: "error",
-//                     //     text: `¡El nombre ${$nameCli} ya existe en la base de datos!`,
-//                     //     showConfirmButton: false,
-//                     //     timer: 3000
-//                     // })
-//                     $nombreDepE.value = "";
-//                 }
-//             })
-//             .catch(function (err) {
-//                 // console.log('error', err);
-//                 let message = err.statusText || "Ocurrió un error";
-//                 $nombreDepE.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//             });
-//     });
-//     /**=================================================================
-//        * CAPTURAR DATOS PARA MODIFICAR DAPARTAMENTO
-//        ===================================================================*/
-//     $formDE.addEventListener("submit", function (e) {
-//         // /console.log("Excelente");
-//         e.preventDefault();
-//         /**-----Validación de datos */
-//         if (
-//             idDepE != 0 && nombredepE != 0
-//         ) {
-//             /**------Fin validación de datos */
-//             let data = new FormData($formDE);
-//             // console.log(data);
-//             fetch("ajax/departamento.ajax.php", {
-//                 method: "POST",
-//                 body: data,
-//                 mode: "cors",
-//             })
-//                 .then((res) => res.json())
-//                 .then((data) => {
-//                     // console.log(data);
-//                     if (data === "ok") {
-//                         toastr.success(
-//                             "Se actualizaron los datos de departamento correctamente.",
-//                             "Datos guardados"
-//                         );
-//                         tablaDepartamento.ajax.reload(null, false);
-//                     }
-//                     // $formcEdit.reset();
-//                 })
-//                 .catch(function (err) {
-//                     // console.log('error', err);
-//                     Swal.fire({
-//                         position: "top-end",
-//                         icon: "error",
-//                         text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
-//                         showConfirmButton: false,
-//                         timer: 2000,
-//                     });
-//                 });
-//             // $('#modal-4').modal('hide');
-//         } else {
-//             d.getElementById("form-mensajedepE").classList.add("alert-val-activo");
-//             setTimeout(() => {
-//                 d.getElementById("form-mensajedepE").classList.remove("alert-val-activo");
-//             }, 5000);
-//         }
-//     });
-// }
-// d.addEventListener("DOMContentLoaded", contactFormEditDep);
-// /**-------------Fin edición de formulario */
-// /**=================================================================
-//     * ELIMINAR PROVEEDOR
-//     ===================================================================*/
 // const idEliminarDep = (id) => {
 //     let idDepD = id;
 //     // console.log("idPdelete ", idDepD);

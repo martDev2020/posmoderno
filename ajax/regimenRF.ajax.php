@@ -50,6 +50,37 @@ class AjaxRegimenF
         $response = ControladorRF::ctrGuardarRF($datos);
         echo $response;
     }
+    /**=================================================================
+     * MOSTRAR DATOS PARA EDICIÓN
+     ===================================================================*/
+    public $idURFe;
+    public function ajaxMostrarEdit()
+    {
+        $item = "id";
+        $value = $this->idURFe;
+        $reponse = ControladorRF::ctrMostrarEdit($item, $value);
+        echo json_encode($reponse);
+    }
+    /**=================================================================
+     * GUARDAR DATOS PARA MODIFICAR
+     ===================================================================*/
+    public $idRFedit;
+    public $claRFE;
+    public $descripRFE;
+    public $nomRFE;
+    public function ajaxEditarRF()
+    {
+        $datos = array(
+            'idRFedit' => $this->idRFedit,
+            'claRFE' => $this->claRFE,
+            'descripRFE' => $this->descripRFE,
+            'nomRFE' => $this->nomRFE
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorRF::ctrEditarRF($datos);
+        echo $response;
+    }
 }
 /**=================================================================
  * NO REPETIR CLAVE DE RÉGIMEN FISCAL
@@ -80,4 +111,24 @@ if (isset($_POST["claRF"])) {
     $datosRF->descripRF = $_POST["descripRF"];
     $datosRF->nomRF = $_POST["nomRF"];
     $datosRF->ajaxGuardarRF();
+}
+/**=================================================================
+ * MOSTRA DATOS PARA EDICIÓN
+ ===================================================================*/
+if (isset($_POST["idURFe"])) {
+    $mostE = new AjaxRegimenF();
+    $mostE->idURFe = $_POST["idURFe"];
+    $mostE->ajaxMostrarEdit();
+}
+/**=================================================================
+ * GUARDAR DATOS PARA EDICIÓN
+ ===================================================================*/
+if (isset($_POST["idRFedit"])) {
+    // echo json_encode($_POST["idRFedit"]);
+    $edit = new AjaxRegimenF();
+    $edit->idRFedit = $_POST["idRFedit"];
+    $edit->claRFE = $_POST["claRFE"];
+    $edit->descripRFE = $_POST["descripRFE"];
+    $edit->nomRFE = $_POST["nomRFE"];
+    $edit->ajaxEditarRF();
 }

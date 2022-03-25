@@ -35,110 +35,113 @@
     <link rel="icon" type="image/png" sizes="32x32" href="vistas/img/plantilla/cart.png">
 
 </head>
-
-<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
-
-    <!-- Setting Panel -->
-    <div class="ms-toggler ms-settings-toggle ms-d-block-lg">
-        <i class="flaticon-paint"></i>
-    </div>
-    <?php
-    /**=================================================================
-     * HORA DEL SEVIDOR
+<?php
+/**=================================================================
+ * HORA DEL SEVIDOR
 ===================================================================*/
-    date_default_timezone_set('America/Mexico_City');
-    $zonahoraria = date_default_timezone_get();
+date_default_timezone_set('America/Mexico_City');
+$zonahoraria = date_default_timezone_get();
 
-    include "modulos/menu/mode-dark.php";
-    // include "modulos/elementos/preloader.php";
-    include "modulos/menu/menu.php";
-    echo '
+if (isset($_GET["ruta"])) {
+    if (
+        $_GET["ruta"] == "puntoventa" ||
+        $_GET["ruta"] == "proveedores" ||
+        $_GET["ruta"] == "clientes" ||
+        $_GET["ruta"] == "categorias" ||
+        $_GET["ruta"] == "subcategorias" ||
+        $_GET["ruta"] == "productos" ||
+        $_GET["ruta"] == "usuarios" ||
+        $_GET["ruta"] == "empleados" ||
+        $_GET["ruta"] == "ventas" ||
+        $_GET["ruta"] == "compras" ||
+        $_GET["ruta"] == "empresa" ||
+        $_GET["ruta"] == "departamento" ||
+        $_GET["ruta"] == "regfiscal" ||
+        $_GET["ruta"] == "restbase" ||
+        $_GET["ruta"] == "promcategoria" ||
+        $_GET["ruta"] == "promsubcategoria" ||
+        $_GET["ruta"] == "promproductos" ||
+        $_GET["ruta"] == "unicompra" ||
+        $_GET["ruta"] == "univenta"
+    ) {
+        echo ('<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+            <!-- Setting Panel -->
+            <div class="ms-toggler ms-settings-toggle ms-d-block-lg">
+                <i class="flaticon-paint"></i>
+            </div>');
+        include "modulos/menu/mode-dark.php";
+        // include "modulos/elementos/preloader.php";
+        include "modulos/menu/menu.php";
+        echo ('
         <!-- Main Content -->
         <main class="body-content">
-     ';
-    include "modulos/header.php";
-    echo '
+     ');
+        include "modulos/header.php";
+        echo ('
         <!-- Body Content Wrapper -->
-        <div class="ms-content-wrapper">';
-    if (isset($_GET["ruta"])) {
-        if (
-            $_GET["ruta"] == "puntoventa" ||
-            $_GET["ruta"] == "proveedores" ||
-            $_GET["ruta"] == "clientes" ||
-            $_GET["ruta"] == "categorias" ||
-            $_GET["ruta"] == "subcategorias" ||
-            $_GET["ruta"] == "productos" ||
-            $_GET["ruta"] == "usuarios" ||
-            $_GET["ruta"] == "empleados" ||
-            $_GET["ruta"] == "ventas" ||
-            $_GET["ruta"] == "compras" ||
-            $_GET["ruta"] == "empresa" ||
-            $_GET["ruta"] == "departamento" ||
-            $_GET["ruta"] == "regfiscal" ||
-            $_GET["ruta"] == "restbase" ||
-            $_GET["ruta"] == "promcategoria" ||
-            $_GET["ruta"] == "promsubcategoria" ||
-            $_GET["ruta"] == "promproductos"
-        ) {
-            include "modulos/" . $_GET["ruta"] . ".php";
-        }
+        <div class="ms-content-wrapper">');
+        include "modulos/" . $_GET["ruta"] . ".php";
+    } else {
+        include "modulos/404.php";
     }
-    echo '</div>
+}
+echo '</div>
     </main>
     ';
-    ?>
-    <!-- SCRIPTS -->
-    <!-- Global Required Scripts Start -->
-    <script src="vistas\assets\js\jquery-3.5.1.min.js"></script>
-    <script src="vistas\assets\js\popper.min.js"></script>
-    <script src="vistas\assets\js\bootstrap.min.js"></script>
-    <script src="vistas\assets\js\perfect-scrollbar.js"> </script>
-    <script src="vistas\assets\js\jquery-ui.min.js"> </script>
-    <!-- Global Required Scripts End -->
+?>
+<!-- SCRIPTS -->
+<!-- Global Required Scripts Start -->
+<script src="vistas\assets\js\jquery-3.5.1.min.js"></script>
+<script src="vistas\assets\js\popper.min.js"></script>
+<script src="vistas\assets\js\bootstrap.min.js"></script>
+<script src="vistas\assets\js\perfect-scrollbar.js"> </script>
+<script src="vistas\assets\js\jquery-ui.min.js"> </script>
+<!-- Global Required Scripts End -->
 
-    <!-- Page Specific Scripts Start -->
-    <script src="vistas\assets\js\slick.min.js"> </script>
-    <script src="vistas\assets\js\moment.js"> </script>
-    <script src="vistas\assets\timepicker\timepicker.js"></script>
-    <script src="vistas\assets\js\jquery.webticker.min.js"> </script>
-    <script src="vistas\assets\js\Chart.bundle.min.js"> </script>
-    <script src="vistas\assets\js\Chart.Financial.js"> </script>
-    <script src="vistas\assets\js\cryptocurrency.js"> </script>
-    <!-- Page Specific Scripts Finish -->
+<!-- Page Specific Scripts Start -->
+<script src="vistas\assets\js\slick.min.js"> </script>
+<script src="vistas\assets\js\moment.js"> </script>
+<script src="vistas\assets\timepicker\timepicker.js"></script>
+<script src="vistas\assets\js\jquery.webticker.min.js"> </script>
+<script src="vistas\assets\js\Chart.bundle.min.js"> </script>
+<script src="vistas\assets\js\Chart.Financial.js"> </script>
+<script src="vistas\assets\js\cryptocurrency.js"> </script>
+<!-- Page Specific Scripts Finish -->
 
-    <!-- Mystic core JavaScript -->
-    <script src="vistas\assets\js\framework.js"></script>
+<!-- Mystic core JavaScript -->
+<script src="vistas\assets\js\framework.js"></script>
 
-    <!-- Settings -->
-    <script src="vistas\assets\js\settings.js"></script>
+<!-- Settings -->
+<script src="vistas\assets\js\settings.js"></script>
 
-    <!-- DataTables https://datatables.net/-->
-    <!-- <script src="vistas/assets/datatables.net/js/jquery.dataTables.min.js"></script> -->
-    <!-- <script src="vistas/assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script> -->
-    <!-- <script src="vistas/assets/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+<!-- DataTables https://datatables.net/-->
+<!-- <script src="vistas/assets/datatables.net/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vistas/assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script> -->
+<!-- <script src="vistas/assets/datatables.net-bs/js/dataTables.responsive.min.js"></script>
     <script src="vistas/assets/datatables.net-bs/js/responsive.bootstrap.min.js"></script> -->
-    <!-- ----------Plugins para botones de datatables -->
-    <script src="vistas/assets/datatables/datatables.min.js"></script>
-    <script src="vistas/assets/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="vistas/assets/datatables/JSZip-2.5.0/jszip.min.js"></script>
-    <script src="vistas/assets/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-    <script src="vistas/assets/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-    <script src="vistas/assets/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-    <!-- Page Specific Scripts Start -->
-    <script src="vistas\assets\js\toastr.min.js"> </script>
-    <script src="vistas\assets\js\toast.js"> </script>
-    <script src="vistas\assets\js\promise.min.js"> </script>
-    <script src="vistas\assets\js\sweetalert2.min.js"> </script>
+<!-- ----------Plugins para botones de datatables -->
+<script src="vistas/assets/datatables/datatables.min.js"></script>
+<script src="vistas/assets/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="vistas/assets/datatables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="vistas/assets/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="vistas/assets/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="vistas/assets/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+<!-- Page Specific Scripts Start -->
+<script src="vistas\assets\js\toastr.min.js"> </script>
+<script src="vistas\assets\js\toast.js"> </script>
+<script src="vistas\assets\js\promise.min.js"> </script>
+<script src="vistas\assets\js\sweetalert2.min.js"> </script>
 
-    <!-- <script src="vistas\assets\js\sweet-alerts.js"> </script> -->
-    <script src="vistas/js/plantilla.js"></script>
-    <script src="vistas/js/gestorProveedor.js"></script>
-    <script src="vistas/js/gestorClientes.js"></script>
-    <script src="vistas/js/gestorCategoria.js"></script>
-    <script src="vistas/js/gestorSubCategoria.js"></script>
-    <script src="vistas/js/gestorDep.js"></script>
-    <script src="vistas/js/gestorRF.js"></script>
-    <script src="vistas/js/gestorPromCat.js"></script>
+<!-- <script src="vistas\assets\js\sweet-alerts.js"> </script> -->
+<script src="vistas/js/plantilla.js"></script>
+<script src="vistas/js/gestorProveedor.js"></script>
+<script src="vistas/js/gestorClientes.js"></script>
+<script src="vistas/js/gestorCategoria.js"></script>
+<script src="vistas/js/gestorSubCategoria.js"></script>
+<script src="vistas/js/gestorDep.js"></script>
+<script src="vistas/js/gestorRF.js"></script>
+<script src="vistas/js/gestorPromCat.js"></script>
+<script src="vistas/js/gestorUniCompra.js"></script>
 </body>
 
 </html>

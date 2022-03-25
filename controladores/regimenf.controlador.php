@@ -11,6 +11,15 @@ class ControladorRF
         return $response;
     }
     /**=================================================================
+     * MOSTRAR DATOS PARA EDICIÓN
+     ===================================================================*/
+    static public function ctrMostrarEdit($item, $value)
+    {
+        $tabla = "regimenfiscal";
+        $response = ModeloRF::mdlMostrarEdit($tabla, $item, $value);
+        return $response;
+    }
+    /**=================================================================
      * GUARADAR DATOS
      ===================================================================*/
     static public function ctrGuardarRF($datos)
@@ -21,18 +30,55 @@ class ControladorRF
         if (isset($datos["claRF"])) {
             if (
                 preg_match('/^\d{8}$/', $datos["claRF"]) &&
-                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["descripcat"]) && 
+                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["descripRF"]) &&
                 preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["nomRF"])
             ) {
                 $datos = array(
                     'claRF' => $datos["claRF"],
-                    'descripcat' => $datos["descripcat"],
-                    'fotoCat' => substr($ruta, 3),
-                    'activo' => 0
+                    'descripRF' => $datos["descripRF"],
+                    'activo' => 0,
+                    'nomRF' => $datos["nomRF"]
                 );
                 // echo json_encode($datos);
                 // return;
-                $response = ModeloCategoria::mdlGurardarCat("categoria", $datos);
+                $response = ModeloRF::mdlGurardarRF("regimenfiscal", $datos);
+                return $response;
+            } else {
+                echo '<script>
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    text: "¡Datos icorrectos o vacíos, no deben tener caracterres especiales!",
+                    showConfimButton: false,
+                    timer: 1500
+                })
+                </script>';
+            }
+        }
+    }
+    /**=================================================================
+     * GUARDAR DATOS EDICIÓN
+     ===================================================================*/
+    static public function ctrEditarRF($datos)
+    {
+        // echo json_encode($datos);
+        // return;
+        require_once "../modelos/regimenF.modelo.php";
+        if (isset($datos["idRFedit"])) {
+            if (
+                preg_match('/^\d{8}$/', $datos["claRF"]) &&
+                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["descripcat"]) &&
+                preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["nomRF"])
+            ) {
+                $datos = array(
+                    'idRFedit' => $datos["idRFedit"],
+                    'claRFE' => $datos["claRFE"],
+                    'descripRFE' => $datos["descripRFE"],
+                    'nomRFE' => $datos["nomRFE"]
+                );
+                // echo json_encode($datos);
+                // return;
+                $response = ModeloRF::mdlEditarRF("regimenfiscal", $datos);
                 return $response;
             } else {
                 echo '<script>
@@ -48,9 +94,3 @@ class ControladorRF
         }
     }
 }
-
-// $datos = array(
-//     'claRF' => $this->claRF,
-//     'descripRF' => $this->descripRF,
-//     'nomRF' => $this->nomRF
-// );

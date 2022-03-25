@@ -128,7 +128,7 @@ function contactFormDep() {
                 "alert-val-activo"
             );
             // Valida que los campos no esten vacíos.
-            camposdep[campo] = true;
+            camposdep[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -138,7 +138,7 @@ function contactFormDep() {
                     "alert-val-activo"
                 );
             }, 5000);
-            camposdep[campo] = false;
+            camposdep[ campo ] = false;
         }
     };
 
@@ -344,7 +344,7 @@ function contactFormEditDep() {
                 "alert-val-activo"
             );
             // Valida que los campos no esten vacíos.
-            camposdepE[campo] = true;
+            camposdepE[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -354,7 +354,7 @@ function contactFormEditDep() {
                     "alert-val-activo"
                 );
             }, 5000);
-            camposdepE[campo] = false;
+            camposdepE[ campo ] = false;
         }
     };
 
@@ -452,7 +452,7 @@ function contactFormEditDep() {
 d.addEventListener("DOMContentLoaded", contactFormEditDep);
 /**-------------Fin edición de formulario */
 /**=================================================================
-    * ELIMINAR PROVEEDOR
+    * ELIMINAR 
     ===================================================================*/
 const idEliminarDep = (id) => {
     let idDepD = id;
@@ -496,4 +496,4 @@ const idEliminarDep = (id) => {
         }
     });
 };
-/**----------------Eliminar proveedor */
+/**----------------Fin eliminar*/
