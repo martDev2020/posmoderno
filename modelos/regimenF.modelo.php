@@ -97,5 +97,15 @@ class ModeloRF
             WHERE id = :id"
         );
         $stmt->bindParam(":claveRegimenFiscal", $datos["claRFE"], PDO::PARAM_STR);
+        $stmt->bindParam(":descrip_regFis", $datos["descripRFE"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_regFis", $datos["nomRFE"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["idRFedit"], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
     }
 }

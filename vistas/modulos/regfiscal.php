@@ -110,7 +110,7 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h1>Ingresar datos régimen fiscal</h1>
+                <h1>Editar datos régimen fiscal</h1>
                 <div class="ms-panel-body">
                     <form method="post" id="formRFE" autocomplete="nope">
                         <div class="form-row">

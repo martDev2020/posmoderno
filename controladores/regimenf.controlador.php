@@ -66,9 +66,9 @@ class ControladorRF
         require_once "../modelos/regimenF.modelo.php";
         if (isset($datos["idRFedit"])) {
             if (
-                preg_match('/^\d{8}$/', $datos["claRF"]) &&
-                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["descripcat"]) &&
-                preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["nomRF"])
+                preg_match('/^\d{8}$/', $datos["claRFE"]) &&
+                preg_match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\_\-\.\,\s]{1,250}$/', $datos["descripRFE"]) &&
+                preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["nomRFE"])
             ) {
                 $datos = array(
                     'idRFedit' => $datos["idRFedit"],

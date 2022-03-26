@@ -446,7 +446,7 @@ function formRFedit() {
       })
         .then((res) => (res.ok ? res.json() : Promise.reject(res)))
         .then((json) => {
-          console.log(json);
+          // console.log(json);
           if (json === "ok") {
             toastr.success(
               "Se actualizaron los datos de regimen fiscal correctamente.",
@@ -461,7 +461,7 @@ function formRFedit() {
           Swal.fire({
             position: "top-end",
             icon: "error",
-            text: "<small>¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!</small>",
+            text: "¡Datos incorrectos o vacíos, no deben llevar caracteres especiales!",
             showConfirmButton: false,
             timer: 2000,
           });
