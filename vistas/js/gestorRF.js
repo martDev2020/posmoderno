@@ -480,48 +480,48 @@ function formRFedit() {
 d.addEventListener("DOMContentLoaded", formRFedit);
 /**-------------Fin edición de formulario */
 /**=================================================================
-    * ELIMINAR PROVEEDOR
+    * ELIMINAR DATOS
     ===================================================================*/
-// const idEliminarDep = (id) => {
-//     let idDepD = id;
-//     // console.log("idPdelete ", idDepD);
-//     Swal.fire({
-//         title: "¿Estás seguro de eliminar los datos?",
-//         icon: "warning",
-//         showCancelButton: true,
-//         confirmButtonColor: "#3085d6",
-//         cancelButtonColor: "#d33",
-//         confirmButtonText: "Si",
-//         cancelButtonText: "No",
-//     }).then((result) => {
-//         if (result.value) {
-//             let url = "ajax/departamento.ajax.php";
-//             let data = new FormData();
-//             data.append("idDepDelete", idDepD);
-//             fetch(url, {
-//                 method: "POST",
-//                 body: data,
-//                 mode: "cors",
-//             })
-//                 .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-//                 .then((json) => {
-//                     // console.log(json);
-//                     if (json === "ok") {
-//                         Swal.fire({
-//                             icon: "success",
-//                             title: "Datos eliminados",
-//                             showConfirmButton: false,
-//                             timer: 1500,
-//                         });
-//                     }
-//                     tablaDepartamento.ajax.reload(null, false);
-//                 })
-//                 .catch(function (err) {
-//                     // console.error('Error', err);
-//                     let message = err.statusText || "Ocurrió un error";
-//                     idEliminarC.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
-//                 });
-//         }
-//     });
-// };
-// /**----------------Eliminar proveedor */
+const idEliminarRF = (id) => {
+  let idElimRF = id;
+  // console.log("idPdelete ", idDepD);
+  Swal.fire({
+    title: "¿Estás seguro de eliminar los datos?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si",
+    cancelButtonText: "No",
+  }).then((result) => {
+    if (result.value) {
+      let url = "ajax/departamento.ajax.php";
+      let data = new FormData();
+      data.append("iDRFDelete", idElimRF);
+      fetch(url, {
+        method: "POST",
+        body: data,
+        mode: "cors",
+      })
+        .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+        .then((json) => {
+          // console.log(json);
+          if (json === "ok") {
+            Swal.fire({
+              icon: "success",
+              title: "Datos eliminados",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          tablaRF.ajax.reload(null, false);
+        })
+        .catch(function (err) {
+          // console.error('Error', err);
+          let message = err.statusText || "Ocurrió un error";
+          idEliminarRF.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+        });
+    }
+  });
+};
+/**----------------Eliminar proveedor */

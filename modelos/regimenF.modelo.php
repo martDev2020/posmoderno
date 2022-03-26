@@ -108,4 +108,19 @@ class ModeloRF
         $stmt->close();
         $stmt = null;
     }
+    /**=================================================================
+     * ELIMINAR DATOS
+     ===================================================================*/
+    static public function mdlEliminarRF($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+        $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return json_encode("ok");
+        } else {
+            return json_encode("error");
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

@@ -137,7 +137,7 @@ if (isset($_POST["activeIdCat"])) {
     // echo json_encode($_POST["activeIdCat"]);
 }
 /**=================================================================
- * OBTNER DATOS CON ID PARA EDICIÓN
+ * OBTENER DATOS CON ID PARA EDICIÓN
  ===================================================================*/
 if (isset($_POST["idCategoria"])) {
     // echo json_encode($_POST["idCategoria"]);

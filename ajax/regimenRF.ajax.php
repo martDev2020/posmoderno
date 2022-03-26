@@ -81,6 +81,20 @@ class AjaxRegimenF
         $response = ControladorRF::ctrEditarRF($datos);
         echo $response;
     }
+    /**=================================================================
+     * ELIMINAR DATOS
+     ===================================================================*/
+    public $idRFeliminar;
+    public function ajaxEliminarRF()
+    {
+        $datos = array(
+            'idRFeliminar' => $this->idRFeliminar
+        );
+        // echo json_encode($datos);
+        // return;
+        $response = ControladorRF::ctrEliminarRF($datos);
+        echo $response;
+    }
 }
 /**=================================================================
  * NO REPETIR CLAVE DE RÉGIMEN FISCAL
@@ -131,4 +145,12 @@ if (isset($_POST["idRFedit"])) {
     $edit->descripRFE = $_POST["descripRFE"];
     $edit->nomRFE = $_POST["nomRFE"];
     $edit->ajaxEditarRF();
+}
+/**=================================================================
+ * ELIMNAR DATOS
+ ===================================================================*/
+if (isset($_POST["idRFdelete"])) {
+    $delete = new AjaxRegimenF();
+    $delete->idRFdelete = $_POST["idRFdelete"];
+    $delete->ajaxEliminarRF();
 }

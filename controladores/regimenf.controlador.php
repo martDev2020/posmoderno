@@ -93,4 +93,15 @@ class ControladorRF
             }
         }
     }
+    /**=================================================================
+     * ELIMINAR DATOS
+     ===================================================================*/
+    static public function ctrEliminarRF($datos)
+    {
+        if (isset($datos["iDRFDelete"])) {
+            $datosDelete = $datos["iDRFDelete"];
+            $response = ModeloRF::mdlEliminarRF("regimenfiscal", $datosDelete);
+            return $response;
+        }
+    }
 }
