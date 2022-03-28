@@ -84,11 +84,11 @@ class AjaxRegimenF
     /**=================================================================
      * ELIMINAR DATOS
      ===================================================================*/
-    public $idRFeliminar;
+    public $iDRFDelete;
     public function ajaxEliminarRF()
     {
         $datos = array(
-            'idRFeliminar' => $this->idRFeliminar
+            'iDRFDelete' => $this->iDRFDelete
         );
         // echo json_encode($datos);
         // return;
@@ -149,8 +149,8 @@ if (isset($_POST["idRFedit"])) {
 /**=================================================================
  * ELIMNAR DATOS
  ===================================================================*/
-if (isset($_POST["idRFdelete"])) {
+if (isset($_POST["iDRFDelete"])) {
     $delete = new AjaxRegimenF();
-    $delete->idRFdelete = $_POST["idRFdelete"];
+    $delete->iDRFDelete = $_POST["iDRFDelete"];
     $delete->ajaxEliminarRF();
 }

@@ -99,7 +99,7 @@
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No ingresar caracteres especiales
                                 </div>
-                                <div class="alert alert-danger alert-val-danger alert-solid" role="alert">
+                                <div class="alert alert-danger alert-val-dangered alert-solid" role="alert">
                                     El nombre ya existe en la base de datos
                                 </div>
                             </div>

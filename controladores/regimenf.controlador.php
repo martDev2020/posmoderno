@@ -98,6 +98,7 @@ class ControladorRF
      ===================================================================*/
     static public function ctrEliminarRF($datos)
     {
+        require_once "../modelos/regimenF.modelo.php";
         if (isset($datos["iDRFDelete"])) {
             $datosDelete = $datos["iDRFDelete"];
             $response = ModeloRF::mdlEliminarRF("regimenfiscal", $datosDelete);

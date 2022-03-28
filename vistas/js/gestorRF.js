@@ -404,11 +404,11 @@ function formRFedit() {
       .then((json) => {
         // console.log(json);
         if (json.length != 0) {
-          d.querySelector(".alert-val-danger").classList.add(
+          d.querySelector(".alert-val-dangered").classList.add(
             "alert-val-activo"
           );
           setTimeout(() => {
-            d.querySelector(".alert-val-danger").classList.remove(
+            d.querySelector(".alert-val-dangered").classList.remove(
               "alert-val-activo"
             );
           }, 5000);
@@ -484,7 +484,7 @@ d.addEventListener("DOMContentLoaded", formRFedit);
     ===================================================================*/
 const idEliminarRF = (id) => {
   let idElimRF = id;
-  // console.log("idPdelete ", idDepD);
+  // console.log("idPdelete ", idElimRF);
   Swal.fire({
     title: "¿Estás seguro de eliminar los datos?",
     icon: "warning",
@@ -495,7 +495,7 @@ const idEliminarRF = (id) => {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.value) {
-      let url = "ajax/departamento.ajax.php";
+      let url = "ajax/regimenRF.ajax.php";
       let data = new FormData();
       data.append("iDRFDelete", idElimRF);
       fetch(url, {

@@ -1,9 +1,9 @@
 /**===================================
- * CARGAR TABLA DINÁMICA DE UNIDAD COMPRA
+ * CARGAR TABLA DINÁMICA DE UNIDAD VENTA
  ===================================*/
 // $.ajax({
 
-//     url: "ajax/tablaUniC.ajax.php",
+//     url: "ajax/tablaUniV.ajax.php",
 //     success: function (respuesta) {
 //         // Sólo se descomenta para mostrar errores.
 //         console.log("respuesta", respuesta);
@@ -17,8 +17,8 @@
      "processing": true,
 
  */
-tablaUniC = $(".tablaUniC").DataTable({
-    ajax: "ajax/tablaUniC.ajax.php",
+tablaUniV = $(".tablaUniV").DataTable({
+    ajax: "ajax/tablaUniV.ajax.php",
     deferRender: true,
     retrieve: true,
     processing: true,
@@ -59,21 +59,21 @@ tablaUniC = $(".tablaUniC").DataTable({
             text: '<i class="fas fa-copy text-white"></i>',
             titleAttr: "Copiar al portapapeles",
             className: "btn btn-primary mrbtn",
-            title: "Datos unidad compra",
+            title: "Datos unidad venta",
         },
         {
             extend: "csvHtml5",
             text: '<i class="fas fa-file-excel text-white"></i> ',
             titleAttr: "Desacargar en CSV",
             className: "btn btn-primary mrbtn",
-            title: "Datos unidad compra",
+            title: "Datos unidad venta",
         },
         {
             extend: "excelHtml5",
             text: '<i class="fas fa-file-excel text-white"></i> ',
             titleAttr: "Exportar a Excel",
             className: "btn btn-primary mrbtn",
-            title: "Datos unidad compra",
+            title: "Datos unidad venta",
         },
         {
             extend: "pdfHtml5",
@@ -81,7 +81,7 @@ tablaUniC = $(".tablaUniC").DataTable({
             titleAttr: "Exportar a PDF",
             className: "btn btn-primary mrbtn ",
             orientation: "landscape",
-            title: "Datos unidad compra",
+            title: "Datos unidad venta",
             pageSize: "LEGAL",
             customize: function (doc) {
                 doc.defaultStyle.fontSize = 8;
@@ -92,27 +92,27 @@ tablaUniC = $(".tablaUniC").DataTable({
             text: '<i class="fa fa-print text-white"></i> ',
             titleAttr: "Imprimir",
             className: "btn btn-primary mrbtn",
-            title: "Datos unidad compra",
+            title: "Datos unidad venta",
         },
     ],
 });
 /**=================================================================
  * VALIDACIÓN DE FORMULARIO
  ===================================================================*/
-function uniCompra() {
-    const $formUCom = d.getElementById("formUCom"),
-        inputs = d.querySelectorAll("#formUCom input"),
-        $nombreUni = d.getElementById("nombreUni");
+function uniVenta() {
+    const $formUVen = d.getElementById("formUVen"),
+        inputs = d.querySelectorAll("#formUVen input"),
+        $nombreUniV = d.getElementById("nombreUniV");
     /**=================================================================
-       * VALIDAR SI NOMBRE DE EXISTE
+       * VALIDAR SI NOMBRE EXISTE
        ===================================================================*/
-    $nombreUni.addEventListener("change", (e) => {
+    $nombreUniV.addEventListener("change", (e) => {
         // console.log(e);
-        const $nameUCom = e.target.value;
-        // console.log($nameUCom);
+        const $nameUVent = e.target.value;
+        // console.log($nameUVent);
         let data = new FormData();
-        data.append("nameUCom", $nameUCom);
-        fetch("ajax/unidadCom.ajax.php", {
+        data.append("nameUVent", $nameUVent);
+        fetch("ajax/unidadVent.ajax.php", {
             method: "POST",
             body: data,
             mode: "cors",
@@ -136,31 +136,31 @@ function uniCompra() {
                     //     showConfirmButton: false,
                     //     timer: 3000
                     // })
-                    $nombreUni.value = "";
+                    $nombreUniV.value = "";
                 }
             })
             .catch(function (err) {
                 // console.log('error', err);
                 let message = err.statusText || "Ocurrió un error";
-                $nombreUni.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                $nombreUniV.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
             });
     });
     /**------Fin de valición de categoría si existe. */
 
     const $regExpre = {
-        nombreUni: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+        nombreUniV: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
     };
     /**------Objeto para validar si los campos estan vacíos. */
-    const camposUCom = {
-        nombreUni: false,
+    const camposUVent = {
+        nombreUniV: false,
     };
-    const validarFormUCom = (e) => {
+    const validarformUVen = (e) => {
         // console.log("Se ejecutó");
         // console.log(e.target.name);
         /**El name es del input, es decir, se ejecuta todos los name */
         switch (e.target.name) {
-            case "nombreUni":
-                validarInput($regExpre.nombreUni, e.target, "nombreUni");
+            case "nombreUniV":
+                validarInput($regExpre.nombreUniV, e.target, "nombreUniV");
                 break;
         }
     };
@@ -170,7 +170,7 @@ function uniCompra() {
                 "alert-val-activo"
             );
             // Valida que los Car no esten vacíos.
-            camposUCom[ campo ] = true;
+            camposUVent[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -180,26 +180,26 @@ function uniCompra() {
                     "alert-val-activo"
                 );
             }, 5000);
-            camposUCom[ campo ] = false;
+            camposUVent[ campo ] = false;
         }
     };
 
     inputs.forEach((input) => {
-        input.addEventListener("keyup", validarFormUCom);
-        input.addEventListener("blur", validarFormUCom);
+        input.addEventListener("keyup", validarformUVen);
+        input.addEventListener("blur", validarformUVen);
     });
     /**=================================================================
-       * CAPTURAR DATOS PARA GUARDAR CATEGORÍA
+       * CAPTURAR DATOS PARA GUARDAR VENTA
        ===================================================================*/
-    $formUCom.addEventListener("submit", function (e) {
+    $formUVen.addEventListener("submit", function (e) {
         // console.log("Excelente");
         e.preventDefault();
         /**-----Validación de datos */
-        if (camposUCom.nombreUni) {
+        if (camposUVent.nombreUniV) {
             /**------Fin validación de datos */
-            let data = new FormData($formUCom);
+            let data = new FormData($formUVen);
             // console.log(data);
-            fetch("ajax/unidadCom.ajax.php", {
+            fetch("ajax/unidadVent.ajax.php", {
                 method: "POST",
                 body: data,
                 mode: "cors",
@@ -209,9 +209,9 @@ function uniCompra() {
                     // console.log(data);
                     if (data === "ok") {
                         toastr.success('Se guardaron los datos de unidad compra correctamente.', 'Datos guardados');
-                        tablaUniC.ajax.reload(null, false);
+                        tablaUniV.ajax.reload(null, false);
                     }
-                    $formUCom.reset();
+                    $formUVen.reset();
                 })
                 .catch(function (err) {
                     // console.log('error', err);
@@ -237,18 +237,18 @@ function uniCompra() {
     /**=================================================================
       * ACTIVAR Y DESACTIVAR BOTÓN DE STATUS
       ===================================================================*/
-    const $statusUCom = d.querySelector(".btnActivarUcOM");
+    const $statusUVent = d.querySelector(".btnActivarUVent");
     // console.log("$status ", $status);
     d.addEventListener("click", (e) => {
         // console.log(e.target);
-        let $idUniCom = e.target.getAttribute("idUniCom");
-        // console.log($idUniCom);
-        let $estadoUCom = e.target.getAttribute("estadoUCom");
-        // console.log($estadoUCom);
+        let $idUniVent = e.target.getAttribute("idUniVent");
+        // console.log($idUniVent);
+        let $estadoUVent = e.target.getAttribute("estadoUVent");
+        // console.log($estadoUVent);
         let data = new FormData();
-        data.append("activeIdUCom", $idUniCom);
-        data.append("activeSUCom", $estadoUCom);
-        fetch('ajax/unidadCom.ajax.php', {
+        data.append("activeIdUVENT", $idUniVent);
+        data.append("activeSUVENT", $estadoUVent);
+        fetch('ajax/unidadVent.ajax.php', {
             method: 'POST',
             body: data,
             mode: "cors"
@@ -256,45 +256,45 @@ function uniCompra() {
             .then(res => (res.ok ? res.json() : Promise.reject(res)))
             .then(json => {
                 // console.log(json);
-                tablaUniC.ajax.reload(null, false);
+                tablaUniV.ajax.reload(null, false);
             })
             .catch(function (err) {
                 // console.log('error', err);
                 let message = err.statusText || "Ocurrió un error";
-                $statusUCom.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                $statusUVent.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
             })
-        if ($estadoUCom == 0) {
+        if ($estadoUVent == 0) {
             $(this).removeClass('btn-outline-success');
             $(this).addClass('btn-outline-danger');
             $(this).html('Desactivado');
-            $(this).attr('estadoUCom', 1);
+            $(this).attr('estadoUVent', 1);
             // $status.classList.remove("btn-outline-success");
             // $status.classList.add("btn-outline-danger");
             // $status.innerHTML = `Desactivado`;
-            // e.target.getAttribute("estadoUCom", 1);
+            // e.target.getAttribute("estadoUVent", 1);
         } else {
             // $status.classList.add("btn-outline-success");
             // $status.classList.remove("btn-outline-danger");
             // $status.innerHTML = `Activado`;
-            // e.target.getAttribute("estadoUCom", 1);
+            // e.target.getAttribute("estadoUVent", 1);
             $(this).addClass('btn-outline-success');
             $(this).removeClass('btn-outline-danger');
             $(this).html('Activado');
-            $(this).attr('estadoUCom', 0);
+            $(this).attr('estadoUVent', 0);
         }
     })
     /**------------Fin de descativar o activar status */
 }
-d.addEventListener("DOMContentLoaded", uniCompra);
+d.addEventListener("DOMContentLoaded", uniVenta);
 /**=================================================================
-    * EDICIÓN DE UNIDAD COMPRA
+    * EDICIÓN DE UNIDAD VENTA
 ===================================================================*/
-const idUniComE = (id) => {
-    let idUComE = id;
-    // console.log("idUComE", idUComE);
-    let url = "ajax/unidadCom.ajax.php";
+const idUniVenE = (id) => {
+    let idUVentE = id;
+    // console.log("idUVentE", idUVentE);
+    let url = "ajax/unidadVent.ajax.php";
     let data = new FormData();
-    data.append('idUComEdit', idUComE);
+    data.append('idUVentEdit', idUVentE);
     fetch(url, {
         method: 'POST',
         body: data,
@@ -303,33 +303,33 @@ const idUniComE = (id) => {
         .then(res => (res.ok ? res.json() : Promise.reject(res)))
         .then(json => {
             // console.log(json);
-            idUCompraE.value = json.id;
-            nombreUniE.value = json.nombre_unCompra;
+            idUVentaE.value = json.id;
+            nombreUniVE.value = json.nombre_univent;
         })
         .catch(function (err) {
             // console.error('Error', err);
             let message = err.statusText || "Ocurrió un error";
-            idUniComE.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+            idUniVenE.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
         })
 }
-/**-------Fin edición */
+// /**-------Fin edición */
 /**=================================================================
  * VALIDACIÓN PARA EDICIÓN
  ===================================================================*/
-function contactFormEditUC() {
-    const $formUComE = d.getElementById("formUComE"),
-        inputs = d.querySelectorAll("#formUComE input"),
-        $nombreUniE = d.getElementById("nombreUniE");
+function contactFormEditUV() {
+    const $formUVenE = d.getElementById("formUVenE"),
+        inputs = d.querySelectorAll("#formUVenE input"),
+        $nombreUniVE = d.getElementById("nombreUniVE");
     /**=================================================================
        * VALIDAR SI NOMBRE DE CATEGORÍA EXISTE
        ===================================================================*/
-    $nombreUniE.addEventListener("change", (e) => {
+    $nombreUniVE.addEventListener("change", (e) => {
         // console.log(e);
-        const $nameUComE = e.target.value;
-        // console.log($nameUComE);
+        const $nameUVentE = e.target.value;
+        // console.log($nameUVentE);
         let data = new FormData();
-        data.append("nameUCom", $nameUComE);
-        fetch("ajax/unidadCom.ajax.php", {
+        data.append("nameUVentE", $nameUVentE);
+        fetch("ajax/unidadVent.ajax.php", {
             method: "POST",
             body: data,
             mode: "cors",
@@ -353,31 +353,31 @@ function contactFormEditUC() {
                     //     showConfirmButton: false,
                     //     timer: 3000
                     // })
-                    $nombreUniE.value = "";
+                    $nombreUniVE.value = "";
                 }
             })
             .catch(function (err) {
                 // console.log('error', err);
                 let message = err.statusText || "Ocurrió un error";
-                $nombreUniE.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                $nombreUniVE.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
             });
     });
     /**------Fin de valición de datos si existe. */
 
     const $regExpre = {
-        nombreUniE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
+        nombreUniVE: /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
     };
     /**------Objeto para validar si los campos estan vacíos. */
-    const camposUComE = {
-        nombreUniE: false,
+    const camposUVentE = {
+        nombreUniVE: false,
     };
-    const validarFormUComE = (e) => {
+    const validarformUVenE = (e) => {
         // console.log("Se ejecutó");
         // console.log(e.target.name);
         /**El name es del input, es decir, se ejecuta todos los name */
         switch (e.target.name) {
-            case "nombreUniE":
-                validarInput($regExpre.nombreUniE, e.target, "nombreUniE");
+            case "nombreUniVE":
+                validarInput($regExpre.nombreUniVE, e.target, "nombreUniVE");
                 break;
         }
     };
@@ -387,7 +387,7 @@ function contactFormEditUC() {
                 "alert-val-activo"
             );
             // Valida que los Car no esten vacíos.
-            camposUComE[ campo ] = true;
+            camposUVentE[ campo ] = true;
         } else {
             d.querySelector(`#val-${campo} .alert-val`).classList.add(
                 "alert-val-activo"
@@ -397,36 +397,36 @@ function contactFormEditUC() {
                     "alert-val-activo"
                 );
             }, 5000);
-            camposUComE[ campo ] = false;
+            camposUVentE[ campo ] = false;
         }
     };
 
     inputs.forEach((input) => {
-        input.addEventListener("keyup", validarFormUComE);
-        input.addEventListener("blur", validarFormUComE);
+        input.addEventListener("keyup", validarformUVenE);
+        input.addEventListener("blur", validarformUVenE);
     });
     /**=================================================================
-       * CAPTURAR DATOS PARA GUARDAR 
+       * CAPTURAR DATOS PARA GUARDAR
        ===================================================================*/
-    $formUComE.addEventListener("submit", function (e) {
+    $formUVenE.addEventListener("submit", function (e) {
         // console.log("Excelente");
         e.preventDefault();
         /**-----Validación de datos */
-        if (idUCompraE != "" && nombreUniE != "") {
+        if (idUVentaE != 0 && nombreUniVE != "") {
             /**------Fin validación de datos */
-            let data = new FormData($formUComE);
+            let data = new FormData($formUVenE);
             // console.log(data);
-            fetch("ajax/unidadCom.ajax.php", {
+            fetch("ajax/unidadVent.ajax.php", {
                 method: "POST",
                 body: data,
                 mode: "cors",
             })
                 .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-                .then((data) => {
-                    // console.log(data);
-                    if (data === "ok") {
+                .then((json) => {
+                    // console.log(json);
+                    if (json === "ok") {
                         toastr.success('Se modificaron los datos de unidad compra correctamente.', 'Datos guardados');
-                        tablaUniC.ajax.reload(null, false);
+                        tablaUniV.ajax.reload(null, false);
                     }
                 })
                 .catch(function (err) {
@@ -442,23 +442,23 @@ function contactFormEditUC() {
                 });
             // $('#modal-4').modal('hide');
         } else {
-            d.getElementById("form-mensajeUComE").classList.add("alert-val-activo");
+            d.getElementById("form-mensajeUVE").classList.add("alert-val-activo");
             setTimeout(() => {
-                d.getElementById("form-mensajeUComE").classList.remove(
+                d.getElementById("form-mensajeUVE").classList.remove(
                     "alert-val-activo"
                 );
             }, 5000);
         }
     });
 }
-d.addEventListener("DOMContentLoaded", contactFormEditUC);
+d.addEventListener("DOMContentLoaded", contactFormEditUV);
 /**------------Fin valición para edición */
 /**=================================================================
-    * ELIMINAR 
+    * ELIMINAR
 ===================================================================*/
-const idElimUCom = (id) => {
-    let idUComEd = id;
-    // console.log("idPdelete ", idUComEd);
+const idElimUVen = (id) => {
+    let idUVenEd = id;
+    // console.log("idPdelete ", idUVenEd);
     Swal.fire({
         title: "¿Estás seguro de eliminar los datos?",
         icon: "warning",
@@ -469,9 +469,9 @@ const idElimUCom = (id) => {
         cancelButtonText: "No",
     }).then((result) => {
         if (result.value) {
-            let url = "ajax/unidadCom.ajax.php";
+            let url = "ajax/unidadVent.ajax.php";
             let data = new FormData();
-            data.append("idUComEdelete", idUComEd);
+            data.append("idUVenEdelete", idUVenEd);
             fetch(url, {
                 method: "POST",
                 body: data,
@@ -488,7 +488,7 @@ const idElimUCom = (id) => {
                             timer: 1500,
                         });
                     }
-                    tablaUniC.ajax.reload(null, false);
+                    tablaUniV.ajax.reload(null, false);
                 })
                 .catch(function (err) {
                     // console.error('Error', err);
@@ -499,4 +499,5 @@ const idElimUCom = (id) => {
     });
 };
 /**----------------Fin eliminar*/
+
 

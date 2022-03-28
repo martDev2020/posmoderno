@@ -142,6 +142,7 @@ echo '</div>
 <script src="vistas/js/gestorRF.js"></script>
 <script src="vistas/js/gestorPromCat.js"></script>
 <script src="vistas/js/gestorUniCompra.js"></script>
+<script src="vistas/js/gestorUniVenta.js"></script>
 </body>
 
 </html>

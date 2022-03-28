@@ -380,9 +380,9 @@ function contactFormEditDep() {
             .then((json) => {
                 // console.log(json);
                 if (json.length != 0) {
-                    d.querySelector(".alert-val-danger").classList.add("alert-val-activo");
+                    d.querySelector(".alert-val-dangered").classList.add("alert-val-activo");
                     setTimeout(() => {
-                        d.querySelector(".alert-val-danger").classList.remove("alert-val-activo");
+                        d.querySelector(".alert-val-dangered").classList.remove("alert-val-activo");
                     }, 5000);
                     // Swal.fire({
                     //     position: "top-end",

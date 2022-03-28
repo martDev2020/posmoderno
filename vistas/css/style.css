@@ -71,6 +71,9 @@ body {
 .alert-val-danger {
   display: none;
 }
+.alert-val-dangered {
+  display: none;
+}
 .alert-val-activo {
   display: block;
   margin-top: -1rem !important;

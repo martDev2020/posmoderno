@@ -100,13 +100,13 @@
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
                                     No ingresar caracteres especiales
                                 </div>
-                                <div class="alert alert-danger alert-val-danger alert-solid" role="alert">
+                                <div class="alert alert-danger alert-val-dangered alert-solid" role="alert">
                                     El nombre ya existe en la base de datos
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-danger alert-val alert-solid" role="alert" id="form-mensajecatE">
+                    <div class="alert alert-danger alert-val alert-solid" role="alert" id="form-mensajeUComE">
                         <strong>Error: revisa los campos que estén correctos y no deben estar vacíos.</strong>
                     </div>
                     <div class="d-flex justify-content-between">
