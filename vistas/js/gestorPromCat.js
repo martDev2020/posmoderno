@@ -361,6 +361,9 @@ const idCatOferta = (id) => {
         .then((json) => {
             // console.log(json.activo);
             if (json.activo != 0) {
+                offer1.disabled = false;
+                offer2.disabled = false;
+                offer3.disabled = false;
                 idPromC.value = json.id;
                 descripOfC.value = json.descripprom_cat;
                 if (offer1.value === json.oferta_cat) {
@@ -406,6 +409,11 @@ const idCatOferta = (id) => {
                     $prodCat.disabled = false;
                     prodCat.value = json.prodpor_cat;
                 }
+                $iniOfCatG.disabled = false;
+                $iniHoraCatG.disabled = false;
+                $finFeCatG.disabled = false;
+                $finHoraCatG.disabled = false;
+                $ingrecatProm.disabled = false;
                 iniOfCat.value = json.iniOferta_cat.slice(0, 10);
                 iniHoraCat.value = json.iniOferta_cat.slice(-9);
                 finFeCat.value = json.finOferta_cat.slice(0, 10);

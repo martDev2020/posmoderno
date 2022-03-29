@@ -108,7 +108,7 @@ function contactFormRF() {
     $modalRF = d.getElementById("modalRF");
   /**---Traer datos de id para incrementar el código */
   $modalRF.addEventListener("click", (e) => {
-    console.log("Hola");
+    // console.log("Hola");
     traerId();
   });
   /**---Fin traer datos de id para incrementar el código */
