@@ -95,6 +95,19 @@ class AjaxRegimenF
         $response = ControladorRF::ctrEliminarRF($datos);
         echo $response;
     }
+    /**=================================================================
+     * TREAR ÚLTIMO ID PARA CÓDIGO
+     ===================================================================*/
+    public function ajaxCode()
+    {
+        $item = "claveRegimenFiscal";
+        $response = ControladorRF::ctrTraerUltimoId($item);
+        if (is_array($response)) {
+            echo json_encode($response);
+        } else {
+            echo json_encode("falso");
+        }
+    }
 }
 /**=================================================================
  * NO REPETIR CLAVE DE RÉGIMEN FISCAL
@@ -114,6 +127,15 @@ if (isset($_POST["activeidRF"])) {
     $statusRF->activeidRF = $_POST["activeidRF"];
     $statusRF->activeErf = $_POST["activeErf"];
     $statusRF->ajaxActivarRF();
+}
+/**=================================================================
+ * TRAER ÚLTIMO ID PARA CÓDIGO
+ ===================================================================*/
+if (isset($_POST["traerCode"])) {
+    // echo json_encode($_POST["traerCode"]);
+    $traerCode = new AjaxRegimenF();
+    $traerCode->traerCode = $_POST["traerCode"];
+    $traerCode->ajaxCode();
 }
 /**=================================================================
  * GUARDAR DATOS

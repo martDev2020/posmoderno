@@ -20,6 +20,15 @@ class ControladorRF
         return $response;
     }
     /**=================================================================
+     * TRAER ÚLTIMO ID PARA CÓDIGO
+     ===================================================================*/
+    static public function ctrTraerUltimoId($item)
+    {
+        $tabla = "regimenfiscal";
+        $response = ModeloRF::mdlTraerUltimoId($tabla, $item);
+        return $response;
+    }
+    /**=================================================================
      * GUARADAR DATOS
      ===================================================================*/
     static public function ctrGuardarRF($datos)

@@ -3,6 +3,18 @@ require_once "conexion.php";
 class ModeloRF
 {
     /**=================================================================
+     * TRAER ULTIMO ID PARA CÓDIGO
+     ===================================================================*/
+    static public function mdlTraerUltimoId($tabla, $item)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $item DESC LIMIT 1");
+        if ($stmt->execute()) {
+            return $stmt->fetch();
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+    /**=================================================================
      * MOSTRAR DATOS
      ===================================================================*/
     static public function mdlMostrarRF($tabla, $item, $value)
@@ -17,6 +29,8 @@ class ModeloRF
             $stmt->execute();
             return $stmt->fetchAll();
         }
+        $stmt->close();
+        $stmt = null;
     }
     /**=================================================================
      * MOSTRAR DATOS PARA EDICIÓN
@@ -33,6 +47,8 @@ class ModeloRF
             $stmt->execute();
             return $stmt->fetchAll();
         }
+        $stmt->close();
+        $stmt = null;
     }
     /**=================================================================
      * ACTIVAR STAUS DESACTIVAR

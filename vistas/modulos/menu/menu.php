@@ -112,7 +112,7 @@
                  <span><i class="material-icons fs-16">attach_money</i>Finanzas</span>
              </a>
              <ul id="pages" class="collapse" aria-labelledby="pages" data-parent="#side-nav-accordion">
-                 <li> <a href="tasimpuesto">Tasa impuesto</a> </li>
+                 <li> <a href="tasaimpuesto">Tasa impuesto</a> </li>
              </ul>
          </li>
          <li class="menu-item">

@@ -104,8 +104,14 @@ function contactFormRF() {
   const $formRF = d.getElementById("formRF"),
     inputsRF = d.querySelectorAll("#formRF input"),
     $nomRF = d.getElementById("nomRF"),
-    $claveRF = d.getElementById("claRF");
-
+    $claveRF = d.getElementById("claRF"),
+    $modalRF = d.getElementById("modalRF");
+  /**---Traer datos de id para incrementar el código */
+  $modalRF.addEventListener("click", (e) => {
+    console.log("Hola");
+    traerId();
+  });
+  /**---Fin traer datos de id para incrementar el código */
   const $regExpreRF = {
     claRF: /^\d{8}$/,
     nomRF: /^ [A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
@@ -277,6 +283,7 @@ function contactFormRF() {
             tablaRF.ajax.reload(null, false);
           }
           $formRF.reset();
+          traerId();
         })
         .catch(function (err) {
           // console.log('error', err);
@@ -478,6 +485,41 @@ function formRFedit() {
   });
 }
 d.addEventListener("DOMContentLoaded", formRFedit);
+
+function traerId() {
+  $claveRF = d.getElementById("claRF");
+  // console.log("Hola");
+  let data = new FormData;
+  data.append("traerCode", 'true');
+  fetch("ajax/regimenRF.ajax.php", {
+    method: "POST",
+    body: data,
+    cors: "cors",
+  }).then((res) => (res.ok ? res.json() : Promise.reject(res)))
+    .then((json) => {
+      // console.log(json);
+      const $codigo = Number((json.claveRegimenFiscal).substr(-1)) + 1;
+      const $codigo2 = Number((json.claveRegimenFiscal).substr(-2)) + 1;
+      if (json === "falso") {
+        // console.log(json);
+        $claveRF.value = '0000000' + 1;
+      } else if ($codigo2 < 10 && $codigo < 10) {
+        $claveRF.value = '0000000' + $codigo;
+      } else if ($codigo == 10) {
+        $claveRF.value = '000000' + $codigo;
+      } else if ($codigo2 > 10) {
+        if ($codigo2 > 10 && $codigo2 < 100) {
+          $claveRF.value = '000000' + $codigo2;
+        } else {
+          $claveRF.value = '00000' + $codigo2;
+        }
+      }
+    }).catch(function (err) {
+      // console.log('error', err);
+      let message = err.statusText || "Ocurrió un error";
+      $claveRF.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+    });
+}
 /**-------------Fin edición de formulario */
 /**=================================================================
     * ELIMINAR DATOS

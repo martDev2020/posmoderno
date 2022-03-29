@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="ms-panel">
+        <div class="ms-panel" id="modalRF">
             <div class="col-md-3 col-sm-6">
                 <button type="button" class="btn btn-pill btn-gradient-primary has-icon" data-toggle="modal"
                     data-target="#modal-regF"><i class="flaticon-tick-inside-circle"></i> Registro régimen
@@ -47,18 +47,43 @@
                         <div class="form-row">
                             <div class="col-md-4 mb-3" id="val-claRF">
                                 <label for="validationCustom11">Clave régimen fiscal</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control formulario_grupo-input" id="claRF"
-                                        placeholder="Clave régimen fiscal" name="claRF" autocomplete="off"
-                                        onkeyup="mayusP(this);">
-                                    <i class="formulario_validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <div class="alert alert-success alert-val alert-solid" role="alert">
-                                    No ingresar caracteres especiales ni letras, sólo números (8 números)
-                                </div>
-                                <div class="alert alert-danger alert-val-danger alert-solid" role="alert">
-                                    La clave régimen fiscal ya existe en la base de datos.
-                                </div>
+                                <?php
+                                $item = null;
+                                $value = null;
+                                $response = ControladorRF::ctrMostrarRF($item, $value);
+                                // var_dump($response);
+                                if (!$response) {
+                                    echo '
+                                         <div class="input-group">
+                                            <input type="number" class="form-control formulario_grupo-input" id="claRF"
+                                                placeholder="Clave régimen fiscal" name="claRF" value="00000001" autocomplete="off"
+                                                onkeyup="mayusP(this);" readonly>
+                                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <div class="alert alert-success alert-val alert-solid" role="alert">
+                                            No ingresar caracteres especiales ni letras, sólo números (8 números)
+                                        </div>
+                                        <div class="alert alert-danger alert-val-danger alert-solid" role="alert">
+                                            La clave régimen fiscal ya existe en la base de datos.
+                                        </div>
+                                    ';
+                                } else {
+                                    echo '
+                                         <div class="input-group">
+                                            <input type="number" class="form-control formulario_grupo-input" id="claRF"
+                                                placeholder="Clave régimen fiscal" name="claRF" autocomplete="off"
+                                                onkeyup="mayusP(this);" readonly>
+                                            <i class="formulario_validacion-estado fas fa-times-circle"></i>
+                                        </div>
+                                        <div class="alert alert-success alert-val alert-solid" role="alert">
+                                            No ingresar caracteres especiales ni letras, sólo números (8 números)
+                                        </div>
+                                        <div class="alert alert-danger alert-val-danger alert-solid" role="alert">
+                                            La clave régimen fiscal ya existe en la base de datos.
+                                        </div>
+                                    ';
+                                }
+                                ?>
                             </div>
                             <div class="col-md-4 mb-3" id="val-descripRF">
                                 <label for="exampleTextarea">Descripción</label>
@@ -120,7 +145,7 @@
                                     <input type="hidden" id="idRFedit" name="idRFedit">
                                     <input type="text" class="form-control formulario_grupo-input" id="claRFE"
                                         placeholder="Clave régimen fiscal" name="claRFE" autocomplete="off"
-                                        onkeyup="mayusP(this);">
+                                        onkeyup="mayusP(this);" readonly="true">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">

@@ -62,7 +62,8 @@ if (isset($_GET["ruta"])) {
         $_GET["ruta"] == "promsubcategoria" ||
         $_GET["ruta"] == "promproductos" ||
         $_GET["ruta"] == "unicompra" ||
-        $_GET["ruta"] == "univenta"
+        $_GET["ruta"] == "univenta" ||
+        $_GET["ruta"] == "tasaimpuesto"
     ) {
         echo ('<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
             <!-- Setting Panel -->
