@@ -60,7 +60,7 @@ class AjaxSubcategorias
     {
         $item = "id";
         $value = $this->idsubCategoriaE;
-        $response = ControladorSubCategoria::ctrMostrarEdit($item, $value);
+        $response = ControladorSubCategoria::ctrMostrarEditSub($item, $value);
         echo json_encode($response);
     }
     /**=================================================================

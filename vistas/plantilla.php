@@ -49,7 +49,7 @@ if (isset($_GET["ruta"])) {
         $_GET["ruta"] == "clientes" ||
         $_GET["ruta"] == "categorias" ||
         $_GET["ruta"] == "subcategorias" ||
-        $_GET["ruta"] == "productos" ||
+        $_GET["ruta"] == "articulo" ||
         $_GET["ruta"] == "usuarios" ||
         $_GET["ruta"] == "empleados" ||
         $_GET["ruta"] == "ventas" ||
@@ -144,6 +144,8 @@ echo '</div>
 <script src="vistas/js/gestorPromCat.js"></script>
 <script src="vistas/js/gestorUniCompra.js"></script>
 <script src="vistas/js/gestorUniVenta.js"></script>
+<script src="vistas/js/gestorTI.js"></script>
+<script src="vistas/js/gestorProd.js"></script>
 </body>
 
 </html>

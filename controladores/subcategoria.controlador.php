@@ -13,7 +13,7 @@ class ControladorSubCategoria
     /**=================================================================
      * TRAER ID PARA EDICIÓN
      ===================================================================*/
-    static public function ctrMostrarEdit($item, $value)
+    static public function ctrMostrarEditSub($item, $value)
     {
         $tabla = "subcategoria";
         $response = ModeloSubcatgoria::mdlMostrarsubCateE($tabla, $item, $value);

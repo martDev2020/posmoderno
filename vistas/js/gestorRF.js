@@ -331,7 +331,7 @@ const idEditRF = (id) => {
     .catch(function (err) {
       // console.error('Error', err);
       let message = err.statusText || "Ocurrió un error";
-      idClientes.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+      idEditRF.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
     });
 };
 /**-------Fin edición */
@@ -487,7 +487,8 @@ function formRFedit() {
 d.addEventListener("DOMContentLoaded", formRFedit);
 
 function traerId() {
-  $claveRF = d.getElementById("claRF");
+  $claveRF = d.getElementById("claRF"),
+    $formRF = d.getElementById("formRF");
   // console.log("Hola");
   let data = new FormData;
   data.append("traerCode", 'true');
@@ -514,10 +515,10 @@ function traerId() {
           $claveRF.value = '00000' + $codigo2;
         }
       }
-    }).catch(function (err) {
+    }).catch((err) => {
       // console.log('error', err);
       let message = err.statusText || "Ocurrió un error";
-      $claveRF.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+      $formRF.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
     });
 }
 /**-------------Fin edición de formulario */

@@ -569,8 +569,8 @@ function contactFormEditsubCE() {
         textarea.addEventListener("blur", validarFormsubCatE);
     });
     /**=================================================================
-* CAPTURAR DATOS PARA GUARDAR EDICIÓN DE SUBCATEGORÍA
-===================================================================*/
+    * CAPTURAR DATOS PARA GUARDAR EDICIÓN DE SUBCATEGORÍA
+    ===================================================================*/
     $formsubcatE.addEventListener("submit", function (e) {
         // console.log("Excelente");
         e.preventDefault();
@@ -628,7 +628,7 @@ function contactFormEditsubCE() {
 d.addEventListener("DOMContentLoaded", contactFormEditsubCE);
 /**-------------Fin edición de formulario */
 /**=================================================================
-    * ELIMINAR CATEGORÍA
+    * ELIMINAR SUBCATEGORÍA
 ===================================================================*/
 const idEliminarsubCat = (id) => {
     let idsubCatdelete = id;
@@ -679,10 +679,10 @@ const idEliminarsubCat = (id) => {
                             }
                             tablaSubCategoria.ajax.reload(null, false);
                         })
-                        .catch(function (err) {
+                        .catch((err) => {
                             // console.error('Error', err);
                             let message = err.statusText || "Ocurrió un error";
-                            idEliminarCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                            idEliminarsubCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
                         })
                 }
             })
@@ -690,7 +690,7 @@ const idEliminarsubCat = (id) => {
         .catch(function (err) {
             // console.error('Error', err);
             let message = err.statusText || "Ocurrió un error";
-            idEliminarCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+            idEliminarsubCat.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
         })
 }
-/**-------Fin eliminara categoría */
+/**-------Fin eliminar subcategoría */

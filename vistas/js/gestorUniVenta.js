@@ -208,7 +208,7 @@ function uniVenta() {
                 .then((data) => {
                     // console.log(data);
                     if (data === "ok") {
-                        toastr.success('Se guardaron los datos de unidad compra correctamente.', 'Datos guardados');
+                        toastr.success('Se guardaron los datos de unidad venta correctamente.', 'Datos guardados');
                         tablaUniV.ajax.reload(null, false);
                     }
                     $formUVen.reset();
@@ -425,7 +425,7 @@ function contactFormEditUV() {
                 .then((json) => {
                     // console.log(json);
                     if (json === "ok") {
-                        toastr.success('Se modificaron los datos de unidad compra correctamente.', 'Datos guardados');
+                        toastr.success('Se modificaron los datos de unidad venta correctamente.', 'Datos guardados');
                         tablaUniV.ajax.reload(null, false);
                     }
                 })
