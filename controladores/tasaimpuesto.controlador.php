@@ -39,8 +39,8 @@ class ControladorTI
         if (isset($datos["conceptoTI"])) {
             if (
                 preg_match('/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/', $datos["conceptoTI"]) &&
-                preg_match('/^[0-9\.\s]{1,10}$/', $datos["valorti"]) &&
-                preg_match('/^[0-9\.\s]{1,10}$/', $datos["tasacuota"])
+                preg_match('/^\d*(\.\d{1})?\d{0,5}$/', $datos["valorti"]) &&
+                preg_match('/^\d*(\.\d{1})?\d{0,5}$/', $datos["tasacuota"])
             ) {
                 $datos = array(
                     'conceptoTI' => $datos["conceptoTI"],

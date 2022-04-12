@@ -97,3 +97,67 @@ tablaProducto = $(".tablaProd").DataTable({
     ],
 });
 /**-====================Fin tabla productos */
+function gestProducto() {
+    const $formPr = d.getElementById("formPr"),
+        inputsPr = d.querySelectorAll("#formPr input"),
+        $claveArt = d.getElementById("claveArt"),
+        $claveAltA = d.getElementById("claveAltA"),
+        $nombreArt = d.getElementById("nombreArt"),
+        $descrArt = d.getElementById("descrArt"),
+        $fotoArt = d.getElementById("fotoArt"),
+        $selectCat = d.getElementById("selectCat"),
+        $selectsubcat = d.getElementById("selectsubcat"),
+        $selectdep = d.getElementById("selectdep"),
+        $selectUC = d.getElementById("selectUC"),
+        $selectUV = d.getElementById("selectUV"),
+        $precv = d.getElementById("precv"),
+        $invmin = d.getElementById("invmin"),
+        $invmax = d.getElementById("invmax"),
+        $selectUImp = d.getElementById("selectUImp"),
+        $recArt = d.getElementById("recArt"),
+        $granArt = d.getElementById("granArt"),
+        $modalPr = d.getElementById("modalPr"),
+        $offer1 = d.getElementById("offer1"),
+        $offer2 = d.getElementById("offer2");
+    /**------Incremento de clave */
+    $modalPr.addEventListener("click", (e) => {
+        // console.log("Hola");
+        traerIdPr();
+    });
+    /**-------Fin incremento de clave. */
+}
+d.addEventListener("DOMContentLoaded", gestProducto);
+function traerIdPr() {
+    const $claveAltA = d.getElementById("claveAltA");
+    // console.log("Hola");
+    let data = new FormData;
+    data.append("traerCodePr", 'true');
+    fetch("ajax/producto.ajax.php", {
+        method: "POST",
+        body: data,
+        cors: "cors",
+    }).then((res) => (res.ok ? res.json() : Promise.reject(res)))
+        .then((json) => {
+            // console.log(json);
+            const $codigo = Number((json.claveAlterna).substr(-1)) + 1;
+            const $codigo2 = Number((json.claveAlterna).substr(-2)) + 1;
+            if (!json.claveAlterna) {
+                // console.log(json);
+                $claveAltA.value = '00' + 1;
+            } else if ($codigo2 < 10 && $codigo < 10) {
+                $claveAltA.value = '00' + $codigo;
+            } else if ($codigo == 10) {
+                $claveAltA.value = '0' + $codigo;
+            } else if ($codigo2 > 10) {
+                if ($codigo2 > 10 && $codigo2 < 100) {
+                    $claveAltA.value = '0' + $codigo2;
+                } else {
+                    $claveAltA.value = $codigo2;
+                }
+            }
+        }).catch((err) => {
+            // console.log('error', err);
+            let message = err.statusText || "Ocurrió un error";
+            $claveAltA.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+        });
+}

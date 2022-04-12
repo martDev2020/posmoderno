@@ -103,24 +103,23 @@
                             <div class="col-md-6 mb-3" id="val-valorti">
                                 <label for="validationCustom11">Valor</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control formulario_grupo-input" id="valorti"
-                                        onkeyup="mayusP(this);" placeholder="Valor" name="valorti" autocomplete="off">
+                                    <input type="number" min="0" step="any" class="form-control formulario_grupo-input"
+                                        id="valorti" placeholder="Valor" name="valorti" autocomplete="off">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
-                                    No ingresar caracteres especiales sólo dígitos
+                                    Ingresar dos dígitos despupes del punto decimal
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3 salir" id="val-tasacuota">
                                 <label for="validationCustom11">Tasa o cuota</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control formulario_grupo-input" id="tasacuota"
-                                        onkeyup="mayusP(this);" placeholder="Tasa o cuota" name="tasacuota"
-                                        autocomplete="off">
+                                    <input type="number" min="0" step="any" class="form-control formulario_grupo-input"
+                                        id="tasacuota" placeholder="Tasa o cuota" name="tasacuota" autocomplete="off">
                                     <i class="formulario_validacion-estado fas fa-times-circle"></i>
                                 </div>
                                 <div class="alert alert-success alert-val alert-solid" role="alert">
-                                    No ingresar caracteres especiales sólo dígitos
+                                    Ingresar 6 dígitos después del punto decimal
                                 </div>
                             </div>
                         </div>

@@ -20,4 +20,16 @@ class ModeloProd
         $stmt->close();
         $stmt = null;
     }
+    /**=================================================================
+     * TRAER ULTIMO ID PARA CLAVE
+     ===================================================================*/
+    static public function mdlTraerUltimoIdPr($tabla, $item)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $item DESC LIMIT 1");
+        if ($stmt->execute()) {
+            return $stmt->fetch();
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

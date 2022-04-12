@@ -166,8 +166,9 @@ function gestTasaIm() {
      ===================================================================*/
     const $regExpreTI = {
         conceptoTI: /^ [A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]{1,250}$/,
-        valorti: /^[0-9\.\s]{1,10}$/,
-        tasacuota: /^[0-9\.\s]{1,10}$/,
+        // valorti: /^[0-9]*(\.d{1})?\d{0,1}$/,
+        valorti: /^\d*(\.\d{1})?\d{0,5}$/,
+        tasacuota: /^\d*(\.\d{1})?\d{0,5}$/,
     };
     /**------Objeto para validar si los campos estan vacíos. */
     const camposTI = {
@@ -423,7 +424,7 @@ function gestTasaImE() {
 d.addEventListener("DOMContentLoaded", gestTasaImE);
 
 function traerIdTI() {
-    $claveTI = d.getElementById("claveTI");
+    const $claveTI = d.getElementById("claveTI");
     // console.log("Hola");
     let data = new FormData;
     data.append("traerCodeTI", 'true');

@@ -400,7 +400,6 @@
 <!---=================================================================
  * HORARIOS AVANZADOS
  ===================================================================--->
-
 <div class="modal fade" id="modal-hora" tabindex="-1" role="dialog" aria-labelledby="modal-4">
     <div class="modal-dialog modal-hora" role="document">
         <div class="modal-content modal-color">
